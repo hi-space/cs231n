@@ -1,4 +1,4 @@
-# RNN
+# 10-1. Appendix RNN
 
 ## RNN \(Recurrent and Recursive Nets\)
 
