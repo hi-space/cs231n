@@ -50,7 +50,7 @@ Activation 함수로는 leak Relu 사용.
 마지막 output으로 나오는 7x7x30이 바로 예측된 결과로, 이 안에 bbox와 class 정보 등 모든 것이 들어있다.  
 자세히 보면 아래와 같다.
 
-![](../.gitbook/assets/image%20%28296%29.png)
+![](../.gitbook/assets/image%20%28297%29.png)
 
  S = 7 이라고 했을 때, 49개의 Grid cell이 만들어지고, 각각의 grid cell은 B개\(B=2로 가정\)의 bounding box를 가지고 있다.  
 앞 5개의 값은 해당 Grid cell의 첫번째 Bounding box 에 대한 값이 채워지고, 뒤의 5개는 두밴째 Bounding box에 대한 값이 채워진다.  
@@ -66,7 +66,7 @@ Activation 함수로는 leak Relu 사용.
  뒤의 20개에는 해당 grid cell에 object가 있을 경우, 그것이 어떤 class인지에 대한 확률이 저장되어 있다.  
 즉, 20개의 class에 대한 conditional class probability에 해당된다.
 
-![](../.gitbook/assets/image%20%28293%29.png)
+![](../.gitbook/assets/image%20%28294%29.png)
 
  첫번째 Bounding box의 confidence score와 각 conditional class probability를 곱하면 해당 Bbox의 class specific confidence score가 나온다. 두번째 Bounding box도 마찬가지로 계산하여 class specific confidence score가 나온다. Bbox의 confidence가 0에 가까울 수록, 그 위치에 어떤 class가 있는 지에 대한 정보도 매우 낮아지게 된다.
 

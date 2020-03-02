@@ -109,7 +109,7 @@ deep learning book을 보면 BPTT 말고도 Teacher forcing이라는 학습 방�
 
 ### RNN Architecture
 
-![Recurrent Networks offer a lot of flexibility](../.gitbook/assets/image%20%28299%29.png)
+![Recurrent Networks offer a lot of flexibility](../.gitbook/assets/image%20%28300%29.png)
 
  RNN은 시퀀스 길이에 관계 없이 input, output을 받을 수 있기 때문에 유연하게 네트워크를 설계할 수 있다.
 

@@ -54,7 +54,7 @@ f가 loss function이라고 하고 x가 loss에 대한 gradient를 계산하고 
 
 Backpropagation에 대한 simple 한 example이다. chain rule을 이용해 뒤쪽 노드부터 앞쪽 노드까지의 gradient를 계산한다. 만약 y의 값을 변화시키면 f 값은 그것의 영향력 만큼 변할 것이다.
 
-![](../.gitbook/assets/image%20%28298%29.png)
+![](../.gitbook/assets/image%20%28299%29.png)
 
 각 노드들은 오직 주변에 대해서만 알고 있다. 우리가 가지고 있는건 각 노드\(f\)와 각 노드의 local 입력\(x, y\)이다. 입력\(x, y\)은 이 노드\(f\)와 연결되어 있고, 이 값은 이 노드를 통해 출력값\(z\)을 얻게 된다. 그리고 우리는 이 노드에서 local gradient를 구할 수 있다.
 

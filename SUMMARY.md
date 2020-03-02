@@ -31,10 +31,11 @@
 ## Paper
 
 * [Taskonomy: Disentangling Task Transfer Learning](paper/taskonomy-disentangling-task-transfer-learning.md)
+* [Training Deep Networks with Synthetic Data Bridging the Reality Gap by Domain Randomization](paper/training-deep-networks-with-synthetic-data-bridging-the-reality-gap-by-domain-randomization.md)
 
 ## ETC
 
 * [Transfer Learning](etc/transfer-learning.md)
 * [Self-Supervised Training](etc/self-training.md)
-* [Synthetic Data](synthetic-data.md)
+* [Synthetic Data](etc/synthetic-data.md)
 

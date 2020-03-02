@@ -149,7 +149,7 @@ Padding 하지 않고 레이어가 여러 겹 쌓이게 되면 출력 사이즈\
 
 ### 1 x 1 Convolution
 
-![](../.gitbook/assets/image%20%28295%29.png)
+![](../.gitbook/assets/image%20%28296%29.png)
 
  1 x 1 convolution 도 의미가 있다. 공간적인 정보를 이용하지는 않지만 여전히 depth 만큼 \(1 x 1 x depth\)  연산을 수행한다. 전체 dept에 대한 내적을 수행하는 거다. 56 x 56 x 64 에 1 x 1 convolution을 수행하면 output은 56 x 56 x 32 이다.
 

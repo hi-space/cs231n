@@ -20,7 +20,7 @@ Activation function 선택, 데이터 전처리, 가중치 초기화, Regulariza
 
 Sigmoid는 뉴런의 firing rate\(점화율\)를 saturation 시키는 것으로 해석할 수 있다. 어떤 값이 0 ~ 1사이의 값을 가지면 이를 firing rate 라고 생각할 수 있다. ReLU가 생물적 타당성이 크긴 하지만, sigmoid 또한 그런 역할을 한다는 걸 알고가자.
 
-![problems of sigmoid](../.gitbook/assets/image%20%28297%29.png)
+![problems of sigmoid](../.gitbook/assets/image%20%28298%29.png)
 
 하지만 Sigmoid에는 몇가지 문제점이 있다.
 
@@ -40,7 +40,7 @@ Gradient descent를 한다고 보자. 이런 값들이 계속 연쇄적으로 ba
 * X = 0 일 때,  이 구간은 linear 하기 때문에 잘 동작할 거다. 그럴싸한 gradient를 얻게 될 거다. 
 * X = 10 일 때,  큰 양수일 경우에도 sigmoid가 flat 하기 때문에 gradient 들이 다 죽게 된다. 역시나 학습이 잘 되지 않을 거다.
 
-![](../.gitbook/assets/image%20%28297%29.png)
+![](../.gitbook/assets/image%20%28298%29.png)
 
 **sigmoid 출력이 zero-centered 하지 않다. \(Sigmoid outputs are not zero-centered\)**
 
@@ -122,7 +122,7 @@ Maxout은 여태 본 활성함수와는 좀 다르다. 입력을 받아드리는
 
 W1, W2를 모두 지니고 있어야 하기 때문에 뉴런당 파라미터 수가 두배가 된다는 문제는 있다.
 
-![](../.gitbook/assets/image%20%28294%29.png)
+![](../.gitbook/assets/image%20%28295%29.png)
 
 실제로 가장 많이들 쓰는 것은 ReLU다. 다양한 문제에서 잘 동작하는 편이다. 다만 learning rate를 섬세하게 잘 결정해야 한다. Leaky ReLU, Maxout, ELU 같은 activation function은 아직 실험단계이긴 하지만 써볼 수 있다. 문제에 따라 어떤 activation function을 사용할 지 다를 거다. tanh나 sigmoid도 써볼 수 있겠지만 대게는 ~LU \(ReLU의 변종\)들이 좋다. 
 
@@ -130,7 +130,7 @@ W1, W2를 모두 지니고 있어야 하기 때문에 뉴런당 파라미터 수
 
 실제 네트워크를 트레이닝 시켜보자.
 
-![](../.gitbook/assets/image%20%28300%29.png)
+![](../.gitbook/assets/image%20%28301%29.png)
 
 가장 대표적인 전처리 과정은 zero-mean으로 만들고 normalize 하는 거다. normalization은 보통 표준편차로 한다. Normalization을 해주는 이유는 모든 차원이 동일한 범위 안에 있게 해줌으로써 전부 동등한 contribute을 할 수 있도록 만들기 위함이다.  
 
