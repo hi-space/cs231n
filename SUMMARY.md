@@ -36,4 +36,5 @@
 
 * [Transfer Learning](etc/transfer-learning.md)
 * [Self-Supervised Training](etc/self-training.md)
+* [Synthetic Data](synthetic-data.md)
 
