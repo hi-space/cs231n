@@ -32,6 +32,9 @@
 
 * [Taskonomy: Disentangling Task Transfer Learning](paper/taskonomy-disentangling-task-transfer-learning.md)
 * [Training Deep Networks with Synthetic Data Bridging the Reality Gap by Domain Randomization](paper/training-deep-networks-with-synthetic-data-bridging-the-reality-gap-by-domain-randomization.md)
+* [CyCADA: Cyclie-Consistent Adversarial Domain Adaptation](paper/cycada-cyclie-consistent-adversarial-domain-adaptation.md)
+* [Learning to Adapt Structured Output Space for Semantic Segmentation](paper/learning-to-adapt-structured-output-space-for-semantic-segmentation.md)
+* [Domain Adaptation for Structured Output via Discriminative Patch Representations](paper/domain-adaptation-for-structured-output-via-discriminative-patch-representations.md)
 
 ## ETC
 

@@ -1,3 +1,7 @@
+---
+description: CVPR 2018
+---
+
 # Training Deep Networks with Synthetic Data Bridging the Reality Gap by Domain Randomization
 
 ### Introduction
@@ -25,5 +29,52 @@
 
 ### Domain Randomization
 
-![](../.gitbook/assets/image%20%28293%29.png)
+![Domain Randomization](../.gitbook/assets/image%20%28314%29.png)
+
+* 랜덤 갯수의 Object \(interest object\)를 3D Scene의 랜덤한 position, orientation에 위치 시킨다.
+* flying distractors: 네트워크가 관심없는 object에 대해 관심을 갖지 않게 하기위해서 scene에 random 한 갯수의 geometric shapes를 추가한다.
+* interest object와 flying distractors에 랜덤한 texture 를 적용한다.
+* interest object에 랜덤하게 location, camera viewpoint, background image, light 등 변화를 준다.
+* 자동으로 GT label 데이터를 뽑아내서 네트워크 training에 사용한다.
+* Unreal Engine 사용 1200 x 400 이미지 기준 30Hz
+
+### Evaluation
+
+![VKITTI / Domain Randomization](../.gitbook/assets/image%20%28318%29.png)
+
+* VKITTI dataset에 비해 Domain Randomization 이미지가 분명 이상하다. 하지만 Domain Randomization을 이용하면 VKITTI와 같이 공을 들여 데이터를 생성하는 것 보다 훨씬 간단하고 빠르게 데이터 생성이 가능하다. VKITTI 는 segmentation, depth, optical flow 계산 등 복잡한 계산들이 수반되어 데이터 생성에 보다 많은 시간이 소요된다. 
+
+![VKITTI vs DR](../.gitbook/assets/image%20%28256%29.png)
+
+* Domain Randomization으로 생성된 데이터로 학습을 시키면 정확도가 좋아진다. 
+  * DR dataset은 100K 이용하고 VKITTI dataset은 2.5K 개 이용
+    * 동등한 비교는 아니지만, 데이터가 부족해서 데이터를 많이 생성해야 하는 상황에서 VKITTI 같이 복잡하고 느린  과정을 거치지 않아도 손쉽게 VKITTI와 유사한 성능을 내는 것이 목표이기 때문에 큰 문제 없다.
+  * training 시 data augmentation을 위해 random 하게 brightness, contrast, Gaussian noise를 줬다.
+  * classic한 augmentation 방법인 flips, resizing, box jitter, crop 등도 사 
+* Synthetic image로 training 시킨 후 real image로 fine tuning 해봤다. 기존의 hyperparameter를 변경하지 않고 gradient가 end-to-end로 fully flow 하도록, 네트워크가 수렴할 때까지 training 시켰다. 
+
+![Faster RCNN](../.gitbook/assets/image%20%2852%29.png)
+
+* Faster R-CNN 으로 Bounding Box를 찾은 결과물
+* VKITTI와 DR 모두 real data 는 사용하지 않았음에도 불구하고 실제 이미지에 대해 예측이 정확하다.
+
+![](../.gitbook/assets/image%20%28123%29.png)
+
+* Real 데이터로 fine-tuning 했을 때의 결실제 training 하는 이미지 수가 증가함에 따라 DR은 VKITTI를 능가한다. 실제 데이터와 비슷한 데이터가 추가되는 것 보다 데이터 자체가 많아지는 것이 더 중요했다. 
+* 초기에는 데이터가 부족할 수 있지만 일정 시간이 지나면 real 데이터가 취득될 수 있다. 당연히 real 데이터가 많아질 수록 성능이 높아진다. 결과적으로도 DR로 생성한 데이터를 같이 사용했을 때 가장 높은 성능을 보인다.
+* 즉, 데이터가 부족한 초반 부터 데이터가 충분히 쌓인 후반 부분에 걸쳐 DR 이 사용될 수 있다.
+
+![](../.gitbook/assets/image%20%28311%29.png)
+
+* Data Augmentation을 어떻게 했는지에 따라 AP 의 변
+
+![freezing early layers vs full learning](../.gitbook/assets/image%20%28282%29.png)
+
+* 이전 논문에서는 synthetic data로 네트워크를 training 시킬 때 early network \(feature extraction 부분\)를 freeze 시켰다. 
+* 하지만 본 연구에서 테스트 했을 때, early network를 freeze 했을 때 정확도가 더 낮았다. 
+* 다양한 데이터가 전체적인 training을 유리하게 하는데, weight를 고정하면 이러한 변화를 막기 때문에 성능이 떨어진다.
+
+### Conclusion
+
+* DR은 Photo realism을 버리고 training 할 때 synthetic 이미지를 교란시킴으로써 네크워크가 중요한 영역에만 집중하도록 했다. real data로 fine-tuning 하면 realistic 한 dataset 보다 성능이 더 뛰어나고, 적은 양의 실제 데이터만 사용하여 얻은 결과보다 낫다.
 
