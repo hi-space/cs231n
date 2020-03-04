@@ -9,7 +9,7 @@
 
 
 
-![](../.gitbook/assets/image%20%28236%29.png)
+![](../.gitbook/assets/image%20%28238%29.png)
 
 * Synthetic Data는 programming 방식으로 생성되는 데이터로, 게임 엔진, 음성 합성 모델로 생성된 오디오 등이 될 수 있다. 기존의 augmentation \(crops, flips, rotations, distortions\) 과 다르게 다양한 데이터 모델을 생성할 수 있다. 
 * 임의의 수의 이미지 데이터를 생성할 뿐만 아니라 annotation 도 손쉽게 생성할 수 있다. \(Bounding boxes, segmentation masks, Depth maps, 그 외의 다양한 meta data\)
@@ -44,7 +44,7 @@ Unreal, Unity, Blender와 같은 게임 엔진을 사용해서 프로그래밍 �
 
 * **Domain Adaptation** : label이 있는 데이터셋 \(source\)를 사용하여 unlabeled 데이터셋 \(target\)을 classify 하는 작업. low quality의 synthetic data와 실제 데이터를 사용하여 synthetic data 자체를 더 개선시킬 수 있다.
 
-![Domain Randomization](../.gitbook/assets/image%20%2845%29.png)
+![Domain Randomization](../.gitbook/assets/image%20%2847%29.png)
 
 * **Domain randomization** : 이것 또한 reality gap을 줄여주는데 도움이 된다. 네트워크가 이미지의 필수 기능에 집중하는 법을 배우도록, 비사실적인 방식으로 환경을 교란시킴으로써 photo realism을 포기한다. image scene, lighting position, intensity, texture, scale, position 등을 바꿈으로써 다양한 환경을 만들 수 있다. 하나의 simulation 데이터셋에서 모델을 학습시키는 대신 시뮬레이터를 무작위화하여 모델을 다양한 데이터에 노출시킨다. 진입률이 낮기 때문에 인기있는 기술이다. 수동으로 randomize 하는 대신 programming 방식으로 synthetic data를 생성할 수 있기 때문에 시간을 더욱 단축시킬 수 있다.
 
@@ -65,7 +65,7 @@ Unreal, Unity, Blender와 같은 게임 엔진을 사용해서 프로그래밍 �
 * Synthetic data는 Reality Gap 문제가 있다. Domain 내에서 synthetic data로 training 시킨 경우, real 한 data로 training 시킨 경우보다 동일하거나 더 나은 성능을 내는 경우는 거의 없다. Domain 내의 synthetic data는 중력, 관성과 같은 physics를 포함해야하기 때문에 문제가 될 수 있다. physics를 완벽하게 모델링 하기는 쉽지 않지만 게임 엔진은 발전하고 있다. 
 * OpenAI의 경우 Domain Randomization을 사용하여 객체를 합성하는 데이터 생성 파이프라인을 구축했다. \(Domain Randomization and Generative Models for Robotic Grasping\)
 
-![](../.gitbook/assets/image%20%28181%29.png)
+![](../.gitbook/assets/image%20%28183%29.png)
 
 * 서로 다른 유형의 synthetic data를 혼합해도 긍정적인 효과가 있을 수 있다. Domain randomized 된 데이터와 photo realistic한 데이터를 혼합하여 training 한 모델이 real한 데이터와 synthetic data를 섞어서 training 한 모델과 비슷하다는 연구도 있다. domain randomization이 real data와 경쟁하기 위해서는 real data를 통한 fine-tuning 이 필요하다. \(Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects\)
 * 하지만 100% synthetic data로만 training 시켜서 성공시킨 사례가 아직 없다. 

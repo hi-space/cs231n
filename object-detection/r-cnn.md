@@ -10,7 +10,7 @@ description: R-CNN (Region with CNN features)
 
 ### Flows
 
-![Flow](../.gitbook/assets/image%20%28142%29.png)
+![Flow](../.gitbook/assets/image%20%28144%29.png)
 
 크게 가능한 이미지 영역을 찾아내는 Region Proposal \(Bounding box\)부분과 이미지 분류 부분 두가지로 나뉘게 된다.  
 1. Input image로 부터 Bounding Box 찾기   
@@ -31,7 +31,7 @@ description: R-CNN (Region with CNN features)
   
 5. 최종적으로 분류된 오브젝트의 region proposal  좌표를 더 정확히 맞추기 위해 linear regression 모델 사용
 
-![](../.gitbook/assets/image%20%2863%29.png)
+![](../.gitbook/assets/image%20%2865%29.png)
 
  Input image에서 수많은 object 후보들을 찾아내고 이를 모두 CNN 에 넣어서 feature를 뽑아낸다.  
 그리고 뽑아낸 feature들을 SVM등의 Classifier에 넣어서 classification 하고 NMS와 같은 기법으로 Bounding box를 이미지 위에 그린다.  
@@ -58,7 +58,7 @@ Bounding Box Regression의 Loss함수로 MSE를 사용하는데, L2 Reg term이 
 
 ### Selective Search
 
-![](../.gitbook/assets/image%20%28249%29.png)
+![](../.gitbook/assets/image%20%28251%29.png)
 
  image에서 object의 region을 찾기 위한 알고리즘이다.  
 Color space 정보와 다양한 similarity measure\(RGB, HVS, 영역 크기, hole의 유무 등\)를 활용하여 복잡한 segmentation들을 merge 하며 grouping 하고, 그렇게 만들어진 segmentation 의 boundary를 이어서 RoI 영역을 만든다.  
@@ -73,7 +73,7 @@ R-CNN, Fast R-CNN 에서 region proposal을 할 때 사용되었다.
 
 ### BoundingBox Regression
 
-![](../.gitbook/assets/image%20%28157%29.png)
+![](../.gitbook/assets/image%20%28159%29.png)
 
 Bounding box 의 parameter를 찾는 regression이다. 초기의 region proposal 이 CNN이 예측한 결과와 맞지 않을 수 있끼 때문. CNN의 마지막 pooling layer에서 얻은 feature 정보를 사용해 region proposal의 regression을 계산한다.
 

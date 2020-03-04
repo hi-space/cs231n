@@ -27,7 +27,7 @@ data distribution 을 발견하는 것은 domain adaptation을 위한 주요 과
 
 * Category distribution이 clustered space \(source domain에서 K -patch mode를 통해 구성됨\)를 통해  patch distribution에 projected 된다.
 
-![](../.gitbook/assets/image%20%28114%29.png)
+![](../.gitbook/assets/image%20%28116%29.png)
 
 
 
