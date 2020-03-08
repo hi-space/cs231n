@@ -16,7 +16,7 @@ image understanding 문제를 해결하기 위해서는 domain-specific 한 visu
 
 Synthetic depth map 에서 random transformations를 적용하여 policy training 시키고 실제 로봇의 depth map 정보로 부터 training 한 policy를 테스트한 결과물이다.
 
-![](../.gitbook/assets/image%20%2891%29.png)
+![](../.gitbook/assets/image%20%2892%29.png)
 
 depth image augmentation 의 policy-independent한 learning 이 이 논문의 contribution 이다. augmentation의 결과 시퀀스는 manipulation의 policy를 학습하는 synthetic depth image에 적용된다.  학습된 policy는 실제 image로 fine tuning 하지 않고 실제 로봇에 그대로 적용된다. 
 
@@ -28,9 +28,9 @@ Depth image에 random noise를 생성하기 위해 실제 센서의 noise patter
 
 자동으로 가장 좋은 augmentation을 찾기 위해서 RL을 사용하거나 수많은 GPU 자원이 필요하다. 그래서 Monte Carlo Tree Search를 사용해서 사전에 기록된 real image에서의 객체 위치를 예측해서 proxy task 내에서 최적화를 한다. \(시뮬레이션의 렌더링 파이프라인을 학습하는 아이디어의 논문도 있음 - Learning to Simulate\)
 
-![](../.gitbook/assets/image%20%28259%29.png)
+![](../.gitbook/assets/image%20%28264%29.png)
 
-![](../.gitbook/assets/image%20%28229%29.png)
+![](../.gitbook/assets/image%20%28233%29.png)
 
 
 
