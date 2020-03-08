@@ -8,7 +8,7 @@ description: Fast RCNN
 
 ### Flows
 
-![](../.gitbook/assets/image%20%28106%29.png)
+![](../.gitbook/assets/image%20%28108%29.png)
 
  R-CNN의 문제점은 모든 Region proposal 마다 CNN을 돌리고, 분류를 위한 SVM, BBox를 위한 linear regression까지 세가지 모델을 모두 훈련시키기 어렵고 시간이 오래 걸린다. 그래서 Fast RCNN에서는 feature extractor, classifier, bbox regressor를 하나의 파이프라인으로 처리한다. 한마디로, 전체 network가 End-to-end로 한번에 학습된다.  
   
@@ -18,13 +18,13 @@ Selective Search로 RoI 영역을 뽑아내고 wrapping 하여 CNN에 넣는 대
 \(2\) RoI Pooling Layer 에서 RoI를 인식하고, 동일한 크기의 feature vector를 추출하여 Fully Connected Layer 와 연결  
 \(3\) Softmax classifier 와 Bounding box Regressor에 의해 결과 도출
 
-![](../.gitbook/assets/image%20%2863%29.png)
+![](../.gitbook/assets/image%20%2864%29.png)
 
 CNN에 넣기 위해 region proposal 마다 cropping 해서 처리했었는데, 이를 image level이 아닌 feature map level에서 진행함으로써 num of region proposal 의 CNN 연산이 1번의 CNN 연산으로 대폭 줄어든다. region proposal을 하기 전에 이미지에서 feature를 추출하기 때문에 중복 regions에 대해 여러번 CNN 작업을 할 필요가 없다.
 
-![](../.gitbook/assets/image%20%28187%29.png)
+![](../.gitbook/assets/image%20%28189%29.png)
 
-![](../.gitbook/assets/image%20%28230%29.png)
+![](../.gitbook/assets/image%20%28233%29.png)
 
  \(1\) Input image 로부터 다수의 Region proposal 추출 \(Selective search 알고리즘 사용\)  
 \(2\) CNN의 입력으로 input image와 region proposal 를 넣어준다. 몇번의 conv 및 max pooling을 통해 conv featre map 생성  
@@ -47,7 +47,7 @@ CNN에 넣기 위해 region proposal 마다 cropping 해서 처리했었는데, 
 RoI Pooling 한 결과를 가지고 Classification과 Bounding box Regression을 수행한다.  
 Total Loss = Classification Loss \(cross entropy\) + BBox Regression Loss \(smooth L1\)
 
-![](../.gitbook/assets/image%20%2874%29.png)
+![](../.gitbook/assets/image%20%2875%29.png)
 
 ### Initializing from pre-trained networks
 
@@ -64,7 +64,7 @@ Total Loss = Classification Loss \(cross entropy\) + BBox Regression Loss \(smoo
   
 전체 네트워크 레이어에 대해 training이 가능하다. 이는 R-CNN과 SPP-Net에서는 안됐던 것. 왜일까?
 
-![](../.gitbook/assets/image%20%28286%29.png)
+![](../.gitbook/assets/image%20%28290%29.png)
 
-![](../.gitbook/assets/image%20%28307%29.png)
+![](../.gitbook/assets/image%20%28311%29.png)
 

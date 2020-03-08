@@ -36,6 +36,7 @@
 * [Learning to Adapt Structured Output Space for Semantic Segmentation](paper/learning-to-adapt-structured-output-space-for-semantic-segmentation.md)
 * [Domain Adaptation for Structured Output via Discriminative Patch Representations](paper/domain-adaptation-for-structured-output-via-discriminative-patch-representations.md)
 * [Sim-to-Real via Sim-to-Sim](paper/sim-to-real-via-sim-to-sim.md)
+* [Learning to Augment Synthetic Images for Sim2Real Policy Transfer](paper/learning-to-augment-synthetic-images-for-sim2real-policy-transfer.md)
 
 ## ETC
 
