@@ -4,6 +4,7 @@
 
 ## CS231n
 
+* [Index](cs231n/index.md)
 * [1. Introduction to CNN for Visual Recognition](cs231n/1-introduction.md)
 * [2. Image Classification](cs231n/2-image-classification.md)
 * [3. Loss Functions and Optimization](cs231n/3-loss-functions-and-optimization.md)
@@ -20,7 +21,10 @@
 
 ## Reinforcement Learning
 
-* [Untitled](reinforcement-learning/untitled.md)
+* [Index](reinforcement-learning/index.md)
+* [Introduction](reinforcement-learning/introduction.md)
+* [Multi-Armed bandit problem](reinforcement-learning/untitled.md)
+* [Finite Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
 
 ## Object Detection
 

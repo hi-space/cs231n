@@ -12,7 +12,7 @@ Semantic segmentation은 pixel-level의 GT에 의존하지만 보이지 않는 i
 >
 > Self-Training : unlabeled data를 위해 pseudo-labels를 생성해서 학습하는 방법. 스스로 필요한 GT를 나름대로 만들어서 그걸 기반으로 학습한다는 의
 
-![](../.gitbook/assets/image%20%2870%29.png)
+![](../.gitbook/assets/image%20%2871%29.png)
 
 target domain에서 annotation을 사용할 수 없는 경우, source domain과 target domain 간의 gap을 좁히기 위해 domain adaptation 기술이 제안되었다. 
 
@@ -29,18 +29,18 @@ semantic segmentation에서는 공간적으로나 local 적으로나 다양한 �
 
 adversarial loss와 함께, segmentation model이 source와 target 의 output space에 유사한 distribution을 만들기 위한 discriminator 만드는 것이다.
 
-![](../.gitbook/assets/image%20%2886%29.png)
+![](../.gitbook/assets/image%20%2887%29.png)
 
 * Source Domain 이미지와 Target Domain 이미지를 같은 Segmentation model에 넣는다. 
 * Source prediction 에서는 source의 GT에 기반하여 segmentation loss를 계산한다.
 * Discriminator Network 에서는 target 을 source와 비슷하게 만들기 위해서 input이 source 인지 target 인지 판별하는 discriminator를 사용한다. 그러면 target prediction에 대한 adversarial loss가 계산되고, segmentation network로 back-prop 된다. 
 * 이걸 하나의 adaptation module 이라고 하면, 이것을 multi-level로 구성하여 사용했다.
 
-![](../.gitbook/assets/image%20%28170%29.png)
+![](../.gitbook/assets/image%20%28173%29.png)
 
 GTA 데이터에서 Cityscapes 데이터로 adapted 시킨 결과물이다. feature adaptation 시킨 것보다 segmentation을 adaptation 한 본 연구의 결과물이 좋을 것 확인할 수 있다.
 
-![](../.gitbook/assets/image%20%28217%29.png)
+![](../.gitbook/assets/image%20%28220%29.png)
 
 
 

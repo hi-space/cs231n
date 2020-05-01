@@ -6,7 +6,7 @@ description: YOLO (You Only Look Once)
 
  2016년 CVPR에 발표 된 You Only Look Once : Unified, Real-Time Object Detection.
 
-![](../.gitbook/assets/image%20%28236%29.png)
+![](../.gitbook/assets/image%20%28239%29.png)
 
  이미지 내의 bounding box와 classification을 single regression problem으로 간주하여, 이미지를 한번 보는 것으로 object의 종류와 위치를 추측한다. single convolutional network를 통해 multiple bounding box에 대한 class probability를 계산하는 방식이다.  
  \(1\) Resize input image \(448 x 488\)  
@@ -15,7 +15,7 @@ description: YOLO (You Only Look Once)
   
 기존의 R-CNN은 모델들은 Bounding box를 먼저 찾고 각 Bbox에 대하여 classification을 하는 방식이였다. Region Proposal 수도 많고 각각의 proposal 에대해 또 NN을 돌려줘야 했기 때문에 오버헤드가 컸다. 하지만 Yolo는 모든 class에 대한 모든 BBox를 동시에 예측하기 때문에 매우 빠르고 global reasoning이 가능하다. 단 하나의 네트워크가 한번에 특징도 추출하고, bounding box도 만들고, class도 분류하니 당연히 빠를 수 밖에 없다.
 
-![](../.gitbook/assets/image%20%28132%29.png)
+![](../.gitbook/assets/image%20%28134%29.png)
 
  이미지를 네트워크의 input으로 넣어주면 해당 이미지를 S x S 로 grid 하여 연산하고 Bounding boxes + confidence와 Class probability map 이 ouput으로 나오게 된다.
 
@@ -32,11 +32,11 @@ input : 448 x 448 / ouput : S x S x \(B \* 5 + C\)
                                   : Pr\(Object\) \* IoU\(truthpred\)  
 \(4\) 각각의 grid cell은 C개의 conditional class probability를 갖는다. \( Pr\(Classi \| Object\) \)
 
-![](../.gitbook/assets/image%20%28183%29.png)
+![](../.gitbook/assets/image%20%28186%29.png)
 
  모델은 다음과 같다. GoogLeNet을 변형한 구조로, 24개의 conv layer와  2개의 fully connected layer로 구성되어 있다. 1x1 reduction layer를 여러번 적용한 것이 특징이다. Fast Yolo는 9개의 conv layer와 더 적은 수의 filter를 사용하여 속도를 더 높였다. \(training/testing을 위한 파라미터는 동일\)
 
-![](../.gitbook/assets/image%20%28253%29.png)
+![](../.gitbook/assets/image%20%28256%29.png)
 
  \* Training  
 Pre-training : 먼저 ImageNet으로 pre-training하고 다음에 Pascal VOC에서 fine-tuning 하는 2단계 방식으로 진행  
@@ -50,7 +50,7 @@ Activation 함수로는 leak Relu 사용.
 마지막 output으로 나오는 7x7x30이 바로 예측된 결과로, 이 안에 bbox와 class 정보 등 모든 것이 들어있다.  
 자세히 보면 아래와 같다.
 
-![](../.gitbook/assets/image%20%28335%29.png)
+![](../.gitbook/assets/image%20%28339%29.png)
 
  S = 7 이라고 했을 때, 49개의 Grid cell이 만들어지고, 각각의 grid cell은 B개\(B=2로 가정\)의 bounding box를 가지고 있다.  
 앞 5개의 값은 해당 Grid cell의 첫번째 Bounding box 에 대한 값이 채워지고, 뒤의 5개는 두밴째 Bounding box에 대한 값이 채워진다.  
@@ -61,12 +61,12 @@ Activation 함수로는 leak Relu 사용.
  - c : bbox confidence   
 예측되는 Bounding box는 grid cell을 중심으로 하는 RoI다. grid cell 보다 작을 수도 있고, 클 수도 있다. 
 
-![](../.gitbook/assets/image%20%28208%29.png)
+![](../.gitbook/assets/image%20%28211%29.png)
 
  뒤의 20개에는 해당 grid cell에 object가 있을 경우, 그것이 어떤 class인지에 대한 확률이 저장되어 있다.  
 즉, 20개의 class에 대한 conditional class probability에 해당된다.
 
-![](../.gitbook/assets/image%20%28331%29.png)
+![](../.gitbook/assets/image%20%28335%29.png)
 
  첫번째 Bounding box의 confidence score와 각 conditional class probability를 곱하면 해당 Bbox의 class specific confidence score가 나온다. 두번째 Bounding box도 마찬가지로 계산하여 class specific confidence score가 나온다. Bbox의 confidence가 0에 가까울 수록, 그 위치에 어떤 class가 있는 지에 대한 정보도 매우 낮아지게 된다.
 
@@ -75,14 +75,14 @@ Activation 함수로는 leak Relu 사용.
  이 계산을 각 bounding box에 대해 수행하게 되면 총 7\*7\*2 = 98 개의 class specific confidence score를 얻을 수 있다.  
 이 98개의 class specific confidence score에 대해 각 20개의 class를 기준으로 non-maximum suppression을 하여, Object에 대한 Class 및 bounding box location을 결정한다.
 
-![](../.gitbook/assets/image%20%28324%29.png)
+![](../.gitbook/assets/image%20%28328%29.png)
 
  confidence score가 threshold 보다 작은 경우\(&lt; 0.2\), 해당 클래스는 0으로 세팅함으로써 절대 이 class는 아닐 거라고 필터링을 하고, 이 이후에 NMS 과정을 거치며 중복되는 Bounding box를 제거한다.  
  - NMS\(Non-maximal suppression\) : 여러 Bounding box가 겹쳐 있을 때 그 중에서 최대값을 갖는 하나의 Object만 빼우고 나머지를 지운다. 반대로 여러 Bounding box가 겹쳐 있지 않을 때는 서로 다른 Object의 Bbox라고 생각하고 그대로 둔다.  
   
 20개의 score 중 최대값을 갖는 class가 해당 Bounding box의 예측된 class 결과이다. 가장 큰 값이 0인 경우는 Object가 없는 경우. 하나의 grid cell에서 class가 같은 2개의 object가 나올 수 없는 구조이다.
 
-![](../.gitbook/assets/image%20%2841%29.png)
+![](../.gitbook/assets/image%20%2842%29.png)
 
  Loss Function으로는 기본적으로 sum-of-squared-error 개념이지만, object가 존재하는 grid cell과 object가 존재하지 않는 grid cell 각각에 대하여 coordinates, confidence score, conditional class probability의 loss를 계산한다.  
   
@@ -105,11 +105,11 @@ lambda\(noobj\) : Object가 있는 box와 없는 box간의 균형을 위한 bala
  - grid cell의 대부분은 object가 없다. 각 grid cell은 object가 있을 것 같다고 예측하는 confidence score를 만들어야 하는데, object가 거의 없기 때문에 score가 0에 가까워진다. 그래서 object가 있는 경우의 loss는 높이고, 없는 경우의 loss는 줄인다.  
 lambda\(coord\) = 5, lambda\(noobj\) = 0.5로 설정하면, object가 있는 경우에 학습을 더 제대로 하게 된다.
 
-![](../.gitbook/assets/image%20%28300%29.png)
+![](../.gitbook/assets/image%20%28303%29.png)
 
  Fast R-CNN의 error는 background  영역에서 대부분 발생하지만, Yolo는 localization 에서 대부분의 error가 발생한다. 이 두 모델의 단점을 보완하기 위해 함께 조합하여 사용함으로써 정확도를 높이고 있다.
 
-![](../.gitbook/assets/image%20%2899%29.png)
+![](../.gitbook/assets/image%20%28100%29.png)
 
  훈련시킨 dataset이 실제 테스트 할 환경의 데이터와 다를 수 있다. 다른 distribution을 가지는 환경에서 모델이 얼머나 잘 일반화하여 학습을 했는지 확인하기 위해, 논문에서는 artwork dataset\(Picasso, People-Art\)에 test를 했다.  
 다른 detection 시스템에 비해 높은 AP값과 다양한 Bbox를 검출한 것을 확인할 수 있었다. Yolo는 Object에 대한 좀 더 일반적인 특징을 학습하기 때문.  

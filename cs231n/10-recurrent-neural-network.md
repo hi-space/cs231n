@@ -8,7 +8,7 @@ RNN은 네트워크의 입/출력 가변적일 수 있다.
 
 동일한 방법으로 이미지 이미지들을 바탕으로 새로운 이미지들을 만들어 낼 수 있다. 순차적으로 전체 출력의 일부분을 차례로 생성해 나간다.
 
-![](../.gitbook/assets/image%20%28127%29.png)
+![](../.gitbook/assets/image%20%28129%29.png)
 
 일반적으로 RNN은 작은 Recurrent core cell 을 가지고 있다. 그리고 내부에 hidden state를 가지고 있다. Hidden state는 RNN이 새로운 입력을 불러들일 때 마다 새로 업데이트 된다. Hidden state는 모델에 feed back 되고 이후에 또 다시 새로운 입력 x가 된다.
 
@@ -18,7 +18,7 @@ RNN은 네트워크의 입/출력 가변적일 수 있다.
 
 3.     출력값을 내보낸다
 
-![](../.gitbook/assets/image%20%28243%29.png)
+![](../.gitbook/assets/image%20%28246%29.png)
 
 RNN block은 재귀적인 관계를 표현할 수 있게 된다.
 
@@ -34,7 +34,7 @@ RNN에서 출력 y를 가지려면 h\_t를 입력으로 하는 FC layer를 추�
 
 여기서 중요한건 함수 f와 파라미터W는 매 스텝 동일하다는 거다.
 
-![](../.gitbook/assets/image%20%2857%29.png)
+![](../.gitbook/assets/image%20%2858%29.png)
 
 수식으로 표현하면 다음과 같음
 
@@ -44,7 +44,7 @@ RNN에서 출력 y를 가지려면 h\_t를 입력으로 하는 FC layer를 추�
 
 Multiple time steps을 unrolling 하면 좀 더 명확히 볼 수 있다.
 
-![](../.gitbook/assets/image%20%2885%29.png)
+![](../.gitbook/assets/image%20%2886%29.png)
 
 -       동일한 가중치 행렬 W가 매번 사용된다. H와 x는 달라지지만 W는 동일하다.
 
@@ -54,17 +54,17 @@ Multiple time steps을 unrolling 하면 좀 더 명확히 볼 수 있다.
 
 모델을 학습시키려면 dLoss/dW를 구해야 한다. Loss flowing은 각 스텝마다 일어난다. 가 스텝마다 W의 gradient를 구할 수 있다.
 
-![](../.gitbook/assets/image%20%28167%29.png)
+![](../.gitbook/assets/image%20%28170%29.png)
 
 Many to one 모델인 경우에는 최종 hidden state에서만 결과 값이 나올 거다. 최종 hidden state가 전체 시퀀스의 내용에 대항 일종의 요약으로 볼 수 있다.
 
-![](../.gitbook/assets/image%20%28229%29.png)
+![](../.gitbook/assets/image%20%28232%29.png)
 
 One to many 모델
 
 이 경우에 고정 입력\(x\)는 모델의 initial hidden state를 초기화 시키는 용도로 사용된다. 그리고 모든 스텝에서 출력값을 가진다.
 
-![](../.gitbook/assets/image%20%28168%29.png)
+![](../.gitbook/assets/image%20%28171%29.png)
 
 Seq to seq 모델
 
@@ -88,15 +88,15 @@ Stochastic gradient descent의 시퀀스 데이터 버전이라고 볼 수 있�
 
 Image Captioning Example
 
-![](../.gitbook/assets/image%20%28259%29.png)
+![](../.gitbook/assets/image%20%28262%29.png)
 
 기존의 classification 네트워크에서 class를 구분하는 레이어인 마지막 FC와 softmax 레이어를 제거하고 4096벡터를 입력으로 사용한다.
 
-![](../.gitbook/assets/image%20%28270%29.png)
+![](../.gitbook/assets/image%20%28273%29.png)
 
 이전까지는 RNN 모델이 두개의 가중치 행렬을 입력으로 받았따 \(현재 스텝의 입력, 이전스텝의 hidden state\) 이제는 이미지 정보도 추가한다. 세번째 가중치 행렬을 추가하는 거다. Hidden state를 계산할 때 마다 모든 스텝에 이 이미지 정보를 추가한다.
 
-![](../.gitbook/assets/image%20%28210%29.png)
+![](../.gitbook/assets/image%20%28213%29.png)
 
 샘플링 된 단어 y0가 들어가면 그것이 바로 다음 input으로 들어가고, 그 다음 단어를 만들어 간다. 모든 스텝이 종료되면 한 문장이 만들어지게 된다. End token을 만나면 문장이 종료된다.
 
@@ -104,17 +104,17 @@ Train time에는 ㅁ hems caption의 종료 지점에 token을 삽입한다. 그
 
 하지만 supervised learning의 한계인 것 처럼, train time에 학습하지 못한 부분에 대해서는 취약하다.
 
-![](../.gitbook/assets/image%20%2898%29.png)
+![](../.gitbook/assets/image%20%2899%29.png)
 
 조금 더 진보된 attention 모델. Captionaing 할 대 이미지의 다양한 부분을 attention해서 볼 수 있다.
 
 CNN으로 벡터 하나를 만드는게 아니라 각 벡터가 공간 정보를 가지고 있는 grid of vector를 만들어낸다. \(LxD\) forward pass시에 매 스텝 vocabulary에서 샘플링 할 때 모델이 이미지에서 보고 싶은 위치에 대한 분포 또한 만들어낸다. 이미지의 각 위치에 대한 분포는 train time에 모델이 어느 위치를 봐야하는 지에 대한 attention이다.
 
-![](../.gitbook/assets/image%20%28114%29.png)
+![](../.gitbook/assets/image%20%28115%29.png)
 
 ![](../.gitbook/assets/image%20%2831%29.png)
 
-![](../.gitbook/assets/image%20%2897%29.png)
+![](../.gitbook/assets/image%20%2898%29.png)
 
 첫번째 hiddn eats는 이미지 위치에 대한 distribution을 계산한다.\(a1\) 이 distribution을 다시 벡터 집합\(LxD feature\)와 연상해서 이미지 attention\(z1\)을 생성한다. 이 요약된 벡터 z1은 다음 스텝의 입력으로 들어간다. 그리고 두개의 출력이 생성된다. \(d1: vocabulary의 각 단어들의 분포, a2 : 이미지 위치에 대한 분포\)
 
