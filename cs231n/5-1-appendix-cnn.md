@@ -2,7 +2,7 @@
 
 ## CNN
 
-![](../.gitbook/assets/image%20%28309%29.png)
+![](../.gitbook/assets/image%20%28310%29.png)
 
 Fully Connected Layer만으로 구성된 인공 신경망의 입력 데이터는 1차원\(배열\) 형태로 한정됩니다. 한 장의 컬러 사진은 3차원 데이터입니다. 배치 모드에 사용되는 여러장의 사진은 4차원 데이터입니다. 사진 데이터로 전연결\(FC, Fully Connected\) 신경망을 학습시켜야 할 경우에, 3차원 사진 데이터를 1차원으로 평면화시켜야 합니다. 사진 데이터를 평면화 시키는 과정에서 공간 정보가 손실될 수밖에 없습니다. 결과적으로 이미지 공간 정보 유실로 인한 정보 부족으로 인공 신경망이 특징을 추출 및 학습이 비효율적이고 정확도를 높이는데 한계가 있습니다. 이미지의 공간 정보를 유지한 상태로 학습이 가능한 모델이 바로 CNN 입니다.
 
@@ -20,7 +20,7 @@ CNN은 이미지 특징 추출을 위하여 입력데이터를 필터가 순회�
 
 ### Convolutional Layer
 
-![](../.gitbook/assets/image%20%28303%29.png)
+![](../.gitbook/assets/image%20%28304%29.png)
 
 * **Sparse Connectivity** : Each neural only connects to part of the output of the previous layer
 * **Parameter Sharing** : The neurons with different receptive fields can use the same set of parameters. 
@@ -57,7 +57,7 @@ $$
 
 ## Example
 
-![](../.gitbook/assets/image%20%28262%29.png)
+![](../.gitbook/assets/image%20%28263%29.png)
 
 ![](../.gitbook/assets/image%20%2882%29.png)
 
@@ -215,7 +215,7 @@ $$
 
 ## Example
 
-![AlexNet Example](../.gitbook/assets/image%20%28211%29.png)
+![AlexNet Example](../.gitbook/assets/image%20%28212%29.png)
 
 | **Layer Name** | **Tensor Size** | **Weights** | **Biases** | **Parameters** |
 | :--- | :--- | :--- | :--- | :--- |

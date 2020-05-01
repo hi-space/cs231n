@@ -8,6 +8,7 @@
 * [2. Image Classification](cs231n/2-image-classification.md)
 * [3. Loss Functions and Optimization](cs231n/3-loss-functions-and-optimization.md)
 * [4. Backpropagation and Neural Networks](cs231n/4-backpropagation-and-neural-networks.md)
+* [4-1. Forwardpropagation](cs231n/4-1.-forwardpropagation.md)
 * [5. Convolutional Neural Network](cs231n/5-convolutional-neural-network.md)
 * [5-1. Appendix CNN](cs231n/5-1-appendix-cnn.md)
 * [6. Training Neural Network 1](cs231n/6-training-neural-network-1.md)

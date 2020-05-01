@@ -18,7 +18,7 @@ RNN은 네트워크의 입/출력 가변적일 수 있다.
 
 3.     출력값을 내보낸다
 
-![](../.gitbook/assets/image%20%28242%29.png)
+![](../.gitbook/assets/image%20%28243%29.png)
 
 RNN block은 재귀적인 관계를 표현할 수 있게 된다.
 
@@ -58,7 +58,7 @@ Multiple time steps을 unrolling 하면 좀 더 명확히 볼 수 있다.
 
 Many to one 모델인 경우에는 최종 hidden state에서만 결과 값이 나올 거다. 최종 hidden state가 전체 시퀀스의 내용에 대항 일종의 요약으로 볼 수 있다.
 
-![](../.gitbook/assets/image%20%28228%29.png)
+![](../.gitbook/assets/image%20%28229%29.png)
 
 One to many 모델
 
@@ -88,15 +88,15 @@ Stochastic gradient descent의 시퀀스 데이터 버전이라고 볼 수 있�
 
 Image Captioning Example
 
-![](../.gitbook/assets/image%20%28258%29.png)
+![](../.gitbook/assets/image%20%28259%29.png)
 
 기존의 classification 네트워크에서 class를 구분하는 레이어인 마지막 FC와 softmax 레이어를 제거하고 4096벡터를 입력으로 사용한다.
 
-![](../.gitbook/assets/image%20%28269%29.png)
+![](../.gitbook/assets/image%20%28270%29.png)
 
 이전까지는 RNN 모델이 두개의 가중치 행렬을 입력으로 받았따 \(현재 스텝의 입력, 이전스텝의 hidden state\) 이제는 이미지 정보도 추가한다. 세번째 가중치 행렬을 추가하는 거다. Hidden state를 계산할 때 마다 모든 스텝에 이 이미지 정보를 추가한다.
 
-![](../.gitbook/assets/image%20%28209%29.png)
+![](../.gitbook/assets/image%20%28210%29.png)
 
 샘플링 된 단어 y0가 들어가면 그것이 바로 다음 input으로 들어가고, 그 다음 단어를 만들어 간다. 모든 스텝이 종료되면 한 문장이 만들어지게 된다. End token을 만나면 문장이 종료된다.
 

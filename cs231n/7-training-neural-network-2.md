@@ -15,7 +15,7 @@ l  Transfer Learning
 
 Sgd 문제점
 
-![](../.gitbook/assets/image%20%28232%29.png)
+![](../.gitbook/assets/image%20%28233%29.png)
 
 이런 함수에서 gradient 방향이 고르지 않다. 고차원 공간에서 빈번하게 발생하는 문제이다.
 
@@ -37,7 +37,7 @@ Local minmima 보다 saddle point에 취약하다. Saddle point 근처에서도 
 
 Gradient를 계산할 때 velocity를 이용하는 거다. 미니배치의 gradient 방향만 고려하는게 아니라 velocity를 같이 고려한다. 하이퍼파라미터 rho\(memoemtum 비율\) 보통 0.9로 맞춤. Velocity에 일정 비율을 곱하고 현재 gradient를 더한다. Gradiertn vector그대로 방향이 아닌 velocity grradien 바얗ㅇ으로 간다. 간단하지만 앞선 문제들을 해결 할 수 있따.
 
-![](../.gitbook/assets/image%20%28185%29.png)
+![](../.gitbook/assets/image%20%28186%29.png)
 
 Local minima에 도달해도 velocity를 가지고 이씩 때문에 graidnerr=0이라도 움직일 수 있따. Local minima를 극복하게 된다. Saddle point도 주변의 gradient가 작더라도 속도가 있기 때문에 saddle point를 극복하고 계쏙 밑으로 내려올 수 있따. Momentum을 추가하면 velocity가 생기면서 결국 noise가 평균화된다. 보통의 SGD가 구불구불 움직이는 것에 비해 momemum은 minima를 향해 더 부드럽게 움직인다
 
@@ -51,11 +51,11 @@ Adagrad
 
 훈련 도중 계산되는 gradients를 활용하는 방법이다. Velociry term 대신 grad squared sum을 이용한다. Gradient에 제곱을 해서 계쏙 더한다. Update term을 앞거 셰산한 gradient 제곱항으로 나눠준다.
 
-![](../.gitbook/assets/image%20%28285%29.png)
+![](../.gitbook/assets/image%20%28286%29.png)
 
 학습이 계속 진행되면 학습횟수 t가 계속 늘어나면? Step을 진행할수록 값이 작아진다. Update 동안 gradient의 제곱이 계속 더해지기 때문에 estimate 값은 서서히 증가하게 된다. Step size를 더 작게 만든다. convex에서는 m,inima에 근접하며 서서히 속도를 줄여 수렴할 수 있게하겠찌만, non-convex에서는 saddle point에 걸렸을 때 멈춰버릴 수 있다.
 
-![](../.gitbook/assets/image%20%28184%29.png)
+![](../.gitbook/assets/image%20%28185%29.png)
 
 이를 변형한 RMSProp
 
@@ -63,7 +63,7 @@ AdaGrad의 gradient 제곱항을 그대로 사용하지만, 이전처럼 그저 
 
 RMSProp은 각 차원마다의 상황에 맞도록 적절하게 trajectory를 수정시킨다. AdaGRAd는 잘 쓰지 않는다. Adagrad learning rate늘리면 rmsprop와 비슷하게 움직이겠찌만, 실제로는 잘 사용하지 않는다.
 
-![](../.gitbook/assets/image%20%28318%29.png)
+![](../.gitbook/assets/image%20%28319%29.png)
 
 ADAM
 
@@ -77,11 +77,11 @@ First/second moments를 update 하고 난 후에 현재 step에 맞는 적절한
 
 문제점도 물론 있다. Adam 이용하면 각 차원마다 적절하게 속도를 높이고 줄이면서 독립적윽로 step을 조절할 거다. 차원의 해당하는 축만을 조절할 수 있기 때문에 차원을 회전 시킬 수 없다.
 
-![](../.gitbook/assets/image%20%28208%29.png)
+![](../.gitbook/assets/image%20%28209%29.png)
 
 Learning rates decay 전략이 있다. 각각의 learning rates의 특성을 적절히 이용하는 거다. 처음에는 learning rates를 ㅌ높게 하고 학습이 진행될수록 점점 낮추는 거다.  e학습 과정 동안에 꾸준히 learning rate를 감소시킬 수도 있다.
 
-![](../.gitbook/assets/image%20%28221%29.png)
+![](../.gitbook/assets/image%20%28222%29.png)
 
 ResNEt 논문에 나오는 거. Step decay learning rate 전략을 사용한거다. 평평하다가 갑자기 내려가는 구간은 learning rate을 낮춘 구간이다. 현재 수렴을 잘 하고 있는 상황에서 gradient가 점점 작아지고 있으면 learning rate이 너무 높아서 더 깊게 들어가지 못한다. 이 때 learning rate을 낮추면 속도가 줄어들고 지속해서 loss가 내려갈 수 있을 거다.
 
@@ -93,7 +93,7 @@ Learning rate decay는 adam 보다 SGD momentuㅡ 사용할 때 자주 쓴다.
 
 이 gradient 정보를 이용해 손실함수를 선형 함수로 근사시킨다. 1차 근사함수를 loss함수라고 가정하고 step을 내려간다. 현재 사용하는 정보는 1차 미분값일 뿐이다. 2차 근사 정보를 추가적으로 활용하는 방법이 있따.
 
-![](../.gitbook/assets/image%20%28217%29.png)
+![](../.gitbook/assets/image%20%28218%29.png)
 
 2차 근사를 이용하면 minima에 더 잘 근접할 수 있다. 2차 근사 함수를 만들어서 이 2차 근사 함수의 minima로 이동한다.
 
@@ -109,7 +109,7 @@ L-BFGS도 second-order optimizer 이다. 이것도 hassian을 근사시켜서 �
 
 실제로는 ADAM 제일 많이 쓰지만 full batch update가 가능하고 stochasticity이 적은 경우라면 L-BFGS가 좋은 선택일 수 있다. \(EX, style transfer\)
 
-![](../.gitbook/assets/image%20%28196%29.png)
+![](../.gitbook/assets/image%20%28197%29.png)
 
 Optimization 알고리즘들은 training error를 줄이고 손실함수를 최소화시키기 위한 역할을 수행한다. 하지만 중요한건 test error와의 격차를 줄이는ㄱ거다.
 
@@ -129,7 +129,7 @@ Optimization 알고리즘들은 training error를 줄이고 손실함수를 최�
 
 -       Learning rate을 엄청 낮췄따가 높혔다가 반복하면서 loss함수의 다양한 지역에 수렴할 수 있도록 만들어준다. 그리고 이런 앙상블 기법으로 모델을 한번만 train 시켜도 좋은 성능을 얻을 수 있게 하는 방법이다.
 
-![](../.gitbook/assets/image%20%28320%29.png)
+![](../.gitbook/assets/image%20%28321%29.png)
 
 -       Polyak averaging
 
@@ -161,15 +161,15 @@ Test time 에 dropout 사용하면? 기본적으로 NN 동작 자체가 변한�
 
 Dropout mask에는 4가지의 경우의 수가 존재하는데, 그 값들을 4개의 마스크에 대해 평균화 시켜준다. Test/train time 간의 기대값이 상이하다. dropout probability를 네트워크의 출력에 곱하면 test/train의 기대값이 같아진다.
 
-![](../.gitbook/assets/image%20%28305%29.png)
+![](../.gitbook/assets/image%20%28306%29.png)
 
 Dropout을 사용하면 네트워크 출력에 dropout probability를 곱해준다.
 
-![](../.gitbook/assets/image%20%28244%29.png)
+![](../.gitbook/assets/image%20%28245%29.png)
 
 Train time에는 임의의 값들을 0으로 만들어주고, test time에는 마지막에 dropout probability 만 곱해주면 된다. Test time에 항을 곱하고 싶지 않으면 training time에 p를 나눠주는 방법도 있다.
 
-![](../.gitbook/assets/image%20%28215%29.png)
+![](../.gitbook/assets/image%20%28216%29.png)
 
 정리하면 dropout은 train time에는 네트워크에 randomness를 추가해 training dat에 너무 fit 하지 않게 하고 test time에는 randomness를 평균화시켜서 generalization 효과를 준다.  Batch normalization 도 이와 비슷한 동작을 한다. 실제로 BN 사용할 때는 dropout을 사용하지 않는다. BN 자체로도 충분히 regularization 효과가 있기 때문. 다른 점은 dropout에는 우리가 조절하며 쓸 수 있는 파라미터 p가 있다는 거다. BN은 없음
 
@@ -207,7 +207,7 @@ Overfitting이 일어날 수 있는 상황 중 하나는 바로 충분한 데이
 
 3.     데이터가 좀 더 있따면 전체 네트워크를 fine tunignㅎ ㅏㄹ 수 있다. 네트워크 이루바가 아닌 전체 학습을 고려해 볼 수 있다. 네트워크의 더 많은 부분을 업데이트 시킬 수 있다. 보통 기존의 learning rate보다 낮춰서 학습시킨다. 기존의 가중치들이 이미 잘 학습되어 있기 때문.
 
-![](../.gitbook/assets/image%20%28206%29.png)
+![](../.gitbook/assets/image%20%28207%29.png)
 
 -       현재 데이터 셋이 학습데이터셋과 유사하지만 소량인 경우 : 마지막 레이어만 학습시킨다
 

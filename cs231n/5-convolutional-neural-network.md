@@ -6,11 +6,11 @@
 
 1957년. Frank Rosenblatt가 Mark I Perceptron machine을 개발했다. Perceptron을 구현한 최초의 기계였다. 출력값은 0 과 1 뿐이였지만 여기에도 가중치 W를 Update하는 Rule이 존재했다. 이는 지금의 Backprop과 유사하다고 볼 수 있다. 물론 그 때는 Backprop 개념이 없었기 때문에 W 값을 이리저리 조절하면서 맞추는 식이였다.
 
-![Adaline/Madaline](../.gitbook/assets/image%20%28257%29.png)
+![Adaline/Madaline](../.gitbook/assets/image%20%28258%29.png)
 
 1960년. Widrow, Hoff가 Adaline and Madaline을 개발했다. 최초의 Multilayer Perceptron Network였다. 이 때도 여전히 Backprop 같은 학습 알고리즘은 여전히 없었다.
 
-![First back-propagation](../.gitbook/assets/image%20%28254%29.png)
+![First back-propagation](../.gitbook/assets/image%20%28255%29.png)
 
 Backprop은 Rumelhart가 1986년 처음 만들었다. 지금과 같은 형태처럼 Chain rule과 update rule을 볼 수 있다. 이 때 최초로 network 학습 개념이 정립되기 시작했다. 하지만 이 이후로는 NN에 대해 새로운 네트워크 발견이나 사용처를 찾지 못해 한동안 잠잠했다.
 
@@ -30,13 +30,13 @@ FC Layer에서 하는 일은 어떤 벡터를 가지고 연산을 하는 것이�
 
 ## Convolution Layer
 
-![Convolution Layer](../.gitbook/assets/image%20%28263%29.png)
+![Convolution Layer](../.gitbook/assets/image%20%28264%29.png)
 
 Convolution Layer와 기존 FC 레이어의 주된 차이점이 있다면 Convolution Layer는 기존의 구조를 보존시킨다는 것이다. 기존 FC가 입력 이미지를 길게 폈다면 이 레이어는 이미지 구조를 그대로 유지하게 된다. 
 
 5 x 5 x 3 filter가 W가 되는거고, 이 필터로 이미지 위에서 sliding 하면서 공간적으로 내적을 수행하게 된다. 필터는 입력의 depth 만큼 확장된다.\(Filters always extend the full depth of the input volume\) 하나의 필터는 이미지에 비해 작은 영역을 취하지만 \(5 x 5\) depth는 입력값의 depth와 똑같이 취한다. \(3\) 
 
-![Convolution Layer](../.gitbook/assets/image%20%28304%29.png)
+![Convolution Layer](../.gitbook/assets/image%20%28305%29.png)
 
 이제 이 필터를 이미지의 어떤 공간에 겹쳐놓고 내적을 수행한다. 그리고 필터의 각 W와 이에 해당하는 이미지의 픽셀을 곱해준다. 5 x 5 x 3 + 1 \(bias\) 만큼 연산을 수행하는 거고, 그만큼 파라미터가 존재하는 거다.
 
@@ -46,7 +46,7 @@ Wx 에 관해서 생각해보면, 우선 내적을 수행하기 앞서 W 값을 
 
 Convolution은 이미지의 left-top부터 시작해서 필터의 중앙으로 값들을 모으게 된다. 필터의 모든 요소들을 가지고 내적을 수행하면 하나의 값을 얻게 된다. 그 값을 output activation map의 해당 위치에 입력이 되고, 그 이후 다음 영역으로 sliding 한다. 출력 행렬의 크기는 sliding을 어떻게 하느냐에 따라 다르게 되지만 \(stride\) 기본적으로는 한 칸씩 이동하며 연산을 수행한다.
 
-![](../.gitbook/assets/image%20%28225%29.png)
+![](../.gitbook/assets/image%20%28226%29.png)
 
 이렇게 하나의 필터를 가지고 전체 이미지에 convolution을 하면서 activation map이라는 출력값을 얻게 된다. 보통 필터마다 다른 특징들을 뽑기 위해 여러개의 필터를 사용한다. 그럼 그 필터 갯수만큼  activation map이 만들어 질 거다.
 
@@ -68,7 +68,7 @@ grid 안의 각 cell들은 하나의 뉴런\(filter\)를 뜻하는 거다. 각 �
 
 지금까지 ConvLayer를 계층적으로 쌓아서 단순한 특징들을 뽑고, 그것을 또 조합해서 더 복잡한 특징들도 뽑게 되는 과정을 봤다. 네트워크 앞쪽은 simple 한 것에 대한 특징을 갖고 뒤쪽으로 갈 수록 특징이 복잡해진다. 강제로 학습시킨게 아니라 계층적으로 쌓아서 backprop 하다보니 자연스럽게 네트워크 스스로 그렇게 만들어진 거다. 
 
-![activations](../.gitbook/assets/image%20%28292%29.png)
+![activations](../.gitbook/assets/image%20%28293%29.png)
 
 Activation의 모양들을 나타낸 이미지다. 각 activation은 이미지가 필터를 통과한 결과값이며, 이미지 중 어느 위치에서 필터가 크게 반응했는지를 보여준다.
 
@@ -78,17 +78,17 @@ CNN이 동작하는 예시를 보자. 입력 이미지는 여러 Layer를 통과
 
 ### Filter & Stride
 
-![&#xD569;&#xC131;&#xACF1; &#xACC4;&#xC0B0;&#xC808;&#xCC28;](../.gitbook/assets/image%20%28296%29.png)
+![&#xD569;&#xC131;&#xACF1; &#xACC4;&#xC0B0;&#xC808;&#xCC28;](../.gitbook/assets/image%20%28297%29.png)
 
 Filter는 이미지의 특징을 찾아내기 위한 공용 파라미터이다. Kernel 이라고도 한다. 입력 데이터를 지정된 간격으로 순회하며 채널별로 합성곱을 하고, 그 합을 Feature Map으로 만든다.
 
 ![Feature map &#xACFC;&#xC815;](../.gitbook/assets/image%20%28142%29.png)
 
-![](../.gitbook/assets/image%20%28180%29.png)
+![](../.gitbook/assets/image%20%28181%29.png)
 
 입력 데이터가 여러 채널을 갖는 경우, 필터는 각 채널을 순회하며 합성곱을 계산한 후, 채널별 feature map을 만든다. 그리고 각 채널의 피처맵을 합산하여 최종 feature map으로 반환한다. 필터 별로 1개의 feature map 이 만들어진다.
 
-![Spatial Dimension](../.gitbook/assets/image%20%28271%29.png)
+![Spatial Dimension](../.gitbook/assets/image%20%28272%29.png)
 
 7 x 7 input에 3 x 3 필터를 취한 것을 예를 들어 보자. 한칸씩 sliding 한다고 했을 때 \(stride = 1\) 좌우 방향으로 5번 수행, 상하 방향으로 5번 수행 가능하다. 5 x 5 의 output이 나오게 되는 거다. stride = 2인 경우는 두칸을 sliding 하여 계산하는 거다. 그 경우는 3 x 3 output이 나온다. 이미지를 sliding 해도 필터가 모든 이미지를 커버 할 수 없는 경우에는 잘 동작하지 않는다. \(ex, stride=3\) 불균형한 결과가 나오기 때문에 권장하지 않는다.
 
@@ -126,19 +126,19 @@ Padding을 하게 되면 출력 사이즈를 유지시켜주고 필터의 중앙
 > **Q\) 가로, 세로 stride 사이즈가 항상 동일한가?**  
 > A\) input 데이터를 일반적으로 정사각 행렬을 사용하기 때문에, 보통은 모든 영역에 동일한 stride를 사용한다.
 
-![](../.gitbook/assets/image%20%28238%29.png)
+![](../.gitbook/assets/image%20%28239%29.png)
 
 보통 필터는 3 x 3 \(padding = 1\) 이나 5 x 5 \(padding = 2\) 사이즈를 일반적으로 사용한다. 
 
 Padding 하지 않고 레이어가 여러 겹 쌓이게 되면 출력 사이즈\(activation map\)는 아주 작아질거다. activation map 이 작다는 건 일부 정보를 잃게 되는 거고 원본 이미지를 표현하기에는 너무 작은 값을 사용하게 되는 거다. 그렇게 줄어드는 이유는 매번 각 코너에 있는 값들을 계산하지 못하기 때문에 그 부분에 대한 데이터를 잃는 거다.
 
-![](../.gitbook/assets/image%20%28275%29.png)
+![](../.gitbook/assets/image%20%28276%29.png)
 
 입력이 32 x 32 x 3 일 때 5 x 5 필터가 10개 있고 stride = 1, padding = 2 일 때 이 레이어의 파라미터는 몇 개일까?
 
 각각의 5 x 5 x 3 필터에는 하나의 bias term이 있다. 각 필터당 5 \* 5 \* 3 + 1 = 76 개의 파라미터가 있는거고 이 필터가 10개 있으니 전체 760개의 파라미터가 존재한다.
 
-![](../.gitbook/assets/image%20%28300%29.png)
+![](../.gitbook/assets/image%20%28301%29.png)
 
 필터 사이즈, stride, padding 의 일반적인 설정값
 
@@ -149,7 +149,7 @@ Padding 하지 않고 레이어가 여러 겹 쌓이게 되면 출력 사이즈\
 
 ### 1 x 1 Convolution
 
-![](../.gitbook/assets/image%20%28332%29.png)
+![](../.gitbook/assets/image%20%28333%29.png)
 
  1 x 1 convolution 도 의미가 있다. 공간적인 정보를 이용하지는 않지만 여전히 depth 만큼 \(1 x 1 x depth\)  연산을 수행한다. 전체 dept에 대한 내적을 수행하는 거다. 56 x 56 x 64 에 1 x 1 convolution을 수행하면 output은 56 x 56 x 32 이다.
 
@@ -190,7 +190,7 @@ FC Layer는 32 x 32 x 3을 모두 펼쳐 1차원 vector로 만든 다음에\(전
 
 ### Max Pooling
 
-![](../.gitbook/assets/image%20%28307%29.png)
+![](../.gitbook/assets/image%20%28308%29.png)
 
 Pooling Layer에도 필터 크기를 정할 수 있다. 얼마만큼의 영역을 한번에 묶을지 정하는 거다. 위의 예시는 2 x 2필터와 2 stride 사용한다. 
 
@@ -204,7 +204,7 @@ Pooling Layer도 ConvLayer처럼 sliding 하며 연산한다. 대신 내적을 �
 
 ### Design Choice
 
-![](../.gitbook/assets/image%20%28308%29.png)
+![](../.gitbook/assets/image%20%28309%29.png)
 
 W\(width\) x H\(height\) x D\(depth\) 에 F\(필터 사이즈\), S\(stride\)를 추가하여 pooling layer를 디자인할 수 있다.
 

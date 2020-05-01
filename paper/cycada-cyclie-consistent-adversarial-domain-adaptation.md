@@ -12,13 +12,13 @@ description: ICML 2018
 
 서로 다른 두 개의 loss \( $$L_y$$ , $$L_d$$ \)가 있는데 각각의 역할은 아래와 같다.
 
-![](../.gitbook/assets/image%20%28301%29.png)
+![](../.gitbook/assets/image%20%28302%29.png)
 
 *  $$L_y$$ : 우리가 학습하려고 하는 label에 대해서 잘 구분할 수 있는 feature extractor와 label predictor를 학습하는 것
 
 
 
-![](../.gitbook/assets/image%20%28336%29.png)
+![](../.gitbook/assets/image%20%28337%29.png)
 
 *  $$L_d$$ : domain classifer를 위한 loss로 domain을 잘 구분할 수 있도록 학습을 시킨다. 
 
@@ -32,7 +32,7 @@ domain을 섞기 위해 gradient를 reverse 해서 전달하는 것이 아니라
 
 domain real label에 대해서 discriminator를 학습한다. \(주어진 도로 환경의 사진이 한국인지 미국인지 잘 구분하도록\)
 
-![](../.gitbook/assets/image%20%28204%29.png)
+![](../.gitbook/assets/image%20%28205%29.png)
 
 잘 학습된 discriminator에 domain fake label을 주고 학습하면, feature extractor 입장에서는 domain을 구분하지 못하도록 학습이 된다. 
 
@@ -40,7 +40,7 @@ gradient reversal 방식은 domain discriminator가 converge 하게 될 경우 f
 
 ### CycleGAN
 
-![](../.gitbook/assets/image%20%28283%29.png)
+![](../.gitbook/assets/image%20%28284%29.png)
 
 서로 다른 domain의 unpaired image들에 대해서 image-to-image translation 하는 네트워
 
@@ -49,7 +49,7 @@ gradient reversal 방식은 domain discriminator가 converge 하게 될 경우 f
 * ADDA의 경우 feature space 단에서 adversarial loss를 적용하기 때문에 pixel-level이나 low-level domain shifts를 잘 잡아내지 못한다.
 * ADDA에 CycleGAN을 추가
 
-![](../.gitbook/assets/image%20%28191%29.png)
+![](../.gitbook/assets/image%20%28192%29.png)
 
 
 

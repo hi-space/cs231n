@@ -58,7 +58,7 @@ Bounding Box Regression의 Loss함수로 MSE를 사용하는데, L2 Reg term이 
 
 ### Selective Search
 
-![](../.gitbook/assets/image%20%28259%29.png)
+![](../.gitbook/assets/image%20%28260%29.png)
 
  image에서 object의 region을 찾기 위한 알고리즘이다.  
 Color space 정보와 다양한 similarity measure\(RGB, HVS, 영역 크기, hole의 유무 등\)를 활용하여 복잡한 segmentation들을 merge 하며 grouping 하고, 그렇게 만들어진 segmentation 의 boundary를 이어서 RoI 영역을 만든다.  

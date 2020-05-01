@@ -6,11 +6,11 @@ description: Image Classification
 
 ## Image Classification
 
-![Image Classification](../.gitbook/assets/image%20%28326%29.png)
+![Image Classification](../.gitbook/assets/image%20%28327%29.png)
 
 Image Classification은 컴퓨터 비전 분야에서 Core Task에 속한다. Input Image를 받고, 시스템에서 미리 정해놓은 카테고리 내에서 어떤 카테고리에 속하는 지 판단하는 문제이다.
 
-![Semantic Gap](../.gitbook/assets/image%20%28270%29.png)
+![Semantic Gap](../.gitbook/assets/image%20%28271%29.png)
 
 Semantic Gap : 고수준 언어의 언어 요소와 이들을 실현하기 위한 컴퓨터의 기능 사이에는 큰 격차가 있는 것. 
 
@@ -31,7 +31,7 @@ Semantic Gap : 고수준 언어의 언어 요소와 이들을 실현하기 위�
 
 Object를 인식하는 건 직관적이고 명시적인 알고리즘이 존재하지 않는다. input으로 image를 받고 ouput으로 class\_label 값을 리턴하는 함수를 만든다고 했을 때 어떤 내용이 채워져야 할까?
 
-![hard-code algorithm](../.gitbook/assets/image%20%28313%29.png)
+![hard-code algorithm](../.gitbook/assets/image%20%28314%29.png)
 
 알고리즘을 만든다고 했을 때 이런 방법이 있을 수 있다. 이 이미지에서 Edges를 계산하고 Corners 들을 뽑는다. 그리고 이 Corner에 뾰족한 모양의 귀가 있고 다른 Corner의 어느 위치 쯤에는 코가 있을 거고, 이런 방식으로 Object의 특징들을 써내려 갈 수 있을 거다. 인식을 위한 "명시적인 규칙 집합"을 써내려 가는 방법이다. 
 
@@ -39,7 +39,7 @@ Object를 인식하는 건 직관적이고 명시적인 알고리즘이 존재�
 
 ### Data-Driven Approach
 
-![Data-Driven Approach](../.gitbook/assets/image%20%28231%29.png)
+![Data-Driven Approach](../.gitbook/assets/image%20%28232%29.png)
 
 그를 위한 하나의 insight는 Data Driven Approach다. 직접 규칙을 나열하는 것 대신에 많은 데이터들을 수집하는 것이다. 많은 데이터셋들을 모아서 ML 알고리즘을 돌리게 되면,  ML 알고리즘은 어떤 식으로든 데이터를 잘 요약해서 다양한 Object들을 인식할 수 있는 모델을 만들어 낼 것이다.
 
@@ -47,7 +47,7 @@ Object를 인식하는 건 직관적이고 명시적인 알고리즘이 존재�
 
 ## Nearest Neighbor
 
-![Nearest Neighbor](../.gitbook/assets/image%20%28274%29.png)
+![Nearest Neighbor](../.gitbook/assets/image%20%28275%29.png)
 
 딥러닝으로 넘어가기 전에 심플한 Classifier 부터 살펴보자.  Nearest Neighbor 이다. Data-driven approach로서 기본적인 알고리즘이고 위에서 말했듯이 두가지의 함수가 필요하다.
 
@@ -106,7 +106,7 @@ Train 속도는 나쁘지 않지만 Predict 하는 것은 모든 이미지 마�
 
 ### Limitation
 
-![Decision Region of Nearest Neighbor](../.gitbook/assets/image%20%28218%29.png)
+![Decision Region of Nearest Neighbor](../.gitbook/assets/image%20%28219%29.png)
 
 각 점은 학습 데이터, 색은 클래스 label 이다. 2차원 평면 내의 모든 좌표에서 각 좌표가 어떤 학습 데이터와 가장 가까운지 측정한다. Nearest Neighbor 는 이렇게 공간을 나눠 각 레이블로 분류한다. 여기서 문제를 볼 수 있다.
 
@@ -136,13 +136,13 @@ Distance Metric에 따라 Decision Region이 달라진 것을 볼 수 있다. L1
 
 ### Hyperparameters
 
-![Hyperparameter](../.gitbook/assets/image%20%28202%29.png)
+![Hyperparameter](../.gitbook/assets/image%20%28203%29.png)
 
 k-NN에서 k와 Distance metric은 Hyperparameter이다. Train time에 학습시키는 것이 아니라 미리 사전에 정해줘야 한다. 어떻게 hyperparameter 값을 정하는 지는 problem-dependent 하다. 다양한 hyperparameter 값을 시도해보고 적합한 값을 찾아야 한다.
 
-![Setting Hyperparameters](../.gitbook/assets/image%20%28293%29.png)
+![Setting Hyperparameters](../.gitbook/assets/image%20%28294%29.png)
 
-![Setting Hyperparameter](../.gitbook/assets/image%20%28302%29.png)
+![Setting Hyperparameter](../.gitbook/assets/image%20%28303%29.png)
 
 hyperparameter를 세팅하기 위한 몇가지 아이디어가 있다.
 
@@ -174,7 +174,7 @@ A. training set에서는 분류기를 학습시킨다. 그리고 validation set�
 
 K-NN은 input이 image 일 때는 사용하지 않는다. 너무 느리기도 하고 L1, L2와 같은 Distance metric이 이미지 간 거리를 측정하기에는 적절하지 않기 때문이다. 위의 예시에서 하나의 이미지를 boxed, shifted, tinted 했지만 모두 동일한 L2 distance를 갖는다. 눈으로 봐도 극명히 다른 이미지인데 컴퓨터는 같은 이미지로 판단한다는 의미이다. 
 
-![curse of dimensionality](../.gitbook/assets/image%20%28219%29.png)
+![curse of dimensionality](../.gitbook/assets/image%20%28220%29.png)
 
 또 하나의 문제는 차원의 저주. K-NN은 결국 공간을 나누는 알고리즘이다. 잘 동작하기 위해선 충분한 training set이 필요하다. 그 필요한 training set이 차원이 증가함에 따라 기하급수적으로 증가하게 된다. 고차원의 이미지라면 모든 공간을 조밀하게 메울 만큼의 데이터가 필요하다.
 
