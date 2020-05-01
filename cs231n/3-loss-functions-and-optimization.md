@@ -17,7 +17,7 @@
 
 Image Classification 문제는 x와 W 를 입력으로 받아서 y 를 예측하는 문제이다. 최종 Loss 값인 L 은 데이터 셋 N 개의 평균 Loss 값이다. 
 
-![Muticlass SVM loss](../.gitbook/assets/image%20%28126%29.png)
+![Muticlass SVM loss](../.gitbook/assets/image%20%28127%29.png)
 
 > s = 분류기의 출력으로 나온 예측된 score  
 > s\_y\_i = Training data set에서 i 번째 이미지의 정답 클래스의 score
@@ -31,7 +31,7 @@ if (정답 클래스의 score가 가장 높으면)
 
 
 
-![Hinge Loss Function](../.gitbook/assets/image%20%28111%29.png)
+![Hinge Loss Function](../.gitbook/assets/image%20%28112%29.png)
 
 Loss Function을 그래프로 나타내면 위와 같다. 그래프 모양 때문에 Hinge Loss Function 이라고 한다. 
 
@@ -46,7 +46,7 @@ A\) 1 자체는 임의로 선택한 숫자이다. 우리에게 중요한건 Loss
 Q\) 초기 W 값이 너무 작아서 모든 score가 거의 0에 가깝게 되면 Loss는 어떻게 될까?  
 A\) 답은 클래스의 갯수 - 1 \(safety margin\) 이다. Loss를 계산할 때 정답이 아닌 class를 순회하기 때문에 C-1 번 순회한다. 비교하게 되는 두 클래스\(s\_j와 s\_y\_i\)의 score가 비슷하니 score가 1이 될 것이다. 이는 디버깅 시 유용한 정보이다. training 처음 시작할 때 Loss 값이 C-1이 아니라면 아마 뭔가 버그가 있을 거다. 
 
-![Squared Hinge Loss Function](../.gitbook/assets/image%20%2878%29.png)
+![Squared Hinge Loss Function](../.gitbook/assets/image%20%2879%29.png)
 
 Q\) Loss 함수를 제곱항으로 바꾸면 어떻게 될까? \(squared hinge loss\)  
 A\) 제곱의 의미는, 좋은 것과 나쁜 것 사이의 trade off를 비선형적인 방식으로 바꿔준다는 것이다. 그렇게 되면 loss function 계산 자체가 바뀌게 된다.  
@@ -54,7 +54,7 @@ A\) 제곱의 의미는, 좋은 것과 나쁜 것 사이의 trade off를 비선�
      - hinge loss : 조금 잘못된 것과 많이 잘못된 것을 크게  신경쓰지 않는다. 잘못된 건 잘못된 거고, 얼마나 잘못되었는 지에 대해서는 신경을 쓰지 않는 것이다.   
 어떤 Loss Function을 선택할 지는 어떤 문제를 어떻게 풀 지에 따라 정해진다.
 
-![Multiclass SVM Loss](../.gitbook/assets/image%20%28285%29.png)
+![Multiclass SVM Loss](../.gitbook/assets/image%20%28288%29.png)
 
 ```python
 def L_i_vectorized(x, y, W):
@@ -72,7 +72,7 @@ def L_i_vectorized(x, y, W):
 
 ## Regularization
 
-![Regularization](../.gitbook/assets/image%20%28106%29.png)
+![Regularization](../.gitbook/assets/image%20%28107%29.png)
 
 Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, 그것은 Training Dataset에서만 fit 하는 W 값이다. Test Dataset이 들어왔을 때는 완전히 틀린 W가 될 수 있다. 이를 해결하기 위한 방법이 Regularization 이다. 기존의 Loss Function 에 Regularization을 위한 항을 하나 추가 한다. 이는 모델이 좀 더 simple한된 W 값을 선택하도록 해준다. simple 하다는 의미는 보다 일반적이고 general 한 문제를 풀기에 적합한 W 값을 말한다. \(Occam's Razor\)
 
@@ -87,7 +87,7 @@ Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, �
 1. 모델이 더 복잡해지지 못하도록 하는 것
 2. 모델에 soft penalty를 추가하는 것 : 여전히 더 복잡한 모델이 될 가능성이 있기 때문에 soft penalty를 추가하는 것이다. 더 복잡한 모델을 사용하고 싶다면 penalty 를 감당해야 한다.
 
-![L1, L2 regularization](../.gitbook/assets/image%20%2861%29.png)
+![L1, L2 regularization](../.gitbook/assets/image%20%2862%29.png)
 
 **L2 regularization**  
 - 가중치 행렬 W에 대한 Euclidean Norm \(squared norm\)  
@@ -107,7 +107,7 @@ Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, �
 
 ## Softmax Classifier
 
-![Softmax Classifier](../.gitbook/assets/image%20%28259%29.png)
+![Softmax Classifier](../.gitbook/assets/image%20%28260%29.png)
 
 Multi-class SVM Loss에서는 score 자체에 대한 해석은 고려하지 않았다. 하지만 Softmax \(Multinomial Logistic Regression\) 의 loss 함수는 score 자체에 대해 추가적인 의미를 부여한다.
 
@@ -119,7 +119,7 @@ score를 위의 수식에 넣어 클래스 별 확률 분포를 계산하게 된
 
 결국 정답 클래스에 해당하는 클래스의 확률이 1에 가깝게 계산되기를 원하는 것이고, Loss 함수는 -log \(정답 클래스일 확률\) 이 된다. log를 취하는 이유는, log가 단조 증가 함수라 log 값을 최대화 시키는 것이 그냥 확률값을 최대화 시키는 것보다 쉽기 때문에 사용하는 것이다.
 
-![Softmax vs SVM](../.gitbook/assets/image%20%2862%29.png)
+![Softmax vs SVM](../.gitbook/assets/image%20%2863%29.png)
 
 Softmax와 SVM Loss 함수는 score를 해석하는 방식이 조금 다르다.
 
@@ -149,11 +149,11 @@ np.mean(Yte_predict == Yte)
 
 ### Follow the slope
 
-![Follow the slope](../.gitbook/assets/image%20%28118%29.png)
+![Follow the slope](../.gitbook/assets/image%20%28119%29.png)
 
 Follow the slope 방법은 말 그대로 경사를 따라서 경사가 있는 쪽을 향해 걸어가는 거다. 미분값을 통해 gradient를 구하면 함수의 경사를 구할 수 있다. 다변수인 상황에서 미분으로 일반화 시켜보면 gradient는 벡터 x의 각 요소들의 편도함수들의 집합이다. gradient가 함수의 어떤 점에서 선형 1차 근사 함수를 알려준다. 많은 딥러닝 알고리즘들이 gradient를 계산하고 parameter 벡터를 업데이트 할 때 사용한다.
 
-![](../.gitbook/assets/image%20%28317%29.png)
+![](../.gitbook/assets/image%20%28321%29.png)
 
 gradient 값을 구하기 위해 특정 W에 아주 작은 값을 더하고 Loss를 계산한 뒤, FDM을 이용해 극한을 취하고 해당 요소의 gradient의 근사치를 계산해볼 수 있다.
 
@@ -162,7 +162,7 @@ Numeric Gradient
  - Too Slow. Need to loop over all dimensions  
  - Approximate
 
-![](../.gitbook/assets/image%20%2859%29.png)
+![](../.gitbook/assets/image%20%2860%29.png)
 
 근데 사실 위와 같이 계산하는 방법은 필요 없다. 미분 계산만 잘 하면 gradient가 계산되어 나온다. gradient를 나타내는 식이 뭔지만 먼저 찾아내고 그걸 수식으로 나타내서 한번에 gradient dW를 계산하는 거다.
 
@@ -203,7 +203,7 @@ While True:
 
 ## Feature Vector
 
-![Image Feature](../.gitbook/assets/image%20%2864%29.png)
+![Image Feature](../.gitbook/assets/image%20%2865%29.png)
 
 이전 강의에서 말했듯이 raw 이미지를 input으로 사용하기에는 성능상 좋지 않은 방법이다.  \(ex, Multi Modality\) 그래서 DNN이 있기 이전에의 이미지 전처리는 두가지 step으로 진행됐다. 
 
@@ -212,31 +212,31 @@ While True:
 
 이렇게 뽑아낸 feature vector을 input image로 사용했다.
 
-![Motivation](../.gitbook/assets/image%20%28190%29.png)
+![Motivation](../.gitbook/assets/image%20%28191%29.png)
 
  왼쪽과 같은 그림의 경우 linear classifier로 바로 풀 수 없는 문제이다. 이를 변형시켜 \(극좌표계로 이동\) linear하게 풀 수 있는 형태로 데이터를 가공한다. 이와 같이 문제를 풀기 위해서는 어떤 특징 변환이 필요한가를 알아내야 한다. 
 
 ### Color Histogram
 
-![Color Histogram](../.gitbook/assets/image%20%28247%29.png)
+![Color Histogram](../.gitbook/assets/image%20%28248%29.png)
 
 이미지의 hue 값만 뽑아서 모든 픽셀을 각 차트에 넣어, 몇개의 픽셀이 있는 지 갯수를 새서 특징벡터로 이용한다. 이미지가 전체적으로 어떤 색인지 알 수 있다. 
 
 ### Histogram of Oriented Gradients \(HoG\)
 
-![Histogram of Oriented Gradients \(HoG\)](../.gitbook/assets/image%20%28119%29.png)
+![Histogram of Oriented Gradients \(HoG\)](../.gitbook/assets/image%20%28120%29.png)
 
 NN이 뜨기 이전에 인기있었떤 또 다른 특징 벡터 중 하나는 바로 Histogram of Oriented Gradients \(HoG\) 이다. Oriented edges가 중요하다고 보고 local orientation edges를 측정하는 방법이다. 픽셀을 나눠서 해당 픽셀 지역 내에서 가장 orientation 이 강한 값을 뽑아내면 그 값이 edge orientation 에 대한 히스토그램이 되는 거다. 어떤 종류의 edge가 있는지, 지역적으로 어떤 edge가 존재하는지도 알 수 있다.
 
 ### Bag of Words
 
-![Bag of Words](../.gitbook/assets/image%20%2845%29.png)
+![Bag of Words](../.gitbook/assets/image%20%2846%29.png)
 
 Bag of Words는 NLP에서 영감을 받은 특징 벡터이다. NLP에서의 특징벡터는 특정 문장에 있는 각 단어의 발생 빈도를 세서 이를 특징 벡터로 사용하는 것이다. 이 직관을 그대로 이미지에 적용한 것이다. 이 visual word를 뽑아내기 위해 이미지들을 임의대로 조각내고 K-means 등의 군집화 알고리즘을 이용해 조각들을 모은다. 이미지 내의 다양한 요소들을 표현할 수 있는 다양한 군집들을 만들어 내는 것이다. 이 이미지가 어떻게 생겼는지에 대한 다양한 정보를 제공할 수 있다.
 
 ### Image features vs ConvNets
 
-![Image features](../.gitbook/assets/image%20%2841%29.png)
+![Image features](../.gitbook/assets/image%20%2842%29.png)
 
 5~10년 전까지만 해도 이미지를 입력받으면 BOW나 HOG와 같은 다양한 특징 표현을 계산하고 특징들을 모아 연결해서 추출된 특징들을 입력으로 사용했었다. 특징이 한번 추출되면 feature extractor는 classifer 하는 동안은 변형되지 않고 classifer 모델만 업데이트 된다.
 

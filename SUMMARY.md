@@ -8,23 +8,23 @@
 * [1. Introduction to CNN for Visual Recognition](cs231n/1-introduction.md)
 * [2. Image Classification](cs231n/2-image-classification.md)
 * [3. Loss Functions and Optimization](cs231n/3-loss-functions-and-optimization.md)
-* [4. Backpropagation and Neural Networks](cs231n/4-backpropagation-and-neural-networks.md)
-* [4-1. Forwardpropagation](cs231n/4-1.-forwardpropagation.md)
-* [5. Convolutional Neural Network](cs231n/5-convolutional-neural-network.md)
-* [5-1. Appendix CNN](cs231n/5-1-appendix-cnn.md)
+* [4. Backpropagation and Neural Networks](cs231n/4-backpropagation-and-neural-networks/README.md)
+  * [4-1. Forwardpropagation](cs231n/4-backpropagation-and-neural-networks/4-1.-forwardpropagation.md)
+* [5. Convolutional Neural Network](cs231n/5-convolutional-neural-network/README.md)
+  * [5-1. Appendix CNN](cs231n/5-convolutional-neural-network/5-1-appendix-cnn.md)
 * [6. Training Neural Network 1](cs231n/6-training-neural-network-1.md)
 * [7. Training Neural Network 2](cs231n/7-training-neural-network-2.md)
 * [8. Deep Learning Software](cs231n/8-deep-learning-software.md)
 * [9. CNN Architectures](cs231n/9-cnn-architectures.md)
-* [10. Recurrent Neural Network](cs231n/10-recurrent-neural-network.md)
-* [10-1. Appendix RNN](cs231n/10-1-appendix-rnn.md)
+* [10. Recurrent Neural Network](cs231n/10-recurrent-neural-network/README.md)
+  * [10-1. Appendix RNN](cs231n/10-recurrent-neural-network/10-1-appendix-rnn.md)
 
 ## Reinforcement Learning
 
 * [Index](reinforcement-learning/index.md)
-* [Introduction](reinforcement-learning/introduction.md)
-* [Multi-Armed bandit problem](reinforcement-learning/untitled.md)
-* [Finite Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
+* [Introduction](reinforcement-learning/introduction/README.md)
+  * [Multi-Armed bandit problem](reinforcement-learning/introduction/untitled.md)
+* [Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
 
 ## Object Detection
 
