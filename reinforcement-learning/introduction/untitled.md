@@ -30,37 +30,3 @@ $$
 
 결국 시간은 제한되어 있기 때문에 적절히 exploitation과 exploration간 적절한 균형을 유지해야 한다. 이 균형을 찾기 위한 것이 multi-armed problem의 핵심이다.
 
-## Action-value Methods
-
-
-
-## The 10-armed Testbed
-
-
-
-## Incremental Implementation
-
-
-
-## Tracking a Non-stationary Problem
-
-
-
-## Optimistic Initial Values
-
-
-
-## Upper-Confidence-Bound Action Selection
-
-
-
-## Gradient Bandit Algorithms
-
-
-
-## Associative Search
-
-
-
-
-
