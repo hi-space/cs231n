@@ -25,6 +25,7 @@
 * [Introduction](reinforcement-learning/introduction/README.md)
   * [Multi-Armed bandit problem](reinforcement-learning/introduction/untitled.md)
 * [Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
+* [Dynamic Programming](reinforcement-learning/dynamic-programming.md)
 
 ## Object Detection
 
