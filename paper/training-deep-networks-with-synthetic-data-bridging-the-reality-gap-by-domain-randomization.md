@@ -29,7 +29,7 @@ description: CVPR 2018
 
 ### Domain Randomization
 
-![Domain Randomization](../.gitbook/assets/image%20%28337%29.png)
+![Domain Randomization](../.gitbook/assets/image%20%28363%29.png)
 
 * 랜덤 갯수의 Object \(interest object\)를 3D Scene의 랜덤한 position, orientation에 위치 시킨다.
 * flying distractors: 네트워크가 관심없는 object에 대해 관심을 갖지 않게 하기위해서 scene에 random 한 갯수의 geometric shapes를 추가한다.
@@ -40,11 +40,11 @@ description: CVPR 2018
 
 ### Evaluation
 
-![VKITTI / Domain Randomization](../.gitbook/assets/image%20%28342%29.png)
+![VKITTI / Domain Randomization](../.gitbook/assets/image%20%28368%29.png)
 
 * VKITTI dataset에 비해 Domain Randomization 이미지가 분명 이상하다. 하지만 Domain Randomization을 이용하면 VKITTI와 같이 공을 들여 데이터를 생성하는 것 보다 훨씬 간단하고 빠르게 데이터 생성이 가능하다. VKITTI 는 segmentation, depth, optical flow 계산 등 복잡한 계산들이 수반되어 데이터 생성에 보다 많은 시간이 소요된다. 
 
-![VKITTI vs DR](../.gitbook/assets/image%20%28274%29.png)
+![VKITTI vs DR](../.gitbook/assets/image%20%28297%29.png)
 
 * Domain Randomization으로 생성된 데이터로 학습을 시키면 정확도가 좋아진다. 
   * DR dataset은 100K 이용하고 VKITTI dataset은 2.5K 개 이용
@@ -53,22 +53,22 @@ description: CVPR 2018
   * classic한 augmentation 방법인 flips, resizing, box jitter, crop 등도 사 
 * Synthetic image로 training 시킨 후 real image로 fine tuning 해봤다. 기존의 hyperparameter를 변경하지 않고 gradient가 end-to-end로 fully flow 하도록, 네트워크가 수렴할 때까지 training 시켰다. 
 
-![Faster RCNN](../.gitbook/assets/image%20%2858%29.png)
+![Faster RCNN](../.gitbook/assets/image%20%2864%29.png)
 
 * Faster R-CNN 으로 Bounding Box를 찾은 결과물
 * VKITTI와 DR 모두 real data 는 사용하지 않았음에도 불구하고 실제 이미지에 대해 예측이 정확하다.
 
-![](../.gitbook/assets/image%20%28131%29.png)
+![](../.gitbook/assets/image%20%28145%29.png)
 
 * Real 데이터로 fine-tuning 했을 때의 결실제 training 하는 이미지 수가 증가함에 따라 DR은 VKITTI를 능가한다. 실제 데이터와 비슷한 데이터가 추가되는 것 보다 데이터 자체가 많아지는 것이 더 중요했다. 
 * 초기에는 데이터가 부족할 수 있지만 일정 시간이 지나면 real 데이터가 취득될 수 있다. 당연히 real 데이터가 많아질 수록 성능이 높아진다. 결과적으로도 DR로 생성한 데이터를 같이 사용했을 때 가장 높은 성능을 보인다.
 * 즉, 데이터가 부족한 초반 부터 데이터가 충분히 쌓인 후반 부분에 걸쳐 DR 이 사용될 수 있다.
 
-![](../.gitbook/assets/image%20%28334%29.png)
+![](../.gitbook/assets/image%20%28360%29.png)
 
 * Data Augmentation을 어떻게 했는지에 따라 AP 의 변
 
-![freezing early layers vs full learning](../.gitbook/assets/image%20%28301%29.png)
+![freezing early layers vs full learning](../.gitbook/assets/image%20%28327%29.png)
 
 * 이전 논문에서는 synthetic data로 네트워크를 training 시킬 때 early network \(feature extraction 부분\)를 freeze 시켰다. 
 * 하지만 본 연구에서 테스트 했을 때, early network를 freeze 했을 때 정확도가 더 낮았다. 

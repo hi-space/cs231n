@@ -28,7 +28,7 @@ Transfer learning과 task relation은 실제 문제를 해결할 때 굉장히 �
 
 실제 논문에서 제시한 task는 총 26개입니다. 모든 task들은 실제 indoor scene inference에서 많이 쓰입니다.
 
-![](../.gitbook/assets/image%20%2886%29.png)
+![](../.gitbook/assets/image%20%2898%29.png)
 
 * Surface Normals
 * Image Reshading
@@ -56,14 +56,14 @@ Transfer learning과 task relation은 실제 문제를 해결할 때 굉장히 �
 
 ## Method
 
-![](../.gitbook/assets/image%20%28205%29.png)
+![](../.gitbook/assets/image%20%28223%29.png)
 
 Taskonomy는 어떤 task 들의 set에서 어떤 task를 labeling하고 어떤 task를 fine-tuning하면 되는지를 나타낸 도식입니다. 그래프의 각 node는 task를 나타내고 edge의 source는 source task, target은 target task를 의미합니다. 그래프를 보시면 한 target에 2개 이상의 source가 있는 경우가 있는데, 말 그대로 2개 이상의 source를 사용해 fine-tuning한 것을 의미합니다.
 
 * maximum order of transfer function : 이 parameter를 사용해서 최대 몇 개의 source task를 동시에 사용할 수 있는지를 지정할 수 있습니다.
 * budget : 얼마 만큼 많은 label을 받았는지를 의미합니다. budget이 아주 많으면 모든 task에 대해서 fully-annotation을 받으면 되고, budget이 부족하면 최대한 작은 task만 source task로 정의해서 annotation을 받고 나머지는 조금만 labeling을 받아서 source task를 fine-tuning 해야 합니다.
 
-![](../.gitbook/assets/image%20%28198%29.png)
+![](../.gitbook/assets/image%20%28216%29.png)
 
 Taskonomy는 다음과 같은 방식으로 만들어집니다.
 
@@ -74,13 +74,13 @@ Taskonomy는 다음과 같은 방식으로 만들어집니다.
 
 ### 1. Task-Specific Modeling
 
-![Task-Specific Modeling](../.gitbook/assets/image%20%28218%29.png)
+![Task-Specific Modeling](../.gitbook/assets/image%20%28238%29.png)
 
 먼저 Source task를 학습시킵니다. 이 때 network는 encoder와 decoder로 이루어져 있습니다. Encoder의 결과로 image의 task에 대한 representation들이 학습되고, decoder를 통해서 pixel-level prediction 혹은 single prediction이 학습될 것입니다.
 
 ### 2. Transfer Modeling
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
  Encoder는 고정한 채 target task들에 대해서 decoder를 fine-tuning합니다. 여기에 쓰이는 데이터는 source data에 비해서 훨씬 작은 양으로 학습이 가능합니다. taskonomy를 만들기 위해서는 **모든 source task와 target task의 pair**에 대해서 transfer learning을 시행해야 합니다.
 
@@ -90,7 +90,7 @@ High-Order transfer
 
 ### 3. Ordinal Normalization using AHP
 
-![](../.gitbook/assets/image%20%2833%29.png)
+![](../.gitbook/assets/image%20%2838%29.png)
 
 앞선 step에서 계산된 네트워크를 가지고 affinity matrix를 구합니다. 논문에서는 이 matrix를 그냥 구할 시에는 각 task별 bias 때문에 제대로 된 affinity가 구해지지 않으므로 사회학 등에서 사용하는 AHP라는 방법을 사용해 normalization을 진행한다고 합니다.
 

@@ -10,7 +10,7 @@ data distribution 을 발견하는 것은 domain adaptation을 위한 주요 과
 
 본 논문에서는 Unsupervised domain adaptation 방법을 제안한다.  명시적으로 구분할 수 있는 structured output space에서 두 도메인 간 semantic segmentation의 discriminator를 learning 하고, 궁극적으로는 더 나은 domain alignment를 찾고자 한다.
 
-![](../.gitbook/assets/image%20%281%29.png)
+![](../.gitbook/assets/image%20%282%29.png)
 
 * 목적은 output distribution alignment를 개선하는 것이다.
 
@@ -23,11 +23,11 @@ data distribution 을 발견하는 것은 domain adaptation을 위한 주요 과
 2. 기존의 3가지 Domain adaptation 방법들을 통합
 3. semantic segmentation을 위한 다양한 domain adaptation 접근 방식들을 분석 및 공유
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%286%29.png)
 
 * Category distribution이 clustered space \(source domain에서 K -patch mode를 통해 구성됨\)를 통해  patch distribution에 projected 된다.
 
-![](../.gitbook/assets/image%20%28121%29.png)
+![](../.gitbook/assets/image%20%28134%29.png)
 
 
 
