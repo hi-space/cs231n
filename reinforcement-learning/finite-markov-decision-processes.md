@@ -247,7 +247,7 @@ policy $$\pi$$가 정해져있으면 다음 state로 넘어갈 수 있는 state 
 
 policy가 $$\pi$$일 때 $$s$$에서 $$s'$$으로 갈 확률은, $$s$$에서 action $$a$$를 선택할 확률과 action $$a$$를 했을 때 $$s$$에서 $$s'$$으로 갈 확률을 다 더하면 된다.
 
-* state, reward sequence \($$S_1, R_1, S_2, ...$$\)는 Markov Reward Process 가 다. \($$S, P^{\pi}, R^{\pi}, \gamma$$\)
+* state, reward sequence \($$S_1, R_1, S_2, ...$$\)는 Markov Reward Process 가 된다. \($$S, P^{\pi}, R^{\pi}, \gamma$$\)
 * $$R_s^{\pi} = \sum_{a \in A} \pi(a|s)R_s^a$$
 
 reward도 위와 같은 개념으로 미리 계산해 줄 수 있기 때문에 state와 reward가 Markov인 Markov Reward Process가 된다고 할 수 있다.
@@ -390,6 +390,8 @@ optimal action-value function를 찾으면 optimal policy를 알 수 있다. opt
 
 optimal policy를 구하기 위한 Bellman Equation을 Bellman Optimality Equation 이라고 한다. 
 
+Optimal bellman equation은 각 state 마다 하나씩의 equation으로 구성되어 있다. 즉, n 개의 state가 있으면 n개의 미지수에 대한 n개의 방정식이 존재하는 거다.
+
 ![Bellman Optimality Equation for optimal value function](../.gitbook/assets/image%20%28175%29.png)
 
 optimal policy를 따르는 어떤 state의 value function은 그 state에서 선택할 수 있는 best action 의 expected return 값과 같아야 한다.
@@ -397,6 +399,16 @@ optimal policy를 따르는 어떤 state의 value function은 그 state에서 �
 ![Bellman Optimality Equation for optimal action-value function](../.gitbook/assets/image%20%2895%29.png)
 
 #### Optimal Value Function
+
+optimal value function\($$ v_*$$\)을 구하면 optimal policy를 결정하는 것은 쉽다. 각 state $$s$$에 대해 optimal bellman equation의 value function이 최댓값이 되도록하는 action이 하나 이상 있을 것이다. 이러한 action에 대해서 0이 아닌 확률을 부여하는 policy는 그 무엇든 optimal policy가 될 수 있다. optimal value function을 얻고 나면 optimal value function에 대한 greedy 한 policy가 optimal policy라는 것이다.
+
+greedy 한 선택은 일반적으로 장기적으로 더 좋은 대안을 선택할 수 있는 기회를 선택하지 않고 당장의 최적의 선택을 하는 것을 뜻한다. 하지만 optimal value function을 통한 greedy 한 선택은 장기적인 측면에서 최적의 결과를 가져온다. optimal value function에는 미래에 일어날 수 있는 모든 action에 대한 reward의 결과가 담겨있기 때문이다.
+
+#### Optimal Action-Value Function
+
+optimal action-value function이 optimal policy를 만드는 것은 훨씬 쉽다. $$ q_*$$ 만 있으면 agent는 위와 같은 탐색을 하지 않고도 모든 state에 대해 $$q_*(s,a)$$를 최대로 만드는 행동을 간단하게 찾을 수 있다. 
+
+optimal action-value function은 다음 state와 그에 대한 value, 환경의 dynamics 에 대한 정보 없이도 optimal 한 action을 선택할 수 있도록 해준다.
 
 ![](../.gitbook/assets/image%20%2887%29.png)
 
