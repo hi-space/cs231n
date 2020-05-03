@@ -1,6 +1,6 @@
 # Introduction
 
-![](../../.gitbook/assets/image%20%28346%29.png)
+![](../../.gitbook/assets/image%20%28351%29.png)
 
 강화학습 : 주어진 상황에서 어떠한 행동을 취할지를 학습하는 것
 
@@ -83,7 +83,7 @@ Sequential Decision Making 해야 한다. 연속적으로 선택을 해가면서
 
 ### Agent and Environment
 
-![](../../.gitbook/assets/image%20%28136%29.png)
+![](../../.gitbook/assets/image%20%28138%29.png)
 
 Agent가 어떤 Action을 하게 되면 Environment는 그 행동에 대해 달라진  observation과 reward를 반환해준다.
 
@@ -202,7 +202,7 @@ $$R_{s}^a = \mathbb{E}[R_{t+1} |S_t = s, A_t = a]$$
 
 ## Categorizing RL agents
 
-![](../../.gitbook/assets/image%20%28293%29.png)
+![](../../.gitbook/assets/image%20%28298%29.png)
 
 ### Value Based vs Policy Based vs Actor Critic
 
@@ -224,7 +224,7 @@ Model Free Agent는 내부적으로 Model을 만들지 않고, Model Based Agent
 
 sequential decision making 에는 Learning과 Planning 문제가 있다. 우리가 일반적으로 말하는 RL 에는 두가지 컨셉으로 나뉜다고 볼 수 있다.
 
-![](../../.gitbook/assets/image%20%2846%29.png)
+![](../../.gitbook/assets/image%20%2847%29.png)
 
 #### \(Reinforcement\) Learning
 
