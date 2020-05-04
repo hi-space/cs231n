@@ -2,7 +2,7 @@
 
 이전 강의에서 진행했던 Loss Function과 Optimization에 대해 간략히 정리해보자.
 
-![Loss Function](../../.gitbook/assets/image%20%28320%29.png)
+![Loss Function](../../.gitbook/assets/image%20%28327%29.png)
 
 * Input 값은 x와 W, Output은 분류하고자 하는 클래스들에 대한 score vector.
 * 최적의 loss를 갖게 하는 파라미터 W를 찾기 위해 loss function의 W에 관한 gradient를 계산해서 찾았다.
@@ -10,7 +10,7 @@
 
 ## Backpropagation
 
-![Gradient Descent](../../.gitbook/assets/image%20%2813%29.png)
+![Gradient Descent](../../.gitbook/assets/image%20%2814%29.png)
 
  finite difference approximation을 이용해 gradient를 구하는 방법이 있었는데, 이는 매우 느리고 근사치이지만 직접 써내려가며 하기엔 가장 쉬운 방법이다. 하지만 파라미터가 많아지고 관계식이 복잡해질 수록 최종 loss에 대한 각 파라미터들의 미분값을 구하는 것이 힘들어진다.
 
@@ -18,7 +18,7 @@ analytic gradient 사용하는 것은 빠르고 정확하지만, 이 식을 유�
 
 어떤 복잡한 함수의 analytic gradient를 어떻게 계산할 것인가?
 
-![Linear Classifier - Computational graph](../../.gitbook/assets/image%20%28344%29.png)
+![Linear Classifier - Computational graph](../../.gitbook/assets/image%20%28351%29.png)
 
 위의 그림은 Linear Classifier를 Computational graph로 표현한 것이다.
 
@@ -40,7 +40,7 @@ $$
 
 위의 식도 단순히 한다리만 건너면 input x 값에 도달할 수 있지만 이 관계식이 몇십개가 된다면 모든 파라미터들에 대해서 y에 대한 loss 값을 구하기가 힘들어질 것이다. 이를 좀 더 쉽게 계산하기 위해서 Chain rule을 이용한다. 
 
-![Chain Rule](../../.gitbook/assets/image%20%28257%29.png)
+![Chain Rule](../../.gitbook/assets/image%20%28260%29.png)
 
 df/dx 를 구하기 위해서는 df/dg \* dg/dx를 하면 된다. 
 
@@ -50,15 +50,15 @@ f가 loss function이라고 하고 x가 loss에 대한 gradient를 계산하고 
 
 맨 마지막 Loss에 대한 미분값만 구하면 Chain Rule을 이용해서 그 이전 노드\(파라미터\)들에 대해서 Loss에 대한 미분값을 구할 수 있게 된다. 이렇게 미분값을 뒤로 곱해서 나아가는 것을 Backpropagation 이라고 한다.
 
-![simple example](../../.gitbook/assets/image%20%2836%29.png)
+![simple example](../../.gitbook/assets/image%20%2837%29.png)
 
 Backpropagation에 대한 simple 한 example이다. chain rule을 이용해 뒤쪽 노드부터 앞쪽 노드까지의 gradient를 계산한다. 만약 y의 값을 변화시키면 f 값은 그것의 영향력 만큼 변할 것이다.
 
-![](../../.gitbook/assets/image%20%28377%29.png)
+![](../../.gitbook/assets/image%20%28384%29.png)
 
 각 노드들은 오직 주변에 대해서만 알고 있다. 우리가 가지고 있는건 각 노드\(f\)와 각 노드의 local 입력\(x, y\)이다. 입력\(x, y\)은 이 노드\(f\)와 연결되어 있고, 이 값은 이 노드를 통해 출력값\(z\)을 얻게 된다. 그리고 우리는 이 노드에서 local gradient를 구할 수 있다.
 
-![](../../.gitbook/assets/image%20%28277%29.png)
+![](../../.gitbook/assets/image%20%28282%29.png)
 
 각 노드는 local 입력을 받고 다음 노드로 출력값을 보낸다. 그리고 우리가 계산한 local gradient는 들어오는 입력에 대한 출력의  기울기\(dL/dz\)이다. 
 
@@ -88,7 +88,7 @@ class ComputationalGraph(object):
 
 Forward는 노드를 처리하기 이전에 노드에 들어오는 모든 입력값들을 처리하고, Backward는 역순서로 모든 게이트를 통과한 다음에 게이트 각각을 거꾸로 호출한다.
 
-![\(x \* y = z\) Example](../../.gitbook/assets/image%20%28117%29.png)
+![\(x \* y = z\) Example](../../.gitbook/assets/image%20%28118%29.png)
 
 ```python
 class MultiplyGate(object):
@@ -118,11 +118,11 @@ class MultiplyGate(object):
 
 
 
-![Neuron, Computational graph](../../.gitbook/assets/image%20%28154%29.png)
+![Neuron, Computational graph](../../.gitbook/assets/image%20%28155%29.png)
 
 Computational node는 Neuron이 동작하는 것과 비슷한 방식으로 볼 수 있다.
 
-![Exampel feed-forward computation of a neural network](../../.gitbook/assets/image%20%28239%29.png)
+![Exampel feed-forward computation of a neural network](../../.gitbook/assets/image%20%28241%29.png)
 
 ```python
 # forward-pass of a 3-layer neural network

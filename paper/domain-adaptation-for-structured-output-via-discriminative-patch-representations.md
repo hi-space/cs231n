@@ -23,11 +23,11 @@ data distribution 을 발견하는 것은 domain adaptation을 위한 주요 과
 2. 기존의 3가지 Domain adaptation 방법들을 통합
 3. semantic segmentation을 위한 다양한 domain adaptation 접근 방식들을 분석 및 공유
 
-![](../.gitbook/assets/image%20%287%29.png)
+![](../.gitbook/assets/image%20%288%29.png)
 
 * Category distribution이 clustered space \(source domain에서 K -patch mode를 통해 구성됨\)를 통해  patch distribution에 projected 된다.
 
-![](../.gitbook/assets/image%20%28136%29.png)
+![](../.gitbook/assets/image%20%28137%29.png)
 
 
 

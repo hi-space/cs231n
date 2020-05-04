@@ -13,14 +13,14 @@ description: >-
 * Domain Randomization은 동일한 이미지에서 다양한 변형을 줄 수 있기 때문에 다양한 feature 들을 학습할 수 있다. random한 texture, lighting, camera position을 통해 네트워크가 도메인 차이에 영향을 받지 않고 real world에 적용할 수 있게 한다. 하지만 이는 필요이상으로 문제를 어렵게 만들 수도 있다.
 * 그래서 본 논문에서는 randomized 된 rendered image를 equivalent non-randomized 한, 즉 canonical version으로 바꾸도록 learning 하는 방식을 제안한다. 그리고 real image를 canonical sim image로 바꾸도록 변환하도록 한다. 
 
-![](../.gitbook/assets/image%20%2846%29.png)
+![](../.gitbook/assets/image%20%2847%29.png)
 
 * randomized 한 simulation image 에서 canonical simulation 이미지를 변환하도록 하고 이 데이터를 agent를 training 시키도록 generator를 학습시킨다. 그 다음 real image를 canonical simulation 이미지로 변환하고 agent의 sim-to-real transfer가 되도록 한다. 
 * Randomized 한 image를 non-randomized image 로 만드는 작업은 image-to-image translation 문제라고 볼 수 있다.
 * 이 논문에서 제안한 Randomized to Canonical Adaptation Networks \(RCAN\)은 Domain Adaptation과 달리 real data가 필요하지 않다.
 * GraspGAN 은 pixel-level adaptation, feature-level adaptation을 결합하여 학습에 필요한 real data 양을 줄였다. 하지만 역시 상당햔 양의 unlabelled real data를 필요로 한다.
 
-![](../.gitbook/assets/image%20%28311%29.png)
+![](../.gitbook/assets/image%20%28317%29.png)
 
 * RCAN은 image-conditioned generative adversarial network \(cGAN\)으로 구성된다. cGAN은 randomized된 simulation 환경을 \(b\)와 같이 non-randomized한 canonical image를 얻게한다. training 된 cGAN은 반대로 real image 를 canonical 한 이미지로 변경할 수도 있다. 
 * randomized simulation domain / canonical simulation domain / real-world domain 3가지 형태의 도메인이 존재한다.
@@ -36,5 +36,5 @@ $$
 * $$d_c $$: depth image
 * segmentation mask와 depth image는 training 할 때만 사용된다. RCAN generator 를 통해 input image를 넣으면 그에 해당하는 canonical RGB, Segmentation Mask, Depth image 가 생성된다.
 
-![](../.gitbook/assets/image%20%2815%29.png)
+![](../.gitbook/assets/image%20%2816%29.png)
 

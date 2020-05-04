@@ -19,7 +19,7 @@ $$
 
 위와 같은 수식을 만족시킬 때 state $$S_t$$는 `Markov` 하다고 할 수 있다. 바로 직전의 값만 있을 통해서만 현재 값을 정의할 수 있고, 그 이전의 값들의 사용하지 않는다는 것을 뜻한다.
 
-![Markov Decision Process&#xC5D0;&#xC11C; Agent-Environment&#xC758; interaction](../.gitbook/assets/image%20%2886%29.png)
+![Markov Decision Process&#xC5D0;&#xC11C; Agent-Environment&#xC758; interaction](../.gitbook/assets/image%20%2887%29.png)
 
 agent와 environment는 연속되는 discrete 시간 단계의 매 지점\(t = 0, 1, 2, 3, ..\)마다 interaction 한다. 모든 time step $$t$$에서 agent는 environment의 $$S_t$$를 받고, 그것을 기반으로 action$$A_t$$를 선택한다. 그리고 agent는 다음 time step에서 이전 action의 결과로 reward $$R_{t+1}$$를 받는다. 이 때 agent는 $$S_{t+1}$$에 있다고 인식한다.
 
@@ -71,7 +71,7 @@ Markov Process는 $$ <S, P> $$의 튜플이다.
   * $$P_{ss'} = \mathbb{P}[S_{t+1} = s' | S_t = s]$$
 {% endhint %}
 
-![Student Markov Chain](../.gitbook/assets/image%20%289%29.png)
+![Student Markov Chain](../.gitbook/assets/image%20%2810%29.png)
 
 위의 그림은 Student 환경의 dynamics 에 대해 설명한 것이다. \(Markov Chain\) Markov Chain에서 episode를 sampling해서 표현할 수 있다. 각 episode 들은 특정 state에서 시작해서 final state에서 끝난다. 각 episode들은 독립적다.
 
@@ -85,7 +85,7 @@ Chain이 $$S_1 = C1 $$ 에서 시작한다고 했을 때 아래와 같이 여러
 * C1 C2 C3 Pub C2 C3 Pass Sleep
 * C1 FB FB C1 C2 C3 Pub C1 FB FB FB C1 C2 C3 Pub C2 Sleep
 
-![transition graph / transition matrix](../.gitbook/assets/image%20%28122%29.png)
+![transition graph / transition matrix](../.gitbook/assets/image%20%28123%29.png)
 
 Markov chain은 위와 같이 transition graph로 표현할 수도 있고, state 간 transition matrix로 표현할 수도 있다.
 
@@ -103,7 +103,7 @@ Markov Reward Process는 $$ <S, P, R, \gamma> $$의 튜플이다.
   * $$ \gamma \in [0, 1]$$
 {% endhint %}
 
-![Student Markov Reward Process](../.gitbook/assets/image%20%28233%29.png)
+![Student Markov Reward Process](../.gitbook/assets/image%20%28235%29.png)
 
 Markov Reward Process는 Markov process에서 reward만 추가된 거다. 각 state 마다 reward를 가지고 있는다. \(확률적으로 옮겨지는 것이기 때문에 state에만 reward가 있으면 된다\)
 
@@ -154,7 +154,7 @@ $$
 
 특정 state에 왔을 때 여러개의 sampling 된 episode가 존재할 거고, 각 episode 마다 return 값이 있을 것이다. 그 return 값들을 평균낸 값이 $$v(s)$$가 된다. 즉, $$G_t$$는 확률변수이다.
 
-![Sample returns for Student MRP](../.gitbook/assets/image%20%2843%29.png)
+![Sample returns for Student MRP](../.gitbook/assets/image%20%2844%29.png)
 
 $$S_1 = C1 , \gamma={1\over2}$$ 일 때, 각 episode 마다 return 값을 얻을 수 있다. 
 
@@ -171,7 +171,7 @@ G_t &\doteq& R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \c
 \end{matrix}
 $$
 
-![](../.gitbook/assets/image%20%28213%29.png)
+![](../.gitbook/assets/image%20%28214%29.png)
 
 value function은 결과적으로 두가지 파트로 나눠서 표현할 수 있다.  $$\gamma$$로 묶고 $$G_{t+1}$$로 치환하고 $$v(S_{t+1})$$로 치환하는 단순한 점화식 문제로 표현하면, value function이 결과적으로 아래와 같은 두가지 파트로 나눠 표현할 수 있다는 것을 알 수 있다.
 
@@ -180,13 +180,13 @@ value function은 결과적으로 두가지 파트로 나눠서 표현할 수 �
 
 위와 같이 $$S_{t+1}$$과 $$S_t$$의 value function 사이의 관계를 식으로 나타낸 것을 Bellman Equation 이라고 한다.
 
-![](../.gitbook/assets/image%20%2883%29.png)
+![](../.gitbook/assets/image%20%2884%29.png)
 
 Bellman Equation을 Matrix로 표현하면 아래와 같다.
 
 ![](../.gitbook/assets/image%20%281%29.png)
 
-![](../.gitbook/assets/image%20%2826%29.png)
+![](../.gitbook/assets/image%20%2827%29.png)
 
 이것은 Bellman Equation을 도식화 한 것이다. 
 
@@ -218,7 +218,7 @@ Markov Reward Process는 $$ <S, A,  P, R, \gamma> $$의 튜플이다.
 
 
 
-![Student MDP](../.gitbook/assets/image%20%28312%29.png)
+![Student MDP](../.gitbook/assets/image%20%28318%29.png)
 
 MRP에서는 state 에 reward가 있었는데 MDP 에서는 action 마다 reward가 주어진다. 특정 action이 항상 같은 state로 가지않고, state의 전이 확률에 따라서 확률적으로 어떤 state로 갈 지 정해진다. 
 
@@ -304,7 +304,7 @@ v_{\pi}(s) = \mathbb{E}_{\pi}[R_{t+1} + \gamma v_{\pi}(S_{t+1})|S_t = s]
 $$
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2817%29.png)
+![](../.gitbook/assets/image%20%2818%29.png)
 
 이는 state와 state-action과의 관계를 backup diagram으로 도식화 한 것이다. 
 
@@ -325,13 +325,13 @@ q_{\pi}(s, a) = \mathbb{E}_{\pi}[R_{t+1} + \gamma q_{\pi}(S_{t+1}, A_{t+1})|S_t 
 $$
 {% endhint %}
 
-![](../.gitbook/assets/image%20%2891%29.png)
+![](../.gitbook/assets/image%20%2892%29.png)
 
 state-value function의 그림에서 reward $$r$$이 추가된거다. state와 action을 받아 reward가 나온다. 다음 state $$s'$$은 deterministic 하면 하나의 ○ 로만 표현되겠지만, stochastic한 환경에서는 여러개의 state들이 확률\(state transition probability matrix\)로 나올 수 있다.
 
 action-value function은 immediate reward + \(action을 취해 각 state로 갈 확률 \* 그 위치에서의 value function\) 이다.
 
-![](../.gitbook/assets/image%20%28242%29.png)
+![](../.gitbook/assets/image%20%28244%29.png)
 
 state-value function과 action-value function 도표를 통합하여 표현하면 위와 같이 나타낼 수 있다.
 
@@ -380,7 +380,7 @@ MDP 에서는 아래와 같은 정의가 성립된다.
 * 모든 state에 대해서 partial ordering이 성립하는 deterministic optimal policy가 존재한다.
 * optimal policy를 알고 있다면 optimal value function, optimal action-value function 도 알 수 있다. $$v_{\pi_*}(s) = v_*(s) \quad , \quad q_{\pi_*}(s, a) = q_*(s, a)$$
 
-![](../.gitbook/assets/image%20%28227%29.png)
+![](../.gitbook/assets/image%20%28229%29.png)
 
 optimal action-value function를 찾으면 optimal policy를 알 수 있다. optimal action-value function를 안다면 q 값이 높은 action만 선택하면 되기 때문에 MDP 문제가가 풀린 것이다. 가장 높은 action 만 선택하기 때문에 deterministic 하다.
 
@@ -392,11 +392,11 @@ optimal policy를 구하기 위한 Bellman Equation을 Bellman Optimality Equati
 
 Optimal bellman equation은 각 state 마다 하나씩의 equation으로 구성되어 있다. 즉, n 개의 state가 있으면 n개의 미지수에 대한 n개의 방정식이 존재하는 거다.
 
-![Bellman Optimality Equation for optimal value function](../.gitbook/assets/image%20%28177%29.png)
+![Bellman Optimality Equation for optimal value function](../.gitbook/assets/image%20%28178%29.png)
 
 optimal policy를 따르는 어떤 state의 value function은 그 state에서 선택할 수 있는 best action 의 expected return 값과 같아야 한다.
 
-![Bellman Optimality Equation for optimal action-value function](../.gitbook/assets/image%20%2897%29.png)
+![Bellman Optimality Equation for optimal action-value function](../.gitbook/assets/image%20%2898%29.png)
 
 #### Optimal Value Function
 
@@ -410,13 +410,13 @@ optimal action-value function이 optimal policy를 만드는 것은 훨씬 쉽�
 
 optimal action-value function은 다음 state와 그에 대한 value, 환경의 dynamics 에 대한 정보 없이도 optimal 한 action을 선택할 수 있도록 해준다.
 
-![](../.gitbook/assets/image%20%2889%29.png)
+![](../.gitbook/assets/image%20%2890%29.png)
 
 Bellman Expectation의 backup diagram과 비슷해 보이지만 한가지 다른 것은 max 값이 표시되어 있다는 점이다. 주어진 policy에 대해 value의 기대값이 아닌 최댓값이 적용되었음을 나타내기 위해 arch 표시가 추가됐다.
 
-![](../.gitbook/assets/image%20%28323%29.png)
+![](../.gitbook/assets/image%20%28330%29.png)
 
-![](../.gitbook/assets/image%20%2894%29.png)
+![](../.gitbook/assets/image%20%2895%29.png)
 
 linear equation이 아니라서 Bellman Expectation처럼 식으로 전개해서 역행렬로 넘기고 수식적으로 풀 수가 없다. Non-linear 하기 때문에 closed 해가 없다. 그래서 문제를 풀기 위한 iterative solution 들이 존재한다. \(ex, value iteration, policy iteration, Q-learning, SARSA\)
 

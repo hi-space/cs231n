@@ -4,7 +4,7 @@
 
 다음과 같은 문제가 있다.
 
-![Multi-Armed Bandits](../../.gitbook/assets/image%20%2845%29.png)
+![Multi-Armed Bandits](../../.gitbook/assets/image%20%2846%29.png)
 
 외팔이 강도\(one-armed bandit\)는 앞의 여러대\(`k`\)의 슬롯머신 레버\(`arm`\)를 당겨, 그에 해당하는 보상\(`reward`\)을 얻을 수 있다. 단, 한번에 한개의 레버만 당길 수 있고 각 슬롯머신의 보상은 다르다. 이 보상은 선택된 행동에 따라 결정되는 고정 확률 분포\(`stationary probability distribution`\)로부터 얻어진다. 이 문제에서 주어진 시간 \(`time step`\) 동안 보상을 최대화 할 수 있는 정책\(`policy`\)을 배우고자 한다.
 

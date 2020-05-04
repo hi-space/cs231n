@@ -5,25 +5,25 @@
 * 본 연구에서는 real 이미지와 synthetic 이미지를 무작위로 페어링해서 real 이미지의 스타일을 synthetic 이미지로 transfer 한다. feature transform, smoothing 을 통해 style transfer가 구성된다. stylized 된 synthetic image가 synthetic-to-real 에 더 좋은 결과를 보여준다.
 * 무작위로 선택된 style의 이미지는 원하지 않은 결과를 초래할 수 있다. 이상적으로는 real 이미지, synthetic 이미지에서 최상의 스타일 이미지를 선택해야 하지만, 이것은 계산 비용이 많이 든다. 결국 human resource가 필요하다. 따라서 무작위로 선택된 N 개 스타일의 이미지를 사용한다. 
 
-![](../.gitbook/assets/image%20%28284%29.png)
+![](../.gitbook/assets/image%20%28289%29.png)
 
 Stylized Synthetic Image를 Semantic Segmentation 문제에 적용에 풀어봤다. DS\(Domain Stylization\), SSL\(Semantic Segmentation Learning\) 단계가 반복해서 이루어진다.
 
-![](../.gitbook/assets/image%20%28173%29.png)
+![](../.gitbook/assets/image%20%28174%29.png)
 
 처음에는 segmentation mask 정보 없이 stylized synthetic dataset를 생성한다. 모든 픽셀에 segmentation mask를 1로 할당하는 거다.
 
-![](../.gitbook/assets/image%20%28357%29.png)
+![](../.gitbook/assets/image%20%28364%29.png)
 
 그리고 $$D_0^S$$ 로 semantic segmentation 네트워크 \($$s_0$$\) 를 training 시킨다. training 된 semantic segmentation 네트워크는 real image의 semantic segmentation mask를 계산하는 데에 사용된다. \( $$s_0(X_j^R)$$ \) 이제 synthetic dataset은 real image에서 만들어진 segmentation mask 와 함께 stylized된 synthetic dataset 이 된다. 수식으로 정리해 표현하면 아래와 같다.
 
-![](../.gitbook/assets/image%20%28159%29.png)
+![](../.gitbook/assets/image%20%28160%29.png)
 
 stylized된 dataset은 새로운 segmentation network \($$s_1$$\) 를 training 시키는데에 사용된다.
 
 이 두가지 스텝을 반복하며 네트워크를 학습시킨다.
 
-![](../.gitbook/assets/image%20%2859%29.png)
+![](../.gitbook/assets/image%20%2860%29.png)
 
-![](../.gitbook/assets/image%20%28364%29.png)
+![](../.gitbook/assets/image%20%28371%29.png)
 
