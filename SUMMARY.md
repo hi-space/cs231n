@@ -26,6 +26,7 @@
   * [Multi-Armed bandit problem](reinforcement-learning/introduction/untitled.md)
 * [Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
 * [Planning by Dynamic Programming](reinforcement-learning/dynamic-programming.md)
+* [Model Free Prediction](reinforcement-learning/model-free-prediction.md)
 
 ## Object Detection
 
