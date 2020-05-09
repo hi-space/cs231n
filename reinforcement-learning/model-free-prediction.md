@@ -1,5 +1,7 @@
 # Model Free Prediction
 
+## 
+
 ## Model Free Prediction
 
 MDP를 모르는데 agent가 환경에 던져졌을 때 어떤 방식으로 prediction 하고 control 할 지 environment를 모르고 policy가 정해져있을 때 value를 찾는 문제. 즉 끝날 때 return을 알아내는 문제
@@ -34,7 +36,50 @@ Gt-V\(st\) : 에러. 에러만큼 더해주는 것. N분의 1을 작은 값으�
 
 final 에피소드가 나오기 전에 계산ㄱ ㅏ능. 끝나지 않는 non-terminating 환경에서 사용될 수 있다. MD - 에피소드가 다 끝나고 나온 return 값으로 계산 해야한다.
 
-G\_t를 계쏙 평균내다보면 v\_pi로 결국 수렴하게 된다. 그래서 unbiased 한 estimate이 가능하다. True TD target. oracle이 v\_pi \(s\_t\)의 실제 값을 알려주게되면 unbiased 한 estiamte이 된다. bellman equation을 저 값을 보장해주기 때문ㅇ. 하지만 현재 추측치로 업데잍으 하기 때문에 biased 되어 있을 수 있다.
+unbiased estimate . 편향되지 않았다. G\_t를 계쏙 평균내다보면 v\_pi로 결국 수렴하게 된다. 그래서 unbiased 한 estimate이 가능하다. True TD target. oracle이 v\_pi \(s\_t\)의 실제 값을 알려주게되면 unbiased 한 estiamte이 된다. bellman equation을 저 값을 보장해주기 때문ㅇ. 하지만 현재 추측치로 업데잍으 하기 때문에 biased 되어 있을 수 있다.
 
 variance가 크고 bias 가 작음 - MC variance가 작고 bias가 크다 - TD / return 은 환경의 랜덤성을 제공
+
+랜덤성과 랜덤성을 가지고 게임을 하면 variacne가 크다 TD는 한스텝한스텝마다 return이 나오기 때문에 랜덤성이 작아서 bias가 높고 variance가 작다.
+
+MC : function approximation \(deep learning\) 을 써도 수렴을 잘 한다. 실제값을 업데이트하기 땜누에 initial value가 중요하지 않다.
+
+TD : 보통 MC보다 효과적이지만.. initial value가 민감함. 추측치가 처음에 잘 정해져있어야 잘 수렴을 하기 때문.
+
+### Random Walk Example
+
+### Batch MC and TD
+
+무한번 뽑아내면 MC나 TD나 v파이에 수렴하게 될거다. k개의 제한된 에피소드가 있을 때 TD가 잘 수렴할까? MC나 TD나 같은 값에 수렴을 할까?
+
+AB Example MC로 하면 A는 0. TD로 하면 A는 0.75. V\(B\)로 A를 업데이트 하기 때문.
+
+-&gt; TD는 Markov Property를 이용해서 value를 추측. markov env에서 더 효과적 MC는 그냥 mean squred error를 minimize 하는 것.
+
+MC는 끝까지 가보고 St를 업데이트. \(monter carlo backup\) TD는 한스텝만 가고 추측해서 그 값으로 대체 \(bootstraping\) DP는 샘플링을 하지 않고 할 수 있는 모든 action에 대해 업데이트. full로 하고 끝까지 안간다.
+
+Bootstraping은 추측치로 업데이트 하는 거라 예측치에 추측치가 포함된다. \(MC X\) - depth 관점으로 본거 sampling은 full 스윕을 안하고 샘플로 업데이트하는거. \(TD, DP\) - width 관점으로 본거
+
+모델을 알 때는 DP가 가능하지만, 모델을 모를 때에는 sample backup을 해야 한다. \(TD, MC\) sampling은 어떻게 하느냐? agent가 policy를 따라 가는 것이 샘플링
+
+--
+
+TD의 변형들 TD를 몇번 후 구하는 거. MC와 TD 사이에 스펙트럼이 있는거
+
+n만큼은 리워드를 넣고 그 이후는 추측치를 넣고. n의 값은 잘 찾아봐야함.
+
+평균낸 걸 써도 됨 \(Average~\)
+
+TD\(0\)~MC까지 모든걸 평균내서 써도됨 \(TD 람다\) 그냥 평균이 아니라 geometric mean. MC로 갈 수록 가중치가 적게 들어간다. Forward-view TD : 미래를 보는거니가. geometric mean 사용하는 이유는? computational efficient를 위해 TD\(0\) 같은 비용으로 td 람다를 계싼할 수 있다
+
+TD 무한을 알아야 하기 때문에 에피소드가 끝나야 할 수 있다. TD\(0\)의 장점이 사라짐
+
+backward view TD 람다
+
+Eligibility Traces 책임이 큰 애한테 업데이트를 많이 해주는거.
+
+* frquency : 많이 일어난 애한테 책임을 주는거
+* recentcy : 가장 최근에 일어난 애한테 책임을 주는거
+
+  eligibility trace를 곱해서 그 만큼만 업데이트 해주는거 td람다와 수학적으로 동일한 효과를 주는거 \(ㅠㅠ?
 
