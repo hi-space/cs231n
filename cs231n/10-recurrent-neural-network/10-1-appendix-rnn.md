@@ -4,15 +4,15 @@
 
  Sequence Modeling : Recurrent and Recursive Nets
 
-![Feed-forward Net \(FFNet\)](../../.gitbook/assets/image%20%28324%29.png)
+![Feed-forward Net \(FFNet\)](../../.gitbook/assets/image%20%28325%29.png)
 
 일반적으로 우리가 알고 있는 neural network인 feed-forward neural network \(FFNet\) 구조이다. input 데이터를 넣으면 hidden layer를 거쳐 ouput  까지 차례대로 진행되는 형태이다. hidden layer의 노드를 딱 한번만 지나가도록 되어 있다. 현재 주어진 input 값에 대한 ouput 값만을 찾기 때문에 이전에 어떤 데이터가 나왔었고 이후에 어떤 데이터가 나올지에 대한 고려가 전혀 되어 있지 않았다. 즉, input 값과 output 값이 각각 독립적이였다.
 
-![RNN Nodes](../../.gitbook/assets/image%20%28261%29.png)
+![RNN Nodes](../../.gitbook/assets/image%20%28262%29.png)
 
  반면에 RNN은 hidden layer의 output 값이 다시 hidden layer의 input 값으로 들어가고 있다. 과거 자신의 state를 기억하고 이를 학습에 반영하게 때문에 sequential data를 다루기에 좋은 network 구조이다.
 
-![RNN](../../.gitbook/assets/image%20%28366%29.png)
+![RNN](../../.gitbook/assets/image%20%28367%29.png)
 
 RNN을 간략하게 나타내면 위와 같은 형태로 도식화 할 수 있다. 현재 시점의 hidden state는 현재 input 값과 이전 시점의 hidden state를 받아서 갱신된다. 현재까지 계산된 결과에 대한 메모리 정보를 가지고 있다고 보면 된다.
 
@@ -42,7 +42,7 @@ FFNet의 경우, layer 마다 parameter 값들이 전부 다 달랐지만, RNN�
 
 ### Example : Character level model
 
-![Character level model](../../.gitbook/assets/image%20%28320%29.png)
+![Character level model](../../.gitbook/assets/image%20%28321%29.png)
 
 RNN의 예제로 자주 나오는 Character level model 이다. 어떤 문자가 나오면 바로 그 다음의 글자를 예측해주는 모델이다.
 
@@ -109,7 +109,7 @@ deep learning book을 보면 BPTT 말고도 Teacher forcing이라는 학습 방�
 
 ### RNN Architecture
 
-![Recurrent Networks offer a lot of flexibility](../../.gitbook/assets/image%20%28385%29.png)
+![Recurrent Networks offer a lot of flexibility](../../.gitbook/assets/image%20%28386%29.png)
 
  RNN은 시퀀스 길이에 관계 없이 input, output을 받을 수 있기 때문에 유연하게 네트워크를 설계할 수 있다.
 
@@ -146,7 +146,7 @@ Backprop을 하기 위해서는 한 cycle에 대해서 gradient를 계속 계산
 
 반복적으로 곱을 하다보면 아주 큰 값으로 발산하는 exploding gradient problem과 0으로 수렴하는 vanishing gradient problem이 발생하게 된다.
 
-![Gradient Clipping](../../.gitbook/assets/image%20%28332%29.png)
+![Gradient Clipping](../../.gitbook/assets/image%20%28333%29.png)
 
 그래도 Exploding gradient 값은 경우는, 최대값을 제한해주는 방식을 통해 어느 정도 제어가 가능하다.
 
@@ -221,7 +221,7 @@ Output gate에서는 어떤 값을 출력할 지를 결정한다. h\(t\) 값.
 
 ## GRU \(Gated Recurrent Unit\)
 
-![GRU](../../.gitbook/assets/image%20%28362%29.png)
+![GRU](../../.gitbook/assets/image%20%28363%29.png)
 
 LSTM의 장점을 유지하면서 계산 복잡성을 낮춘 cell 구조이다. LSTM과 유사하지만, gate의 일부를 생략해, 2개의 gate로 만들었다.
 

@@ -1,6 +1,6 @@
 # 9. CNN Architectures
 
-![](../.gitbook/assets/image%20%28272%29.png)
+![](../.gitbook/assets/image%20%28273%29.png)
 
 ![](file:///C:\Users\genius\AppData\Local\Temp\msohtmlclip1\01\clip_image004.jpg)
 
@@ -58,7 +58,7 @@ Conv3, fc 6, 7, 8은 전체 feature map과 연결되어 있따. Gpu 간의 통�
 
 Cnn 아키텍쳐의 베이스 모델로 사용했다. 아직도 꽤 사용한다. Transfer learning에 많이 사용되었다.
 
-![](../.gitbook/assets/image%20%28307%29.png)
+![](../.gitbook/assets/image%20%28308%29.png)
 
 2013년 imagenet challange승자는 zfnet이라는 모델. 대부분 alexnet 하이퍼파라미터 수정함
 
@@ -80,9 +80,9 @@ VGGNet
 
 Stride=1, 3x3 필터가 3개 있으면 receptive filter는? Effective receptive fields는 7x7 이다. 하나의 7x7 필터를 사용하는 것과 동일하다. 7x7 사용하는 것과 같은 효과를 가지면서 더 깊은 레이어를 쌓을 수 있게 된다. Non-linearity를 더 추가할 수도 있고 파라미터 수도 더 적어지게 된다.
 
-![](../.gitbook/assets/image%20%28355%29.png)
+![](../.gitbook/assets/image%20%28356%29.png)
 
-![](../.gitbook/assets/image%20%28374%29.png)
+![](../.gitbook/assets/image%20%28375%29.png)
 
 Vgg16 레이어ㅇ 수는 16개. Vgg19는 convllayer가 조금 더 추가되어서 19개
 
@@ -102,7 +102,7 @@ Inception module 내부에는 동일한 입력을 받는 서로 다ㅇ른 필터
 
 계산비용\(computational complexity\)에 문제가 있다.
 
-![](../.gitbook/assets/image%20%28286%29.png)
+![](../.gitbook/assets/image%20%28287%29.png)
 
 각각의 출력값들을 concat 한 사이즈를 보자. 28x28 은 동일하고 depth가 쌓이게 된다. 28x 28x672가 된다.
 
@@ -114,13 +114,13 @@ Inception module 내부에는 동일한 입력을 받는 서로 다ㅇ른 필터
 
 Bottleneck layer를 사용. Conv 연산 수행하기 전에 입력이 더 낮은 차원으로 보내는 거다.
 
-![](../.gitbook/assets/image%20%28368%29.png)
+![](../.gitbook/assets/image%20%28369%29.png)
 
 1x1  jconv는 각 spatial location 에서만 내적을 수행한다. 그러면서 엗소만 줄일 수 있다. 입력의 depth 를 더 낮은 차원으로 projection 시키는거다. Input feature map 들 간의 선형 결합\(linear combination\)이라고 할 수 있다.
 
 입력 레이어의 depth를 줄이는 거다. 1x1 conv를 통해.
 
-![](../.gitbook/assets/image%20%28293%29.png)
+![](../.gitbook/assets/image%20%28294%29.png)
 
 3x3, 5x5 conv 이전에 1x1 conv를 추가하고, pooling layer 후에도 1x1 conv를 추가한다. 1x1 conv가 bottleneck layer로 추가되는거다.
 
@@ -128,7 +128,7 @@ Bottleneck layer를 사용. Conv 연산 수행하기 전에 입력이 더 낮은
 
 Bottleneck 레이어를 추가하고 나서 computation 이 많이 줄어들었다. \(1x1 conv가 depth의 차원을 줄여주니까\) Conv 입력 depth가 줄어들었다. 1x1 conv를 이용하면 계산량을 조절할 수 있다. 정보 손실이 발생할 수는 있지만, 동시에 redundancy가 있는 input features를 선형 결합 한다고 볼 수 있다. 1x1 conv로 선형결합을 하고 non-linearity를 추가하면\(relu 같은\) 네트워크가 더 깊어지는 효과도 있다. 일반적으로 도움이 되고 더 잘 동작한다.
 
-![](../.gitbook/assets/image%20%28319%29.png)
+![](../.gitbook/assets/image%20%28320%29.png)
 
 초기 6개 레이어는 일반적인 conv-pool-conv-pool의 일반적인 네트워크 형태이다. 이후에는 inception moudle에 쌓이는데 모두 조금씩 다르다. 그리고 마지막이 classifer 레이어를 추가한다. 계싼량이 많은 fc layer를 대부분 걷어냈고 파라미터가 줄어들어도 성능은 유지 시켰다.
 
@@ -150,7 +150,7 @@ Bottleneck 레이어를 추가하고 나서 computation 이 많이 줄어들었�
 
 Residual connections .
 
-![](../.gitbook/assets/image%20%28281%29.png)
+![](../.gitbook/assets/image%20%28282%29.png)
 
 깊은 네트워크가 항상 좋은 건 아니다. 더 깊은 네트워크가 안좋을 수도 있다. Overfit?은 아니다. Training error도 낮다. 더 깊은 모델 학습 시 optimization 에 문제가 생긴거라고 생각함. 최적화가 어렵다고 판단했다.
 
@@ -216,7 +216,7 @@ Resnet : 적당한 효율성. 메모리사용량 계싼량이 중간정도, accu
 
 최근 연구분야나 역사적으로 의미 있는 아키텍쳐 소개 고고
 
-![](../.gitbook/assets/image%20%28284%29.png)
+![](../.gitbook/assets/image%20%28285%29.png)
 
 2014 network in network
 
@@ -246,7 +246,7 @@ Direct path를 늘려 정보들이 앞으로 더 잘 전달되고 backprop도 �
 
 기존의 resnet 논문의 깊이 쌓는 거에 집중했지만 이 논문은 Depth보다 residual 이라고 주장. Residual block을 더 넓게 만들었다. \(conv layer 필터를 더 많이 추가\) 각 레이어를 넓게 구성했더니 50레이어만 있어도 152개의 레이어보다 성능이 좋다는 걸 확인. 네트워크의 depth 대신 filter의 width를 늘리면 계산 효율도 증가. \(병렬화가 더 잘되기 때문\) 네트워크의 depth를 늘리는 것은 sequential한 증가이기 때문에 conv 필터를 늘리는 편이 더 효율적이다.
 
-![](../.gitbook/assets/image%20%28369%29.png)
+![](../.gitbook/assets/image%20%28370%29.png)
 
 ResNeXt \(resnet + inEXeption\)
 
@@ -274,7 +274,7 @@ fractalNet.
 
 Residual connection이 필요없다고 주장함. Shallow/deep network 정보 모두를 잘 전달하는게 중요하다고 생각해서 모두 output에 연결했다. Train time 에는 ropout처럼 일부 경로만을 이용해서 train, test time에는 full network 사용. 좋은 성능을 입증함
 
-![](../.gitbook/assets/image%20%28309%29.png)
+![](../.gitbook/assets/image%20%28310%29.png)
 
 DenseNet
 

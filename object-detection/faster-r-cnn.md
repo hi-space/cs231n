@@ -72,7 +72,7 @@ lambda : Balancing parameter. Ncls, Nreg 차이로 발생하는 불균형을 방
 ti : Predicted Bounding box  
 ti\* : Ground-truth box
 
-![](../.gitbook/assets/image%20%28298%29.png)
+![](../.gitbook/assets/image%20%28299%29.png)
 
  Bounding box regression을 계산하는 Lreg에서는 4개의 coordinate\(x, y, w, h\)에 대해 특정 연산을 취하고, Smooth L1 loss function을 통해 Loss를 계산한다.  
 R-CNN, Fast R-CNN에서는 모든 RoI가 그 크기와 비율에 상관없이 weight를 공유했었지만, 여기에선 k개의 anchor에 상응하는 k개의 regressor를 갖게 된다.
@@ -81,7 +81,7 @@ R-CNN, Fast R-CNN에서는 모든 RoI가 그 크기와 비율에 상관없이 we
 
  전체 네트워크 구조. end-to-end로 back-propagation과  SGD를 사용하여 training 한다.
 
-![](../.gitbook/assets/image%20%28321%29.png)
+![](../.gitbook/assets/image%20%28322%29.png)
 
  기존의 R-CNN 과의 결과 비교.  5 fps 처리가 가능하기 때문에 near real-time 이라고 한다.  
 이와 같은 2-stage detection 구조는 pipeline이 복잡하고, 느리고, 각 component를 optimize 하기 어렵기 때문에 unified detection이 연구되는 추세이다. ex\) Yolo, SSD 등

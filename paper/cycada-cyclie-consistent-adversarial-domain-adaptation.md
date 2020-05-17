@@ -12,13 +12,13 @@ description: ICML 2018
 
 서로 다른 두 개의 loss \( $$L_y$$ , $$L_d$$ \)가 있는데 각각의 역할은 아래와 같다.
 
-![](../.gitbook/assets/image%20%28346%29.png)
+![](../.gitbook/assets/image%20%28347%29.png)
 
 *  $$L_y$$ : 우리가 학습하려고 하는 label에 대해서 잘 구분할 수 있는 feature extractor와 label predictor를 학습하는 것
 
 
 
-![](../.gitbook/assets/image%20%28383%29.png)
+![](../.gitbook/assets/image%20%28384%29.png)
 
 *  $$L_d$$ : domain classifer를 위한 loss로 domain을 잘 구분할 수 있도록 학습을 시킨다. 
 
@@ -40,7 +40,7 @@ gradient reversal 방식은 domain discriminator가 converge 하게 될 경우 f
 
 ### CycleGAN
 
-![](../.gitbook/assets/image%20%28326%29.png)
+![](../.gitbook/assets/image%20%28327%29.png)
 
 서로 다른 domain의 unpaired image들에 대해서 image-to-image translation 하는 네트워
 

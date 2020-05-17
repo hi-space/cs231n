@@ -9,7 +9,7 @@
 
 
 
-![](../.gitbook/assets/image%20%28278%29.png)
+![](../.gitbook/assets/image%20%28279%29.png)
 
 * Synthetic Data는 programming 방식으로 생성되는 데이터로, 게임 엔진, 음성 합성 모델로 생성된 오디오 등이 될 수 있다. 기존의 augmentation \(crops, flips, rotations, distortions\) 과 다르게 다양한 데이터 모델을 생성할 수 있다. 
 * 임의의 수의 이미지 데이터를 생성할 뿐만 아니라 annotation 도 손쉽게 생성할 수 있다. \(Bounding boxes, segmentation masks, Depth maps, 그 외의 다양한 meta data\)

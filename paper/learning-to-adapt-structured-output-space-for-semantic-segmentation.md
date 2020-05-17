@@ -40,7 +40,7 @@ adversarial loss와 함께, segmentation model이 source와 target 의 output sp
 
 GTA 데이터에서 Cityscapes 데이터로 adapted 시킨 결과물이다. feature adaptation 시킨 것보다 segmentation을 adaptation 한 본 연구의 결과물이 좋을 것 확인할 수 있다.
 
-![](../.gitbook/assets/image%20%28246%29.png)
+![](../.gitbook/assets/image%20%28247%29.png)
 
 
 

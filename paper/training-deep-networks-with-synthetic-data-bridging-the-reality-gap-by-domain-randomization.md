@@ -29,7 +29,7 @@ description: CVPR 2018
 
 ### Domain Randomization
 
-![Domain Randomization](../.gitbook/assets/image%20%28375%29.png)
+![Domain Randomization](../.gitbook/assets/image%20%28376%29.png)
 
 * 랜덤 갯수의 Object \(interest object\)를 3D Scene의 랜덤한 position, orientation에 위치 시킨다.
 * flying distractors: 네트워크가 관심없는 object에 대해 관심을 갖지 않게 하기위해서 scene에 random 한 갯수의 geometric shapes를 추가한다.
@@ -40,11 +40,11 @@ description: CVPR 2018
 
 ### Evaluation
 
-![VKITTI / Domain Randomization](../.gitbook/assets/image%20%28380%29.png)
+![VKITTI / Domain Randomization](../.gitbook/assets/image%20%28381%29.png)
 
 * VKITTI dataset에 비해 Domain Randomization 이미지가 분명 이상하다. 하지만 Domain Randomization을 이용하면 VKITTI와 같이 공을 들여 데이터를 생성하는 것 보다 훨씬 간단하고 빠르게 데이터 생성이 가능하다. VKITTI 는 segmentation, depth, optical flow 계산 등 복잡한 계산들이 수반되어 데이터 생성에 보다 많은 시간이 소요된다. 
 
-![VKITTI vs DR](../.gitbook/assets/image%20%28308%29.png)
+![VKITTI vs DR](../.gitbook/assets/image%20%28309%29.png)
 
 * Domain Randomization으로 생성된 데이터로 학습을 시키면 정확도가 좋아진다. 
   * DR dataset은 100K 이용하고 VKITTI dataset은 2.5K 개 이용
@@ -64,11 +64,11 @@ description: CVPR 2018
 * 초기에는 데이터가 부족할 수 있지만 일정 시간이 지나면 real 데이터가 취득될 수 있다. 당연히 real 데이터가 많아질 수록 성능이 높아진다. 결과적으로도 DR로 생성한 데이터를 같이 사용했을 때 가장 높은 성능을 보인다.
 * 즉, 데이터가 부족한 초반 부터 데이터가 충분히 쌓인 후반 부분에 걸쳐 DR 이 사용될 수 있다.
 
-![](../.gitbook/assets/image%20%28372%29.png)
+![](../.gitbook/assets/image%20%28373%29.png)
 
 * Data Augmentation을 어떻게 했는지에 따라 AP 의 변
 
-![freezing early layers vs full learning](../.gitbook/assets/image%20%28339%29.png)
+![freezing early layers vs full learning](../.gitbook/assets/image%20%28340%29.png)
 
 * 이전 논문에서는 synthetic data로 네트워크를 training 시킬 때 early network \(feature extraction 부분\)를 freeze 시켰다. 
 * 하지만 본 연구에서 테스트 했을 때, early network를 freeze 했을 때 정확도가 더 낮았다. 

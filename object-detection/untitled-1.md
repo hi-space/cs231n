@@ -24,7 +24,7 @@ CNN에 넣기 위해 region proposal 마다 cropping 해서 처리했었는데, 
 
 ![](../.gitbook/assets/image%20%28218%29.png)
 
-![](../.gitbook/assets/image%20%28268%29.png)
+![](../.gitbook/assets/image%20%28269%29.png)
 
  \(1\) Input image 로부터 다수의 Region proposal 추출 \(Selective search 알고리즘 사용\)  
 \(2\) CNN의 입력으로 input image와 region proposal 를 넣어준다. 몇번의 conv 및 max pooling을 통해 conv featre map 생성  
@@ -64,7 +64,7 @@ Total Loss = Classification Loss \(cross entropy\) + BBox Regression Loss \(smoo
   
 전체 네트워크 레이어에 대해 training이 가능하다. 이는 R-CNN과 SPP-Net에서는 안됐던 것. 왜일까?
 
-![](../.gitbook/assets/image%20%28340%29.png)
+![](../.gitbook/assets/image%20%28341%29.png)
 
-![](../.gitbook/assets/image%20%28363%29.png)
+![](../.gitbook/assets/image%20%28364%29.png)
 

@@ -54,7 +54,7 @@ A\) 제곱의 의미는, 좋은 것과 나쁜 것 사이의 trade off를 비선�
      - hinge loss : 조금 잘못된 것과 많이 잘못된 것을 크게  신경쓰지 않는다. 잘못된 건 잘못된 거고, 얼마나 잘못되었는 지에 대해서는 신경을 쓰지 않는 것이다.   
 어떤 Loss Function을 선택할 지는 어떤 문제를 어떻게 풀 지에 따라 정해진다.
 
-![Multiclass SVM Loss](../.gitbook/assets/image%20%28323%29.png)
+![Multiclass SVM Loss](../.gitbook/assets/image%20%28324%29.png)
 
 ```python
 def L_i_vectorized(x, y, W):
@@ -107,7 +107,7 @@ Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, �
 
 ## Softmax Classifier
 
-![Softmax Classifier](../.gitbook/assets/image%20%28291%29.png)
+![Softmax Classifier](../.gitbook/assets/image%20%28292%29.png)
 
 Multi-class SVM Loss에서는 score 자체에 대한 해석은 고려하지 않았다. 하지만 Softmax \(Multinomial Logistic Regression\) 의 loss 함수는 score 자체에 대해 추가적인 의미를 부여한다.
 
@@ -153,7 +153,7 @@ np.mean(Yte_predict == Yte)
 
 Follow the slope 방법은 말 그대로 경사를 따라서 경사가 있는 쪽을 향해 걸어가는 거다. 미분값을 통해 gradient를 구하면 함수의 경사를 구할 수 있다. 다변수인 상황에서 미분으로 일반화 시켜보면 gradient는 벡터 x의 각 요소들의 편도함수들의 집합이다. gradient가 함수의 어떤 점에서 선형 1차 근사 함수를 알려준다. 많은 딥러닝 알고리즘들이 gradient를 계산하고 parameter 벡터를 업데이트 할 때 사용한다.
 
-![](../.gitbook/assets/image%20%28359%29.png)
+![](../.gitbook/assets/image%20%28360%29.png)
 
 gradient 값을 구하기 위해 특정 W에 아주 작은 값을 더하고 Loss를 계산한 뒤, FDM을 이용해 극한을 취하고 해당 요소의 gradient의 근사치를 계산해볼 수 있다.
 
@@ -218,7 +218,7 @@ While True:
 
 ### Color Histogram
 
-![Color Histogram](../.gitbook/assets/image%20%28274%29.png)
+![Color Histogram](../.gitbook/assets/image%20%28275%29.png)
 
 이미지의 hue 값만 뽑아서 모든 픽셀을 각 차트에 넣어, 몇개의 픽셀이 있는 지 갯수를 새서 특징벡터로 이용한다. 이미지가 전체적으로 어떤 색인지 알 수 있다. 
 

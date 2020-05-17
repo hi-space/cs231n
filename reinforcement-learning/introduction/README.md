@@ -1,6 +1,6 @@
 # Introduction
 
-![](../../.gitbook/assets/image%20%28358%29.png)
+![](../../.gitbook/assets/image%20%28359%29.png)
 
 강화학습 : 주어진 상황에서 어떠한 행동을 취할지를 학습하는 것
 
@@ -202,7 +202,7 @@ $$R_{s}^a = \mathbb{E}[R_{t+1} |S_t = s, A_t = a]$$
 
 ## Categorizing RL agents
 
-![](../../.gitbook/assets/image%20%28304%29.png)
+![](../../.gitbook/assets/image%20%28305%29.png)
 
 ### Value Based vs Policy Based vs Actor Critic
 

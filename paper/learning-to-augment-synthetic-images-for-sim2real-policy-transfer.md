@@ -28,9 +28,9 @@ Depth image에 random noise를 생성하기 위해 실제 센서의 noise patter
 
 자동으로 가장 좋은 augmentation을 찾기 위해서 RL을 사용하거나 수많은 GPU 자원이 필요하다. 그래서 Monte Carlo Tree Search를 사용해서 사전에 기록된 real image에서의 객체 위치를 예측해서 proxy task 내에서 최적화를 한다. \(시뮬레이션의 렌더링 파이프라인을 학습하는 아이디어의 논문도 있음 - Learning to Simulate\)
 
-![](../.gitbook/assets/image%20%28303%29.png)
+![](../.gitbook/assets/image%20%28304%29.png)
 
-![](../.gitbook/assets/image%20%28264%29.png)
+![](../.gitbook/assets/image%20%28265%29.png)
 
 
 

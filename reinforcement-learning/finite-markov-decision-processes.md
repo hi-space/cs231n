@@ -218,7 +218,7 @@ Markov Reward Process는 $$ <S, A,  P, R, \gamma> $$의 튜플이다.
 
 
 
-![Student MDP](../.gitbook/assets/image%20%28318%29.png)
+![Student MDP](../.gitbook/assets/image%20%28319%29.png)
 
 MRP에서는 state 에 reward가 있었는데 MDP 에서는 action 마다 reward가 주어진다. 특정 action이 항상 같은 state로 가지않고, state의 전이 확률에 따라서 확률적으로 어떤 state로 갈 지 정해진다. 
 
@@ -331,7 +331,7 @@ state-value function의 그림에서 reward $$r$$이 추가된거다. state와 a
 
 action-value function은 immediate reward + \(action을 취해 각 state로 갈 확률 \* 그 위치에서의 value function\) 이다.
 
-![](../.gitbook/assets/image%20%28244%29.png)
+![](../.gitbook/assets/image%20%28245%29.png)
 
 state-value function과 action-value function 도표를 통합하여 표현하면 위와 같이 나타낼 수 있다.
 
@@ -414,7 +414,7 @@ optimal action-value function은 다음 state와 그에 대한 value, 환경의 
 
 Bellman Expectation의 backup diagram과 비슷해 보이지만 한가지 다른 것은 max 값이 표시되어 있다는 점이다. 주어진 policy에 대해 value의 기대값이 아닌 최댓값이 적용되었음을 나타내기 위해 arch 표시가 추가됐다.
 
-![](../.gitbook/assets/image%20%28330%29.png)
+![](../.gitbook/assets/image%20%28331%29.png)
 
 ![](../.gitbook/assets/image%20%2895%29.png)
 

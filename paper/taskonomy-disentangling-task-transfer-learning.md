@@ -74,7 +74,7 @@ Taskonomy는 다음과 같은 방식으로 만들어집니다.
 
 ### 1. Task-Specific Modeling
 
-![Task-Specific Modeling](../.gitbook/assets/image%20%28242%29.png)
+![Task-Specific Modeling](../.gitbook/assets/image%20%28243%29.png)
 
 먼저 Source task를 학습시킵니다. 이 때 network는 encoder와 decoder로 이루어져 있습니다. Encoder의 결과로 image의 task에 대한 representation들이 학습되고, decoder를 통해서 pixel-level prediction 혹은 single prediction이 학습될 것입니다.
 

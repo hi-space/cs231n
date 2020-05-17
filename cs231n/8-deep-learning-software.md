@@ -4,7 +4,7 @@
 
 FC Layer + relu
 
-![](../.gitbook/assets/image%20%28254%29.png)
+![](../.gitbook/assets/image%20%28255%29.png)
 
 Placeholder : Input variable.
 
@@ -28,7 +28,7 @@ pytorch에는 tensor obecjt가 있따. Tensorflow의 numpy array와 유사.
 
 Pytorch tensor와 numpy 가장 큰 차이점은 pytorch tensor는 GPU에서도 돌아간다는 점이다. 데이터 타입만 바꿔주면 된다. Torch를 Numpy + GPu라고 보면 되다.
 
-![](../.gitbook/assets/image%20%28258%29.png)
+![](../.gitbook/assets/image%20%28259%29.png)
 
 Variable은 computatinon graph만들고 이를 통해 gradient 자동 계싼한다. Variable 자체에 gradient가 포함되어 있다.
 
@@ -52,7 +52,7 @@ Optimizer 객체를 구성해 놔서, 모델에게 파라미터를 optimize 하�
 
 전체 네트워크 모델이 정의되어 있는 class를 nn module class로 작성해야 한다.  Module은 일종의 네트워크 레이어.
 
-![](../.gitbook/assets/image%20%28361%29.png)
+![](../.gitbook/assets/image%20%28362%29.png)
 
 Dataloader는 minibatches를 관리한다. Multi-threaidn 을 통해 데이터를 가져오는 것을 알아서 관리해준다. 실제 데이터를 이용하고자 할 때 데이터를 어떤 방식으로 읽을 것인지를 명시하는 dataset class만 작성해주면 dtalaoader로 wrapping 시켜서 학습 할 수 있다.
 
@@ -66,13 +66,13 @@ Pretrained model을 쓸 수도 있음
 
 Visdom은 학습되는 데이터들을 시각화해준다. tensorboard는 computational graph시각화를 제공하지만 visdom은 제공 노노.
 
-![](../.gitbook/assets/image%20%28250%29.png)
+![](../.gitbook/assets/image%20%28251%29.png)
 
 TF는 그래프를 구성하고, 그래프를 반복적으로 돌리는 두단계로 나뉜다. 그래프가 단 하나만 고정적으로 존재하기 때문에 static computational graph라고 한다.
 
 Pytorch는 forward pass할 때마다 그래프를 새로 그리기 때문에 dynamic computational graph라고 한다.
 
-![](../.gitbook/assets/image%20%28243%29.png)
+![](../.gitbook/assets/image%20%28244%29.png)
 
 Static graph관점에서 그래프를 한번 구성해놓으면 학습시에 똑 같은 그래프르 아주 많이 재사용 하게 된다. 일부 연산들을 합치고 재배열 시키는 등 효율적으로 연산을 할 수 있도록 최적화시킬 수 있다.  코드가 더 효율적으로 동작한다.
 
@@ -82,7 +82,7 @@ Static graph관점에서 그래프를 한번 구성해놓으면 학습시에 똑
 
 Dynamic은 그래프 구성, 실행 과정이 엮겨있기 때문에 모델을 제사용 하기 위해 항상 원본 파일이 필요하다.
 
-![](../.gitbook/assets/image%20%28313%29.png)
+![](../.gitbook/assets/image%20%28314%29.png)
 
 Dyanamic은 매번 새로운 그래프를 그려주기 때문에 분기가 생겼을 때 forward pass에 적절한 하나를 선택해서 새로운 그래프를 만들어 주면 된다. Tensorflow 같은 경우는 그래프를 하나 더 만들어야 한다. 조건부 연산을 명시적으로 정의하는 control flow operator를 추가해야 한다.\(cond\) 가능한 control flow를 미리 고려해 그래프 내에 한번에 넣어줘야 한다.  단순 python 문법으로는 불가능하고 특정 tensorflow 함수가 필요하다.
 
@@ -92,7 +92,7 @@ Loops
 
 재귀적은 연사을 할 때 데이터 sequence가 다양한 사이즈일 수 있다.
 
-![](../.gitbook/assets/image%20%28252%29.png)
+![](../.gitbook/assets/image%20%28253%29.png)
 
 Pytorch는 기본 for loop 사용하면 된다. 데이터 사이즈에 맞는 적절한 그래프를 손쉽게 만들 수 있다. 하지만 tensorflow에서는 그래프를 미리 만들어줘야하기 때문에 명시적으로 그래프에 loop을 넣어줘야 한다. \(foldl\)
 
@@ -102,7 +102,7 @@ Tensorflwo에도 dynamic graph를 작성하는 TF 라이브러리가 있다ㅏ. 
 
 Dynamicgrahps는 recurrent network, recursive network, modular network 등의 application 에 적합하다.
 
-![](../.gitbook/assets/image%20%28333%29.png)
+![](../.gitbook/assets/image%20%28334%29.png)
 
 정리하면 이렇다. 철학이 다르다.
 
