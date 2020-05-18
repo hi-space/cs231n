@@ -66,7 +66,7 @@ synchronous backup으로 $$ v_1 \rightarrow v_2  \rightarrow v_3... \rightarrow 
 
 
 
-![](../.gitbook/assets/image%20%28281%29.png)
+![](../.gitbook/assets/image%20%28282%29.png)
 
 아래와 같이 MDP 모델을 정의한다고 하자.
 
@@ -82,7 +82,7 @@ $$ \pi(n|\cdot) =  \pi(e|\cdot) =  \pi(s|\cdot) =  \pi(w|\cdot) = 0.25$$
 
 evaluation은 이 policy가 얼마나 좋은지 평가하는 것이고, 그것은 그 policy를 따라 갔을 때 받게 되는 value function 을 통해 알 수 있다. 
 
-![](../.gitbook/assets/image%20%28284%29.png)
+![](../.gitbook/assets/image%20%28285%29.png)
 
 처음에는 4방향 모두 갈 수 있는 random policy로 시작한다. value function은 Bellman equation을 통해 구할 수 있기 때문에 k가 증가함에 따라 one step 씩 각 state의 value function을 업데이트 할 수 있다. 이 때 사용되는 Bellman Equation은 위에서 나왔듯이 아래와 같다.
 
@@ -96,7 +96,7 @@ random한 policy를 무한대까지 evaluation 하고 평가된 value에서 gree
 
 ### How to Improve a Policy
 
-![](../.gitbook/assets/image%20%28289%29.png)
+![](../.gitbook/assets/image%20%28290%29.png)
 
 이제 optimal policy를 찾기 위해 policy를 더 나은 policy로 update 해줘야 한다. 그래서 value function을 찾기 위한 policy가 있고, 해당 value function에 의해 greedy 하게 움직이는 policy 두가지가 있다. 
 
@@ -140,7 +140,7 @@ $$
 
 final reward에서 시작하게 되면 goal에 도달하기 직전 step 들이 있을 것이고, 그 이전으로 돌아가며 iterative 하게 역계산을 한다.
 
-![](../.gitbook/assets/image%20%28277%29.png)
+![](../.gitbook/assets/image%20%28278%29.png)
 
 ### Value Iteration
 
@@ -153,7 +153,7 @@ Policy Iteration과 달리 Value Iteration 문제에서는 주어진 policy가 �
 
 synchronous backup으로 $$  v_1 \rightarrow v_2  \rightarrow v_3... \rightarrow   v_*$$를 one step 씩 업데이트 한다. iterative 하게 진행하다 보면 $$v_*$$로 수렴하게 된다. 
 
-![](../.gitbook/assets/image%20%28276%29.png)
+![](../.gitbook/assets/image%20%28277%29.png)
 
 
 
@@ -199,7 +199,7 @@ In-Place Dynamic Programming, Prioritised Sweeping, Real-time Dynamic Programmin
 
 #### In-Place Dynamic Programming
 
-![Synchronous value iteration](../.gitbook/assets/image%20%28256%29.png)
+![Synchronous value iteration](../.gitbook/assets/image%20%28257%29.png)
 
 Synchronous value iteration은 두개의 테이블이가 필요했다. 이전의 value function에 대한 값과 새로운 value function 값을를 각각 가지고 있다가, 다음 연산 때에는 new에 있는 value function 값들을 old 로 copy 해줘야 했다.
 
@@ -209,13 +209,13 @@ In-place value iteration은 value function을 한 테이블만 가지고 있고 
 
 #### Prioritised Sweeping
 
-![Bellman Error](../.gitbook/assets/image%20%28298%29.png)
+![Bellman Error](../.gitbook/assets/image%20%28299%29.png)
 
 state의 backup 연산 시 Bellman error가 컸던 state를 중요한 것이라고 판단하고, priority queue에 넣어 해당 state 먼저 업데이트 하게 한다.
 
 #### Real-time Dynamic Programming
 
-![](../.gitbook/assets/image%20%28326%29.png)
+![](../.gitbook/assets/image%20%28327%29.png)
 
 임의의 agent를 두고 그 agent 가 방문한 state 먼저 backup 업데이트 한다.
 

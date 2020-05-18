@@ -78,7 +78,7 @@ First-visit, every-visit 둘 중 무엇을 써도 상관은 없다. visit의 갯
 
 ### Incremental Monte-Carlo Updates
 
-![Incremental Mean](../.gitbook/assets/image%20%28240%29.png)
+![Incremental Mean](../.gitbook/assets/image%20%28241%29.png)
 
 MC는 여러개 시도해보고 episode가 끝난 후 그것을 평균내는 방식이다. 나중에 평균내기 위해서는 episode마다 이전의 state 값들을 전부 저장해놓고 값을 계산해줘야 하지만, Incremental Mean을 사용하면 그때그때 평균을 구하며 새로운 값이 있을 경우 그 값을 통해 교정해주기 때문에 이전에 계산된 모든 값들을 저장할 필요가 없다. Incremental 하게 평균값을 구해주는 것이다.
 
@@ -177,6 +177,8 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
 * TD target $$R_{t+1} + \gamma v_{\pi}(S_{t+1})$$는 $$v_{\pi}(S_t)$$ 의  biased estimate 이다. 추측치로 업데이트하기 때문에 biased 되어 있을 수 있다.
 * TD target은 return 보다 variance가 낮다. Return은 많은 random actions, transitions, rewards에 종속되지만, TD target은 하나의 random action, transition, reward에 종속되기 때문이다.
 
+![](../.gitbook/assets/image%20%28103%29.png)
+
 <table>
   <thead>
     <tr>
@@ -214,7 +216,15 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
       </td>
     </tr>
   </tbody>
-</table>Return은 환경의 랜덤성을 제공하는 것으로 볼 수 있다. 랜덤성과 랜덤성을 가지고 게임을 하면 variance가 크다. TD는 매 스텝마다 return이 나오기 때문에 랜덤성이 작아서 bias가 높고 variance가 작다.
+</table>> Bias : 데이터 내의 모든 정보를 고려하지 않아, 지속적으로 잘못된 것들을 학습하는 경향 \(underfitting에 연관있음\)
+>
+> Variance : 데이터 내의 에러나 노이즈까지 잘 잡아내는 model에 데이터를 fitting 시킴으로, 실제 현상과 관계없는 random한 것들까지 학습하는 알고리즘의 경향 \(overfitting에 연관있음\)
+>
+> 보통 이 두개의 값은 trade-off 관계에 있다.
+
+Return은 환경의 랜덤성을 제공하는 것으로 볼 수 있다. 랜덤성과 랜덤성을 가지고 게임을 하면 variance가 크다. TD는 매 스텝마다 return이 나오기 때문에 랜덤성이 작아서 bias가 높고 variance가 작다.
+
+TD는 한 episode 안에서 매 time-step 마다 업데이트를 하는데 보통 그 이전의 상태가 그 후의 상태에 영향을 많이 주기 때문에 학습이 한 쪽으로 치우칠 수 있다. \(bias가 높다\)  MC는 episode마다 학습하기 때문에 episode 가 전개됨에 따라 전혀 다른 경험을 가질 수가 있다. 하나의 state에서 다음 state로 넘어갈 때도 확률적으로 움직이기 때문에 random 성이 크다. \(variance가 높다\)
 
 ### Random Walk Example
 

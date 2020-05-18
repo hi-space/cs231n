@@ -29,18 +29,18 @@ semantic segmentation에서는 공간적으로나 local 적으로나 다양한 �
 
 adversarial loss와 함께, segmentation model이 source와 target 의 output space에 유사한 distribution을 만들기 위한 discriminator 만드는 것이다.
 
-![](../.gitbook/assets/image%20%28103%29.png)
+![](../.gitbook/assets/image%20%28104%29.png)
 
 * Source Domain 이미지와 Target Domain 이미지를 같은 Segmentation model에 넣는다. 
 * Source prediction 에서는 source의 GT에 기반하여 segmentation loss를 계산한다.
 * Discriminator Network 에서는 target 을 source와 비슷하게 만들기 위해서 input이 source 인지 target 인지 판별하는 discriminator를 사용한다. 그러면 target prediction에 대한 adversarial loss가 계산되고, segmentation network로 back-prop 된다. 
 * 이걸 하나의 adaptation module 이라고 하면, 이것을 multi-level로 구성하여 사용했다.
 
-![](../.gitbook/assets/image%20%28193%29.png)
+![](../.gitbook/assets/image%20%28194%29.png)
 
 GTA 데이터에서 Cityscapes 데이터로 adapted 시킨 결과물이다. feature adaptation 시킨 것보다 segmentation을 adaptation 한 본 연구의 결과물이 좋을 것 확인할 수 있다.
 
-![](../.gitbook/assets/image%20%28247%29.png)
+![](../.gitbook/assets/image%20%28248%29.png)
 
 
 

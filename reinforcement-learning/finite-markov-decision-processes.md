@@ -85,7 +85,7 @@ Chain이 $$S_1 = C1 $$ 에서 시작한다고 했을 때 아래와 같이 여러
 * C1 C2 C3 Pub C2 C3 Pass Sleep
 * C1 FB FB C1 C2 C3 Pub C1 FB FB FB C1 C2 C3 Pub C2 Sleep
 
-![transition graph / transition matrix](../.gitbook/assets/image%20%28123%29.png)
+![transition graph / transition matrix](../.gitbook/assets/image%20%28124%29.png)
 
 Markov chain은 위와 같이 transition graph로 표현할 수도 있고, state 간 transition matrix로 표현할 수도 있다.
 
@@ -103,7 +103,7 @@ Markov Reward Process는 $$ <S, P, R, \gamma> $$의 튜플이다.
   * $$ \gamma \in [0, 1]$$
 {% endhint %}
 
-![Student Markov Reward Process](../.gitbook/assets/image%20%28235%29.png)
+![Student Markov Reward Process](../.gitbook/assets/image%20%28236%29.png)
 
 Markov Reward Process는 Markov process에서 reward만 추가된 거다. 각 state 마다 reward를 가지고 있는다. \(확률적으로 옮겨지는 것이기 때문에 state에만 reward가 있으면 된다\)
 
@@ -171,7 +171,7 @@ G_t &\doteq& R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \gamma^3 R_{t+4} + \c
 \end{matrix}
 $$
 
-![](../.gitbook/assets/image%20%28214%29.png)
+![](../.gitbook/assets/image%20%28215%29.png)
 
 value function은 결과적으로 두가지 파트로 나눠서 표현할 수 있다.  $$\gamma$$로 묶고 $$G_{t+1}$$로 치환하고 $$v(S_{t+1})$$로 치환하는 단순한 점화식 문제로 표현하면, value function이 결과적으로 아래와 같은 두가지 파트로 나눠 표현할 수 있다는 것을 알 수 있다.
 
@@ -218,7 +218,7 @@ Markov Reward Process는 $$ <S, A,  P, R, \gamma> $$의 튜플이다.
 
 
 
-![Student MDP](../.gitbook/assets/image%20%28319%29.png)
+![Student MDP](../.gitbook/assets/image%20%28320%29.png)
 
 MRP에서는 state 에 reward가 있었는데 MDP 에서는 action 마다 reward가 주어진다. 특정 action이 항상 같은 state로 가지않고, state의 전이 확률에 따라서 확률적으로 어떤 state로 갈 지 정해진다. 
 
@@ -331,7 +331,7 @@ state-value function의 그림에서 reward $$r$$이 추가된거다. state와 a
 
 action-value function은 immediate reward + \(action을 취해 각 state로 갈 확률 \* 그 위치에서의 value function\) 이다.
 
-![](../.gitbook/assets/image%20%28245%29.png)
+![](../.gitbook/assets/image%20%28246%29.png)
 
 state-value function과 action-value function 도표를 통합하여 표현하면 위와 같이 나타낼 수 있다.
 
@@ -380,7 +380,7 @@ MDP 에서는 아래와 같은 정의가 성립된다.
 * 모든 state에 대해서 partial ordering이 성립하는 deterministic optimal policy가 존재한다.
 * optimal policy를 알고 있다면 optimal value function, optimal action-value function 도 알 수 있다. $$v_{\pi_*}(s) = v_*(s) \quad , \quad q_{\pi_*}(s, a) = q_*(s, a)$$
 
-![](../.gitbook/assets/image%20%28229%29.png)
+![](../.gitbook/assets/image%20%28230%29.png)
 
 optimal action-value function를 찾으면 optimal policy를 알 수 있다. optimal action-value function를 안다면 q 값이 높은 action만 선택하면 되기 때문에 MDP 문제가가 풀린 것이다. 가장 높은 action 만 선택하기 때문에 deterministic 하다.
 
@@ -392,7 +392,7 @@ optimal policy를 구하기 위한 Bellman Equation을 Bellman Optimality Equati
 
 Optimal bellman equation은 각 state 마다 하나씩의 equation으로 구성되어 있다. 즉, n 개의 state가 있으면 n개의 미지수에 대한 n개의 방정식이 존재하는 거다.
 
-![Bellman Optimality Equation for optimal value function](../.gitbook/assets/image%20%28178%29.png)
+![Bellman Optimality Equation for optimal value function](../.gitbook/assets/image%20%28179%29.png)
 
 optimal policy를 따르는 어떤 state의 value function은 그 state에서 선택할 수 있는 best action 의 expected return 값과 같아야 한다.
 
@@ -414,7 +414,7 @@ optimal action-value function은 다음 state와 그에 대한 value, 환경의 
 
 Bellman Expectation의 backup diagram과 비슷해 보이지만 한가지 다른 것은 max 값이 표시되어 있다는 점이다. 주어진 policy에 대해 value의 기대값이 아닌 최댓값이 적용되었음을 나타내기 위해 arch 표시가 추가됐다.
 
-![](../.gitbook/assets/image%20%28331%29.png)
+![](../.gitbook/assets/image%20%28332%29.png)
 
 ![](../.gitbook/assets/image%20%2895%29.png)
 

@@ -17,7 +17,7 @@
 
 Image Classification 문제는 x와 W 를 입력으로 받아서 y 를 예측하는 문제이다. 최종 Loss 값인 L 은 데이터 셋 N 개의 평균 Loss 값이다. 
 
-![Muticlass SVM loss](../.gitbook/assets/image%20%28143%29.png)
+![Muticlass SVM loss](../.gitbook/assets/image%20%28144%29.png)
 
 > s = 분류기의 출력으로 나온 예측된 score  
 > s\_y\_i = Training data set에서 i 번째 이미지의 정답 클래스의 score
@@ -31,7 +31,7 @@ if (정답 클래스의 score가 가장 높으면)
 
 
 
-![Hinge Loss Function](../.gitbook/assets/image%20%28128%29.png)
+![Hinge Loss Function](../.gitbook/assets/image%20%28129%29.png)
 
 Loss Function을 그래프로 나타내면 위와 같다. 그래프 모양 때문에 Hinge Loss Function 이라고 한다. 
 
@@ -54,7 +54,7 @@ A\) 제곱의 의미는, 좋은 것과 나쁜 것 사이의 trade off를 비선�
      - hinge loss : 조금 잘못된 것과 많이 잘못된 것을 크게  신경쓰지 않는다. 잘못된 건 잘못된 거고, 얼마나 잘못되었는 지에 대해서는 신경을 쓰지 않는 것이다.   
 어떤 Loss Function을 선택할 지는 어떤 문제를 어떻게 풀 지에 따라 정해진다.
 
-![Multiclass SVM Loss](../.gitbook/assets/image%20%28324%29.png)
+![Multiclass SVM Loss](../.gitbook/assets/image%20%28325%29.png)
 
 ```python
 def L_i_vectorized(x, y, W):
@@ -72,7 +72,7 @@ def L_i_vectorized(x, y, W):
 
 ## Regularization
 
-![Regularization](../.gitbook/assets/image%20%28122%29.png)
+![Regularization](../.gitbook/assets/image%20%28123%29.png)
 
 Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, 그것은 Training Dataset에서만 fit 하는 W 값이다. Test Dataset이 들어왔을 때는 완전히 틀린 W가 될 수 있다. 이를 해결하기 위한 방법이 Regularization 이다. 기존의 Loss Function 에 Regularization을 위한 항을 하나 추가 한다. 이는 모델이 좀 더 simple한된 W 값을 선택하도록 해준다. simple 하다는 의미는 보다 일반적이고 general 한 문제를 풀기에 적합한 W 값을 말한다. \(Occam's Razor\)
 
@@ -107,7 +107,7 @@ Training Dataset에 맞춰 loss를 최소화 하는 W 값을 구하더라도, �
 
 ## Softmax Classifier
 
-![Softmax Classifier](../.gitbook/assets/image%20%28292%29.png)
+![Softmax Classifier](../.gitbook/assets/image%20%28293%29.png)
 
 Multi-class SVM Loss에서는 score 자체에 대한 해석은 고려하지 않았다. 하지만 Softmax \(Multinomial Logistic Regression\) 의 loss 함수는 score 자체에 대해 추가적인 의미를 부여한다.
 
@@ -149,11 +149,11 @@ np.mean(Yte_predict == Yte)
 
 ### Follow the slope
 
-![Follow the slope](../.gitbook/assets/image%20%28135%29.png)
+![Follow the slope](../.gitbook/assets/image%20%28136%29.png)
 
 Follow the slope 방법은 말 그대로 경사를 따라서 경사가 있는 쪽을 향해 걸어가는 거다. 미분값을 통해 gradient를 구하면 함수의 경사를 구할 수 있다. 다변수인 상황에서 미분으로 일반화 시켜보면 gradient는 벡터 x의 각 요소들의 편도함수들의 집합이다. gradient가 함수의 어떤 점에서 선형 1차 근사 함수를 알려준다. 많은 딥러닝 알고리즘들이 gradient를 계산하고 parameter 벡터를 업데이트 할 때 사용한다.
 
-![](../.gitbook/assets/image%20%28360%29.png)
+![](../.gitbook/assets/image%20%28361%29.png)
 
 gradient 값을 구하기 위해 특정 W에 아주 작은 값을 더하고 Loss를 계산한 뒤, FDM을 이용해 극한을 취하고 해당 요소의 gradient의 근사치를 계산해볼 수 있다.
 
@@ -212,19 +212,19 @@ While True:
 
 이렇게 뽑아낸 feature vector을 input image로 사용했다.
 
-![Motivation](../.gitbook/assets/image%20%28210%29.png)
+![Motivation](../.gitbook/assets/image%20%28211%29.png)
 
  왼쪽과 같은 그림의 경우 linear classifier로 바로 풀 수 없는 문제이다. 이를 변형시켜 \(극좌표계로 이동\) linear하게 풀 수 있는 형태로 데이터를 가공한다. 이와 같이 문제를 풀기 위해서는 어떤 특징 변환이 필요한가를 알아내야 한다. 
 
 ### Color Histogram
 
-![Color Histogram](../.gitbook/assets/image%20%28275%29.png)
+![Color Histogram](../.gitbook/assets/image%20%28276%29.png)
 
 이미지의 hue 값만 뽑아서 모든 픽셀을 각 차트에 넣어, 몇개의 픽셀이 있는 지 갯수를 새서 특징벡터로 이용한다. 이미지가 전체적으로 어떤 색인지 알 수 있다. 
 
 ### Histogram of Oriented Gradients \(HoG\)
 
-![Histogram of Oriented Gradients \(HoG\)](../.gitbook/assets/image%20%28136%29.png)
+![Histogram of Oriented Gradients \(HoG\)](../.gitbook/assets/image%20%28137%29.png)
 
 NN이 뜨기 이전에 인기있었떤 또 다른 특징 벡터 중 하나는 바로 Histogram of Oriented Gradients \(HoG\) 이다. Oriented edges가 중요하다고 보고 local orientation edges를 측정하는 방법이다. 픽셀을 나눠서 해당 픽셀 지역 내에서 가장 orientation 이 강한 값을 뽑아내면 그 값이 edge orientation 에 대한 히스토그램이 되는 거다. 어떤 종류의 edge가 있는지, 지역적으로 어떤 edge가 존재하는지도 알 수 있다.
 

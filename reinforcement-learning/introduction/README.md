@@ -1,6 +1,6 @@
 # Introduction
 
-![](../../.gitbook/assets/image%20%28359%29.png)
+![](../../.gitbook/assets/image%20%28360%29.png)
 
 강화학습 : 주어진 상황에서 어떠한 행동을 취할지를 학습하는 것
 
@@ -83,7 +83,7 @@ Sequential Decision Making 해야 한다. 연속적으로 선택을 해가면서
 
 ### Agent and Environment
 
-![](../../.gitbook/assets/image%20%28139%29.png)
+![](../../.gitbook/assets/image%20%28140%29.png)
 
 Agent가 어떤 Action을 하게 되면 Environment는 그 행동에 대해 달라진  observation과 reward를 반환해준다.
 
@@ -202,7 +202,7 @@ $$R_{s}^a = \mathbb{E}[R_{t+1} |S_t = s, A_t = a]$$
 
 ## Categorizing RL agents
 
-![](../../.gitbook/assets/image%20%28305%29.png)
+![](../../.gitbook/assets/image%20%28306%29.png)
 
 ### Value Based vs Policy Based vs Actor Critic
 

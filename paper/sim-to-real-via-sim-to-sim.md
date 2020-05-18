@@ -20,7 +20,7 @@ description: >-
 * 이 논문에서 제안한 Randomized to Canonical Adaptation Networks \(RCAN\)은 Domain Adaptation과 달리 real data가 필요하지 않다.
 * GraspGAN 은 pixel-level adaptation, feature-level adaptation을 결합하여 학습에 필요한 real data 양을 줄였다. 하지만 역시 상당햔 양의 unlabelled real data를 필요로 한다.
 
-![](../.gitbook/assets/image%20%28318%29.png)
+![](../.gitbook/assets/image%20%28319%29.png)
 
 * RCAN은 image-conditioned generative adversarial network \(cGAN\)으로 구성된다. cGAN은 randomized된 simulation 환경을 \(b\)와 같이 non-randomized한 canonical image를 얻게한다. training 된 cGAN은 반대로 real image 를 canonical 한 이미지로 변경할 수도 있다. 
 * randomized simulation domain / canonical simulation domain / real-world domain 3가지 형태의 도메인이 존재한다.

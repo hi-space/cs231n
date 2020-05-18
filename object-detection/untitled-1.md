@@ -8,7 +8,7 @@ description: Fast RCNN
 
 ### Flows
 
-![](../.gitbook/assets/image%20%28127%29.png)
+![](../.gitbook/assets/image%20%28128%29.png)
 
  R-CNN의 문제점은 모든 Region proposal 마다 CNN을 돌리고, 분류를 위한 SVM, BBox를 위한 linear regression까지 세가지 모델을 모두 훈련시키기 어렵고 시간이 오래 걸린다. 그래서 Fast RCNN에서는 feature extractor, classifier, bbox regressor를 하나의 파이프라인으로 처리한다. 한마디로, 전체 network가 End-to-end로 한번에 학습된다.  
   
@@ -22,9 +22,9 @@ Selective Search로 RoI 영역을 뽑아내고 wrapping 하여 CNN에 넣는 대
 
 CNN에 넣기 위해 region proposal 마다 cropping 해서 처리했었는데, 이를 image level이 아닌 feature map level에서 진행함으로써 num of region proposal 의 CNN 연산이 1번의 CNN 연산으로 대폭 줄어든다. region proposal을 하기 전에 이미지에서 feature를 추출하기 때문에 중복 regions에 대해 여러번 CNN 작업을 할 필요가 없다.
 
-![](../.gitbook/assets/image%20%28218%29.png)
+![](../.gitbook/assets/image%20%28219%29.png)
 
-![](../.gitbook/assets/image%20%28269%29.png)
+![](../.gitbook/assets/image%20%28270%29.png)
 
  \(1\) Input image 로부터 다수의 Region proposal 추출 \(Selective search 알고리즘 사용\)  
 \(2\) CNN의 입력으로 input image와 region proposal 를 넣어준다. 몇번의 conv 및 max pooling을 통해 conv featre map 생성  
@@ -64,7 +64,7 @@ Total Loss = Classification Loss \(cross entropy\) + BBox Regression Loss \(smoo
   
 전체 네트워크 레이어에 대해 training이 가능하다. 이는 R-CNN과 SPP-Net에서는 안됐던 것. 왜일까?
 
-![](../.gitbook/assets/image%20%28341%29.png)
+![](../.gitbook/assets/image%20%28342%29.png)
 
-![](../.gitbook/assets/image%20%28364%29.png)
+![](../.gitbook/assets/image%20%28365%29.png)
 
