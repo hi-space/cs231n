@@ -103,7 +103,7 @@ $$
 
 non-stationary 문제에서 과거의 기억은 잊고 최신의 경험만 기억하고 싶을 때 사용한다.
 
-### Temporal-Difference Learning
+## Temporal-Difference Learning
 
 TD는 MC 와 DP 방법을 결합한 것이다. MC 처럼 경험으로부터 직접적으로 학습하고, DP 처럼 episode가 끝나지 않더라도 학습할 수 있다. 
 
@@ -129,9 +129,9 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
 * `TD target` : $$R_{t+1} + \gamma V(S_{t+1})$$
 * `TD error` : $$ R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$$
 
+#### Driving Home Example
 
-
-
+![](../.gitbook/assets/image%20%28394%29.png)
 
 
 
@@ -166,7 +166,7 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
             &#xACC4;&#xC0B0;&#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
           <li>complete sequences &#xC5D0;&#xC11C; &#xD559;&#xC2B5;&#xD560; &#xC218;
             &#xC788;&#xB2E4;.</li>
-          <li>episodic (terminatinv) &#xD658;&#xACBD;&#xC5D0;&#xC11C;&#xB9CC; &#xC0AC;&#xC6A9;
+          <li>episodic (terminating) &#xD658;&#xACBD;&#xC5D0;&#xC11C;&#xB9CC; &#xC0AC;&#xC6A9;
             &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</li>
         </ul>
       </td>
@@ -226,40 +226,137 @@ Return은 환경의 랜덤성을 제공하는 것으로 볼 수 있다. 랜덤�
 
 TD는 한 episode 안에서 매 time-step 마다 업데이트를 하는데 보통 그 이전의 상태가 그 후의 상태에 영향을 많이 주기 때문에 학습이 한 쪽으로 치우칠 수 있다. \(bias가 높다\)  MC는 episode마다 학습하기 때문에 episode 가 전개됨에 따라 전혀 다른 경험을 가질 수가 있다. 하나의 state에서 다음 state로 넘어갈 때도 확률적으로 움직이기 때문에 random 성이 크다. \(variance가 높다\)
 
-### Random Walk Example
+### Batch TD vs MC
 
-### Batch MC and TD
+경험이 무한번 일어난다고 했을 때 \(experience $$ \rightarrow \infty$$\) MC나 TD나 optimal value function에 수렴하게 될 거다. \($$ V(s) \rightarrow v_{\pi}(s) $$\) 하지만 k개의 제한된 episode가 있다고 했을 때 TD가 더 잘 수렴할까? MC나 TD가 과연 같은 값에 수렴할까?
 
-무한번 뽑아내면 MC나 TD나 v파이에 수렴하게 될거다. k개의 제한된 에피소드가 있을 때 TD가 잘 수렴할까? MC나 TD나 같은 값에 수렴을 할까?
+#### AB Example
 
-AB Example MC로 하면 A는 0. TD로 하면 A는 0.75. V\(B\)로 A를 업데이트 하기 때문.
+![AB Example](../.gitbook/assets/image%20%28401%29.png)
 
--&gt; TD는 Markov Property를 이용해서 value를 추측. markov env에서 더 효과적 MC는 그냥 mean squred error를 minimize 하는 것.
+위와 같이 8개의 episode batch가 주어졌을 때 optimal value V\(A\), V\(B\)는 어떻게 estimate 될까?
 
-MC는 끝까지 가보고 St를 업데이트. \(monter carlo backup\) TD는 한스텝만 가고 추측해서 그 값으로 대체 \(bootstraping\) DP는 샘플링을 하지 않고 할 수 있는 모든 action에 대해 업데이트. full로 하고 끝까지 안간다.
+* V\(B\) : 8번중 6번 reward를 1 받고 종료되었기 때문에 0.75 이다.
+* V\(A\) : \(MC 관점\) state A 에 있었던 유일한 경험이 reward 0을 받았기 때문에 0이다.          : \(TD 관점\) A 에서 B로 100% transition이 발생했고, B가 0.75를 받는다고 결정했기 때문에 V\(A\) 또한 0.75가 된다. V\(B\)로 A를 업데이트 하기 때문이다.
 
-Bootstraping은 추측치로 업데이트 하는 거라 예측치에 추측치가 포함된다. \(MC X\) - depth 관점으로 본거 sampling은 full 스윕을 안하고 샘플로 업데이트하는거. \(TD, DP\) - width 관점으로 본거
+![](../.gitbook/assets/image%20%28399%29.png)
 
-모델을 알 때는 DP가 가능하지만, 모델을 모를 때에는 sample backup을 해야 한다. \(TD, MC\) sampling은 어떻게 하느냐? agent가 policy를 따라 가는 것이 샘플링
+MC는 주어진 training data에 대해 mean squared error를 minimize 하는 추정값을 찾는다. training data에 있어서는 오차가 0 이지만,  이후 데이터에 대해서는 TD보다 큰 오차가 발생할 수 있다. TD는 Markov Property를 이용해 value를 추측하기 때문에 Markov 환경에서는 더 효과적이다. 
 
---
+정리하면, 
 
-TD의 변형들 TD를 몇번 후 구하는 거. MC와 TD 사이에 스펙트럼이 있는거
+* TD는 Markov property를 사용해서, Markov 환경에서 잘 동작
+* MC는 Markov property를 사용하지 않아서, return 값 관측이 가능한 non-Markov 환경에서 잘 동작
 
-n만큼은 리워드를 넣고 그 이후는 추측치를 넣고. n의 값은 잘 찾아봐야함.
+### Unified View
 
-평균낸 걸 써도 됨 \(Average~\)
+#### Monte-Carlo Backup
 
-TD\(0\)~MC까지 모든걸 평균내서 써도됨 \(TD 람다\) 그냥 평균이 아니라 geometric mean. MC로 갈 수록 가중치가 적게 들어간다. Forward-view TD : 미래를 보는거니가. geometric mean 사용하는 이유는? computational efficient를 위해 TD\(0\) 같은 비용으로 td 람다를 계싼할 수 있다
+![Monte-Carlo Backup](../.gitbook/assets/image%20%28397%29.png)
 
-TD 무한을 알아야 하기 때문에 에피소드가 끝나야 할 수 있다. TD\(0\)의 장점이 사라짐
+MC는 episode의 끝까지 가보고 $$S_t$$를 업데이트 한다. \(Monte-Carlo Backup\) 
 
-backward view TD 람다
+#### Temporal-Difference Backup
 
-Eligibility Traces 책임이 큰 애한테 업데이트를 많이 해주는거.
+![Temporal-Difference Backup](../.gitbook/assets/image%20%28393%29.png)
 
-* frquency : 많이 일어난 애한테 책임을 주는거
-* recentcy : 가장 최근에 일어난 애한테 책임을 주는거
+TD는 한 step만 가고 추측해서 그 값으로 업데이트 \(bootstrapping\). 
 
-  eligibility trace를 곱해서 그 만큼만 업데이트 해주는거 td람다와 수학적으로 동일한 효과를 주는거 \(ㅠㅠ?
+#### Dynamic Programming Backup
+
+![](../.gitbook/assets/image%20%28398%29.png)
+
+DP는 sampling 하지 않고 할 수 있는 모든 action에 대해 update. 모든 범위에 대해 업데이트하고 episode의 끝까지 가지는 않는다.
+
+![Unified View of Reinforcement Learning](../.gitbook/assets/image%20%28395%29.png)
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"></th>
+      <th style="text-align:center">
+        <p>Bootstrapping</p>
+        <p>: update involves an estimate</p>
+      </th>
+      <th style="text-align:center">
+        <p>Sampling</p>
+        <p>: update samples an expectation</p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><b>MC</b>
+      </td>
+      <td style="text-align:center">X</td>
+      <td style="text-align:center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>TD</b>
+      </td>
+      <td style="text-align:center">O</td>
+      <td style="text-align:center">O</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>DP</b>
+      </td>
+      <td style="text-align:center">O</td>
+      <td style="text-align:center">X</td>
+    </tr>
+  </tbody>
+</table>Bootstrapping은 추측치로 업데이트 하기 때문에 예측치에 추측치가 포함된다. Sampling은 full sweep을 안하고 sample 데이터로 업데이트 하는것을 말한다.
+
+모델을 알 때는 DP가 가능하지만, 모델을 모를 때에는 sample backup을 해야 한다. \(agent가 policy를 따라 가는 것이 sampling\)
+
+## n-Step TD
+
+![](../.gitbook/assets/image%20%28390%29.png)
+
+위에서 봤던 TD는 TD\(0\)으로 바로 다음 단계만 보고 value function을 update 했었다. 몇 단계 까지 보고 추정값을 갱신할 지에 따라 n-step TD로 표현할 수 있다. 매 time step 마다 학습을 하게되면 정보가 한정적이여서 학습하는데 오래 걸리기 때문에 MC와 TD의 절충안으로 각각의 장점을 살리는 방법이다.
+
+![](../.gitbook/assets/image%20%28403%29.png)
+
+n-step 에서 n 만큼은 return 값을 그대로 사용하고, 그 이후에는 추측치를 넣어서 update 하는 형식이다. 여기에서 n을 구하는 것도 하나의 문제이다. n 값을 경험적으로 알아낼 수도 있겠지만 몇 가지의 n-step을 구하고 그를 평균내는 방법도 있다.
+
+### Averaging n-Step Returns
+
+![](../.gitbook/assets/image%20%28396%29.png)
+
+n-step 에서 n의 값을 다르게 해서 return 값을 얻어내고, 각 return 값들의 평균을 이용 \($$\frac { G^{(i)} +  G^{(j)}} {2}$$\)
+
+### $$ \lambda $$-return
+
+![](../.gitbook/assets/image%20%28392%29.png)
+
+TD\(0\) 부터 MC 까지 모든 것을 평균내서 쓸 수도 있다. 이 때 단순 평균을 사용하지 않고 $$\lambda$$라는 weight를 이용해 geometric mean을 이용한다.\(Forward-view TD\($$\lambda$$\)\) MC에 가까워질 수록 \(n 값이 커질 수록\) 가중치가 적게 들어가도록 한다.  
+
+> geometric mean을 사용하는 이유는? 
+>
+> * computational efficient를 위해서. TD\(0\)과 같은 비용으로 TD\($$\lambda$$\)를 계산할 수 있다.
+>
+> Forward View? 
+>
+> * 미래를 보고 $$ G^{\lambda}_t $$를 계산하는거다.
+
+#### Forward View of TD\($$\lambda$$\)
+
+![Forward View](../.gitbook/assets/image%20%28400%29.png)
+
+하지만 이 방법도 episode의 끝까지 가봐야 update 할 수 있다는 문제가 있다. TD 의 장점이 사라진다. 이런 문제를 해결하기 위해서 나온 것이 eligibility trace를 이용한 Backward View of TD \($$\lambda$$\) 다.
+
+#### Backward View of TD\($$\lambda$$\)
+
+![Eligibility trace](../.gitbook/assets/image%20%28391%29.png)
+
+현재 내가 받은 reward 값에 많이 기여한 값들에 업데이트를 많이 해주는 방식이다. 얼마나 빈번하게 일어났는지\(Frequency heuristic\), 얼마나 최근에 일어났는 지\(Recency heuristic\)를 기준으로 과거를 기억해뒀다가 현재의 reward를 과거의 state들로 분배해준다.
+
+Eligibility trace는 Frequency, Recency heuristic 두가지를 결합하여 만들어진다. 
+
+![Backward View TD\(lambda\)](../.gitbook/assets/image%20%28389%29.png)
+
+현재의 value function을 update 함과 동시에 과거 지나왔던 state의 eligibility trace를 기억해뒀다가 과거의 모든 state들의 value function 또한 update 한다. 현재의 경험이 과거의 value function에 얼마나 영향을 줄 지는 $$\lambda$$를 통해 조절한다.
+
+* $$\delta_t$$: 현재 update 할 값. TD-error
+* $$E_t(s)$$: eligibility trace
+* $$V(s)$$: update 할 과거 state의 value function
 
