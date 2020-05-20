@@ -8,8 +8,6 @@ MDP를 모르는 환경에 agent가 던져졌을 때 어떤 방식으로 predict
 
 DP처럼 모든 state transition probability를 알 필요 없다. DP는 MDP에 대한 정보로부터 value function을 계산\(compute\)했지만, 여기에서는 MDP의 return 표본들을 통해 value function을 학습\(learn\)한다.
 
-
-
 ## Monte-Carlo Learning
 
 Monte-Carlo는 random하게 무언가를 취해보고 추정하는 방법이다. 
@@ -49,8 +47,6 @@ Recall the `return` \(total discounted reward\)
 Recall the `value function` \(expected return\)
 
  $$ v_{\pi}(s) = \mathbb{E}_{\pi} [G_t | S_t = s] $$
-
-
 
 #### First-Visit / Every-Visit
 
@@ -132,8 +128,6 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
 #### Driving Home Example
 
 ![](../.gitbook/assets/image%20%28394%29.png)
-
-
 
 한 스텝을 가보고 거기서 예측하는 예측치를 보고 그방향으로 v 를 업데이트 이전에 예측한 것보다 더 정확할거아냐? 현실이 더 반영되어 있으니까? MC는 정확한 값으로 업데이트하는 건데 TD는 예측치로 예측하니까 에러가 더 있지 않을까?
 
@@ -273,7 +267,7 @@ DP는 sampling 하지 않고 할 수 있는 모든 action에 대해 update. 모�
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"></th>
+      <th style="text-align:center"></th>
       <th style="text-align:center">
         <p>Bootstrapping</p>
         <p>: update involves an estimate</p>
@@ -286,19 +280,19 @@ DP는 sampling 하지 않고 할 수 있는 모든 action에 대해 update. 모�
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left"><b>MC</b>
+      <td style="text-align:center"><b>MC</b>
       </td>
       <td style="text-align:center">X</td>
       <td style="text-align:center">O</td>
     </tr>
     <tr>
-      <td style="text-align:left"><b>TD</b>
+      <td style="text-align:center"><b>TD</b>
       </td>
       <td style="text-align:center">O</td>
       <td style="text-align:center">O</td>
     </tr>
     <tr>
-      <td style="text-align:left"><b>DP</b>
+      <td style="text-align:center"><b>DP</b>
       </td>
       <td style="text-align:center">O</td>
       <td style="text-align:center">X</td>
