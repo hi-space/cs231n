@@ -27,6 +27,7 @@
 * [Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
 * [Planning by Dynamic Programming](reinforcement-learning/dynamic-programming.md)
 * [Model Free Prediction](reinforcement-learning/model-free-prediction.md)
+* [Model Free Control](reinforcement-learning/model-free-control.md)
 
 ## Object Detection
 
