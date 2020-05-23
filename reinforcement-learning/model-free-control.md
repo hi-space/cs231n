@@ -1,34 +1,50 @@
 # Model Free Control
 
-최적의 policy를 찾는 것에 대해 배워볼 거. 어떻게 행동해야 할지. env 없이 최적의 policy를 찾는 방법에 대해 배워볼 거.
+이번 단원에서는 환경 없이 최적의 policy를 찾는 방법에 대해서 배워볼 예정이다. 이전 강의에서는 policy를 estimate 했지만, 이번에는 optimal을 찾을거다. 이번 장에서 배울 control 문제는 여전히 table lookup 방식을 사용하고 있는데, state가 많아지만 이런 방식으로는 풀 수 없다. 전체적인 reinforcement learning의 흐름을 배운다고 보면 된다. 나중에는 수많은 state에 대해 대응할 수 있는 function approximate을 배울 예정이다.
 
 ## Introduction
 
-학습하고자하는 policy = env 에서의 policy 때, on-policy라고 한다. 이전 강의에선 estimate 했따면 이번엔 optimal 을 찾을 거다.
+![Uses of Model-Free Control](../.gitbook/assets/image%20%28411%29.png)
 
-여전히 table lookup 방식이다. state가 많아지면 이런 방식으로는 풀 수 없다. 그래서 function approximate 이 들어간다. 수많은 state에 대해 대응할 수 있도록. 이건 6~7강에서 배울거.
+MDP 모델을 모르거나, MDP 모델을 알더라도 문제가 너무 커서 sampling 해서 풀어야 할 경우, model-free control 방식을 사용한다. 
 
-* MDP 모델을 모르거나, MDP 모델을 알더라도 문제가 너무 커서 샘플링해서 풀어야 할 때 Model-free control 방식을 사용한다.
+![On and Off-Policy Learning](../.gitbook/assets/image%20%28413%29.png)
 
-On-policy 최적화 하고자 하는 policy behavior policy. 환경에서 경험을 쌓는 policy 이 두가지가 같을때 on-policy, 다를 때 off-policy
+Model-Free Control 방식에는 On-policy 와 Off-policy 두가지 방식이 있다.
 
-off policy 는 다른 policy가 쌓아놓은 경험으로 부터 배우는 거.
+* On-policy 
 
-\(복습\) policy iteration은 optimal policy를 찾는 과정.
+On-policy는 최적화 하고자 하는 policy 와 환경에서 경험을 쌓는 behavior policy 두가지가 같은 것이고, Off-Policy는 다른 policy가 쌓아놓은 경험으로부터 배우는 것이다. 그래서 "Look over someone's shoulder" 라고 표현한다.
 
-이전에 배운 generalised policy iteration을 쓸 수 있지 않을까? monte-carlo policy evaluation은 model free에서도 풀수 있잖아. 왜 안될까?
+![Generalised Policy Iteration](../.gitbook/assets/image%20%28407%29.png)
 
-V만 학습해서는 greedy 하게 선택할 수 없다. 다음 state를 모르기 때문에. \(model free니까\)
+이전에 optimal policy를 찾는 과정인 policy iteration에 대해서 배웠다. 위의 방식을 사용해서는 model-free에서 사용할 수는 없을까? Monte-carlo policy evaluation은 model free에서도 풀 수 있었는데. 
 
-model을 알아야 V에 대한 greedy policy를 imporvement 할 수 있다.
+![Generalised Policy Iteration With Monte-Carlo Evaluation](../.gitbook/assets/image%20%28410%29.png)
 
-그럼 Q에 대해서 greedy policy improvement 할 수 있을까? V\(s\) 는 못 구해도 Q\(s,a\)는 구할 수 있따. s에서 a를 해보고 나온 return들의 평균을 구하면 되니까. 선택할 수 있는 a 의 갯수를 알고 있고 그 중에서 높은 값을 greedy 하게 선택하면 되기 때문에 q에 대한 greedy policy improvement는 할 수 있다.
+$$V$$만 학습해서는 greedy 하게 선택을 할 수가 없다. model-free 환경이기 때문에 다음 state를 알 수 없기 때문이다. model을 알아야 $$V$$에 대한 greedy policy를 improvement 할 수 있다.
 
-Policy evaluation은 Q를 이용해서 하고 policy improvement는 greedy하게 선택하면 이제 끝? but, 이 경우 greedy 하게만 움직이면 충분히 많은 곳을 가볼 수 없다. exploration이 되지 않는다.
+![Model-Free Policy Iteration Using Action-Value Function](../.gitbook/assets/image%20%28408%29.png)
 
-Greddy Action Selection greedy하게 오른쪽 문만 여는거야. 하나만 계속 열어보니까. greeddy 하게만 action을 선택하면 이와 같은 문제가 생긴다.
+그렇다면 Q에 대해서 greedy policy improvement 할 수 있을까? 그렇다. $$V(s)$$는 못구하더라도 $$Q(s, a)$$는 구할 수 있다. 어떤 state에서 action을 취해보고 나온 return 값들의 평균을 구하기만 하면 되기 때문에 $$Q$$에 대한 greedy policy improvement는 할 수 있다. 
 
-그래서 입실론 그리디 입실론의 확률로 랜덤하게 다른 action을 선택. 모든 action을 exploration할 수 있다. policy가 항상 좋아진다고 보장할 수 있따\(??
+![Generalised Policy Iteration with Action-Value Function](../.gitbook/assets/image%20%28405%29.png)
+
+$$Q$$를 이용해서 하고 policy evaluation을 하고, policy improvement는 greedy 하게 선택하면 되는걸까? 아니다. 이 경우 greedy 하게만 움직이면 충분히 많은 곳을 가볼 수 없기 때문에 exploration이 되지 않는다.
+
+![Example of Greedy Action Selection](../.gitbook/assets/image%20%28409%29.png)
+
+두가지 문 중 하나의 문을 선택하는 문제가 있다고 하자. left로 갔을 때의 value 값은 0이고 right 로 갔을 때의 value 값을 받는다고 했을 때, Greedy Action Selection 을 하게 되면 계속해서 left 문을 다시 시도하지 않고 right 문만 선택하게 된다. 
+
+![e-Greedy Exploration](../.gitbook/assets/image%20%28404%29.png)
+
+그래서 나온 것이 $$\epsilon$$-greedy Exploration 이다. $$\epsilon$$의 확률로 랜덤하게 다른 action을 선택하는 거다. 그럼 모든 action을 exploration 할 수 있다. 
+
+![](../.gitbook/assets/image%20%28412%29.png)
+
+ $$\epsilon$$-greedy 를 사용해도 policy가 improve 되는 것을 증명하는 
+
+
 
 입실론 그리디를 이용해도 policy가 improve 되는지 증명하는 슬라이드.
 
