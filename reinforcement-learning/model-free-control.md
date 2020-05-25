@@ -1,4 +1,4 @@
-# Model Free Control
+# 5. Model Free Control
 
 이번 단원에서는 환경 없이 최적의 policy를 찾는 방법에 대해서 배워볼 예정이다. 이전 강의에서는 policy를 estimate 했지만, 이번에는 optimal을 찾을거다. 이번 장에서 배울 control 문제는 여전히 table lookup 방식을 사용하고 있는데, state가 많아지만 이런 방식으로는 풀 수 없다. 전체적인 reinforcement learning의 흐름을 배운다고 보면 된다. 나중에는 수많은 state에 대해 대응할 수 있는 function approximate을 배울 예정이다.
 

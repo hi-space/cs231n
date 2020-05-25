@@ -22,12 +22,14 @@
 ## Reinforcement Learning
 
 * [Index](reinforcement-learning/index.md)
-* [Introduction](reinforcement-learning/introduction/README.md)
+* [1. Introduction](reinforcement-learning/introduction/README.md)
   * [Multi-Armed bandit problem](reinforcement-learning/introduction/untitled.md)
-* [Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
-* [Planning by Dynamic Programming](reinforcement-learning/dynamic-programming.md)
-* [Model Free Prediction](reinforcement-learning/model-free-prediction.md)
-* [Model Free Control](reinforcement-learning/model-free-control.md)
+* [2. Markov Decision Processes](reinforcement-learning/finite-markov-decision-processes.md)
+* [3. Planning by Dynamic Programming](reinforcement-learning/dynamic-programming.md)
+* [4. Model Free Prediction](reinforcement-learning/model-free-prediction.md)
+* [5. Model Free Control](reinforcement-learning/model-free-control.md)
+* [6. Value Function Approximation](reinforcement-learning/6.-value-function-approximation.md)
+* [7. Policy Gradient](reinforcement-learning/7.-policy-gradient.md)
 
 ## Object Detection
 

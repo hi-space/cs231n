@@ -1,4 +1,4 @@
-# Planning by Dynamic Programming
+# 3. Planning by Dynamic Programming
 
 ## Introduction
 
