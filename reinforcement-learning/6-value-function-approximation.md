@@ -1,38 +1,39 @@
 # 6. Value Function Approximation
 
-여태 배운 것은 작은 문제에 대한 방법들이였다. 이제 현실에 적용하기 위한 큰 문제들을 풀어볼거다. table lookup을 이용해 값들을 update 시켜봤었는데, 이번엔 approximate 이용해볼거다.
-
-table lookup은 각 칸에 대해 초기화 하고 그 칸의 값들을 update 했다. 현실의 문제에서는 state가 굉장히 많아서 모든 state에 대한 값을을 저장하고 update 하기 어렵다. 이런 문제들에서 어떻게 prediction 하고 control 할 수 있을까?
-
-Value Function Approximation
+여태 배운 것들은 방법들은 table lookup 을 이용해 각 칸들의 값들을 update 시켜봤다. 하지만 현실의 문제는 table 형식으로 표현되지 않을 정도로 state가 많아서 모든 값들을 저장하고 update 시키기는 어렵다. 그래서 이번엔 table lookup을 사용하지 않고 prediction하고 control 할 수 있는 방법에 대해 알아보려고 한다.
 
 ## Introduction
 
-value function은 sate s 갯수만큼, Q 에서는 state-action fair 갯수만큼 빈칸이 필요했다.
+Value function은 state의 갯수만큼, Q 에서는 state-action fair의 갯수만큼 table 공간이 필요했다. 큰 MDP 문제에서는 메모리에 저장하기에 너무 많은 state와 action들이 존재했다. 그래서 value function을 function approximation을 해서 estimate 하는 방식을 사용하려고 한다.
 
-function approximation이라는 개념이 나온다. v\_pi\(s\)는 실제 value 라고 하면 v 햇 은 approximation 이다. 모방하는 함수. w 는 v햇 함수 안에 들어있는 parameter 값.
+$$
+\hat{v}(s, w) \approx v_{\pi}(s) \\
+\hat{q}(s, a, w) \approx q_{\pi}(s, a)
+$$
 
-봤던 state 부터 보지 못한 state에 대해 generalize가 잘 된다. -&gt; 보지 못한 state에 대해서도 알맞은 output을 만들어준다. 학습한다는 것은 w를 update 한다는 거.
+* $$ v_{\pi}(s)$$ : 실제 value function
+* $$\hat{v}(s, w)$$ : 실제 value 값을 모방하는 approximation function
+* $$w$$: $$\hat{v}$$함수 안에 포함되어 있는 parameter 값
+* $$\approx$$ : approximation
 
---
+function approximation을 하게 되면 봤던 state 뿐만 아니라 보지 못한 state에 대해서도 generalize가 잘된다. MC나 TD learning을 통해 파라미터 $$w$$를 업데이트하며 학습해가는 방식이다.
 
-black box 인 function 이 있다.
+![Types of Value Function Approximation](../.gitbook/assets/image%20%28433%29.png)
 
-value function\) s를 input을 넣으면 w 라는 값들통해 v 햇 \(s, w\) 의 output 이 나온다.
+일반적인 함수의 모양을 나타내는 black box 이다. 어떤 input 값을 받았을 때 internal parameter인 $$w$$와 함께 연산되어 그에 해당하는 output을 산출한다.
 
-action-value function\) Q 두가지 형태로 함수를 만들어줄 수 있다. 1. s와 a를 input으로 넣으면 q^\(s, a, w\) output이 나온다. \(action in 형태\) 2. s를 input으로 넣으면 s에서 할 수 있는 모든 action에 대해서 output이 나올 수도 있다. \(action out 형태\)
+1 그림\)  value function으로, $$s$$를 input으로 넣으면 $$w$$값들을 통해 $$\hat{v}(s, w)$$의 output이 나온다.
 
-w는 internal parameter.
+2, 3 그림\) Q 는 두가지 형태로 함수를 만들 수 있다.
 
---
+* \(action in 형태\) $$s$$와 $$a$$를 input으로 넣으면 $$\hat{q}(s, a, w)$$이 output으로 나온다.
+* \(action out 형태\) $$s$$를 input으로 넣으면 $$s$$에서 할 수 있는 모든 action에 대해서 output이 나온다.
 
-fuction approi 함수는 뭘 쓸 수 있을까?
+![Which Function Approximator?](../.gitbook/assets/image%20%28434%29.png)
 
-* linear, 가중 합을 이용
-* neural network
-* decision tree 등등
+function approximation으로 사용할 수 있는 함수는 liner combinations, neural network, decision tree 등 여러가지가 될 수 있겠지만, 그 중에서도 미분가능한\(differentiable\) 함수를 사용할거다. 그래야만 그 상태의 gradient를 구해서 update 할 수 있기 때문이다. 
 
-이중에서 differentiable한 function approximator 를 사용할 거다. 미분 가능한. 그래야 gradient를 구해서 update 할 수 있기 때문. non-stationary, non-iid 모분포가 계속 바뀌고 independent 하지도 않다\(이전의 값들이 이후 값에 영향을 미침\)
+non-stationary, non-iid : 모분포가 계속 바뀌고 independent 하지 않아서 이전의 값들이 이후의 값에 영향을 미침 \(??
 
 ## Incremental Methods
 
