@@ -18,7 +18,7 @@ $$
 
 function approximation을 하게 되면 봤던 state 뿐만 아니라 보지 못한 state에 대해서도 generalize가 잘된다. MC나 TD learning을 통해 파라미터 $$w$$를 업데이트하며 학습해가는 방식이다.
 
-![Types of Value Function Approximation](../.gitbook/assets/image%20%28433%29.png)
+![Types of Value Function Approximation](../.gitbook/assets/image%20%28437%29.png)
 
 일반적인 함수의 모양을 나타내는 black box 이다. 어떤 input 값을 받았을 때 internal parameter인 $$w$$와 함께 연산되어 그에 해당하는 output을 산출한다.
 
@@ -29,63 +29,167 @@ function approximation을 하게 되면 봤던 state 뿐만 아니라 보지 못
 * \(action in 형태\) $$s$$와 $$a$$를 input으로 넣으면 $$\hat{q}(s, a, w)$$이 output으로 나온다.
 * \(action out 형태\) $$s$$를 input으로 넣으면 $$s$$에서 할 수 있는 모든 action에 대해서 output이 나온다.
 
-![Which Function Approximator?](../.gitbook/assets/image%20%28434%29.png)
+![Which Function Approximator?](../.gitbook/assets/image%20%28438%29.png)
 
 function approximation으로 사용할 수 있는 함수는 liner combinations, neural network, decision tree 등 여러가지가 될 수 있겠지만, 그 중에서도 미분가능한\(differentiable\) 함수를 사용할거다. 그래야만 그 상태의 gradient를 구해서 update 할 수 있기 때문이다. 
 
-non-stationary, non-iid : 모분포가 계속 바뀌고 independent 하지 않아서 이전의 값들이 이후의 값에 영향을 미침 \(??
+그래서 위의 함수들 중 Linear combinations of features와 Neural Network 를 차례로 알아볼거다.
+
+> * **stationary**
+>
+>     $$ F(x_1, x_2, x_3) = F(x_1 + t, x_2 +t, x_3 + t)$$
+>
+> stationary에 대한 정의를 수식으로 나타내면 위와 같다. 어떤 값이 시간에 따라 바뀌더라도 그 확률분포는 변하지 않는다. 
+>
+> -&gt; non-stationary : 시간에 따라 랜덤변수의 성질이 변한다.
+>
+> * **iid**
+>
+> 랜덤변수가 같은 특징을 갖고있고\(identical\), 서로 독립 \(independent\) 이다. 예를 들면 동전던지기로 볼 수 있다. 앞이나 뒤가 나올 확률은 항상 $$\frac{1}{2}$$로 랜덤변수가 동일하지만, 던질때 마다 그 확률은 서로 독립이기 때문에 전에 던진 값이 이후에 던지는 확률에 영향을 주지 않는다.
+>
+> -&gt; non-iid : identical 이 아닐 수도 있고 independent가 아닐수도 있다.
+
+non-stationary, non-iid data는 확분포가 시간에 따라 계속 바뀌는 random성을 가지고 있고 이전의 값이 이후의 값에 영향을 미칠 수 있는 데이터들을 말한다. 즉, 특징이 없는 이러한 데이터들에서도 general 하게 동작할 수 있는 training method를 찾고자 하는거다. 
 
 ## Incremental Methods
 
 ### Gradient Descent
 
-J라는 함수가 있다 .w 값이 input으로 들어가면 output이 나오는 함수. w는 n차원 벡터 J라는 함수를 최소화하는 input w를 찾고 싶다. w 찾을 때 사용하는 것이 gradient descent 방법.
+![Gradient Descent](../.gitbook/assets/image%20%28434%29.png)
 
-convex하다. local minimum= global minimum
+* $$J(w)$$ : $$w$$값이 input으로 들어가면 output이 나오는 어떤 함수
+* $$w = [w_1, w_2, ..., w_n]$$ : n 차원 vector. 
+* $$\alpha$$  : step size
 
-w가 벡터니까 차례대로 w\_1, w\_2이 있을 때 J의 gradient 를 구하게 되면, J가 가장 빠르게 변하는 방향이 나온다. 그 방향으로 a 값만큼 조금 움직인다. 가파른 방향으로 조금씩 움직여서 가장 작은 값으로 간다.
+$$J(w)$$ 라는 함수를 최소화하는 input값인 $$w$$ 값을 찾고 싶을 때 사용하는 것이 gradient descent 방법이다. $$J(w)$$를 $$w$$에 대해서 미분하면 gradient 값을 알 수 있게 된다. $$w$$가 vector 이니 결과값은 어떤 방향값이 나오게 되는데, 그 방향으로 $$\alpha$$값만큼 조금씩 움직인다. 가장 가파른 방향으로 조금씩 움직여 local minimum을 찾는 방법이다.
 
-### Value function approx
+$$
+\nabla_wJ(w) = 
+\begin {pmatrix}
+\frac {\partial J(w)} {\partial w_1} \\ \\
+\vdots \\ \\
+\frac {\partial J(w)} {\partial w_n} 
+\end {pmatrix}
+\\
+\Delta w = -\frac{1}{2} \alpha \nabla_wJ(w)
+$$
 
-목적함수 J를 줄이고 싶다. value function을 잘 학습하는게 목적이다. v^이 잘 모방하는게 목표. 그 차이가 작을 수록 좋다. oracle이 있어서 true value function 을 안다고 가정. 실제 value function 과 모방한 value function 의 오차를 최대한 작게 하는 것을 J의 목적 함수로 정한다. \(J를 loss라고 보면 됨\) J를 줄이는 방향으로 w를 업데이트 해야한다.
+* $$\nabla_wJ(w)$$  :  $$J(w)$$ 의 gradient
+* $$\Delta w$$            :  $$J(w)$$ 의 local minimum을 구하기 위해 업데이트 해야하는 $$w$$
 
-w를 저만큼 update 하면 된다.
+### Value Function Approximation \(Stochastic Gradient Descent\)
 
-stochastic gradient는 gradient의 sample 들을 뽑아서 넣어주는 거. \(방문했던 state들을 input으로 넣어주는 것\) 여러번 반복하게 되면 expected update와 full gradient update와 동일하게 된다.
+Value Function을 잘 학습하기 위해서는 approximate value function인 $$\hat{v}(s, w)$$가 true value function인 $$v_{\pi}(s)$$와의 차이가 작게 나게하는 파라미터 vector $$w$$를 찾아야 한다.
 
-### 
+#### Objective Function
 
-일반적인 이야기였음. 이번엔 Linear 에대해 이야기 해보자.
+$$
+J(w) = \mathbb{E}[(v_{\pi}(S) - \hat{v}(S, w))^2]
+$$
 
-state가 S가 있으면 n개의 feature를 만들 수 있다.
+그래서 목적함수 $$J(w)$$를 위와 같이 정의할 수 있다. true value function 과 approximate value function의 오차를 최대한 작게 하는 것\(MSE\)을 목표로 한다. \(loss값이라고 볼 수 있음\) 이 목적함수를 가지고 $$J(w)$$를 최소화하는 방향으로 $$w$$를 업데이트 해야 한다.
 
-이상한 값들이 나올텐데 feature vector들에 w를 내적곱해서 value function 이 나온다.
+#### Update Parameters
 
-objective function는 true value function과 모방함수에 Transpose
+$$
+\Delta w
+= \alpha \mathbb{E}_{\pi}[(v_{\pi}(S) - \hat{v}(S, w)) \nabla_w \hat{v}(S, w)]
+$$
 
-각 feature 마다 가중치를 줘야하니까 w도 n개가 있는거.
+위의 수식은 $$\Delta w = -\frac{1}{2} \alpha \nabla_wJ(w) $$의 $$\nabla_wJ(w)$$ 자리에 목적함수를 두고 전개하여 나타낸 것이다. gradient descent를 이용해 local minimum을 찾기 위해 저 값만큼 update 해주면 된다.
 
-stochatic에서는 global optimum에 수렴한다. linear 함수이기 때문에 최저점이 하나 밖에 없기 때문.
+$$
+\Delta w = \alpha (v_{\pi}(S) - \hat{v}(S, w)) \nabla_w \hat{v}(S, w)
+$$
 
---
+Stochastic Gradient Descent는 Gradient의 sample을 뽑아서 사용하는거다. 방문했었던 state들을 input값으로 넣어준다. 이 과정을 여러번 반복하게 되면 expected update와 full gradient update와 동일하게 되는 것이 증명되어 있다.
 
-table lookup은 linear value function의 하나의 예시라고 볼 수 있다.
+### Linear Function Approximation
 
---
+이번엔 Approximation을 위한 함수로 Linear Function을 사용하는 경우에 대한 이야기이다.
 
-실제 문제에서는 supervisor가 없기 때문에 true value function은 모른다. 그 true value function 자리에 MC나 TD를 위치시키면 된다.
+#### Feature Vector
 
-prediction 문제. cumulative reward에 대해 예측을 어떻게 하는지. value function approximation과 실제 value 사이에 제곱을 minimize 하기 위한 것.
+$$
+x(S) =   \begin{pmatrix}
+x_1(S)
+\\ 
+\vdots
+\\ 
+x_n(S)
+\end{pmatrix}
+$$
 
-### MC
+어떤 state $$S$$가 있다고 하면 그 state에 따른 n 개의 feature가 있을 수 있고, 그 feature vector 위와 같이 표현할 수 있다. 여기서 말하는  feature를 예를 들면 로봇의 각 관절마다의 토크값으로 볼 수 있다.
 
-value는 return의 기댓값. sampling할 때마다 다른 episode가 나오고 다른 return 값이 나온다. 그 데이터를 통해서 update 해도 된다. local optimum에서도 수렴한다. non-linear에서도.
+#### Approximate Value Function
 
-### TD
+$$
+\hat{v}(S, w) = x(S)^\intercal w = \sum_{j=1}^{n} x_j(S)w_j
+$$
 
-TD error : delta linear TD\(0\)는 global optimum에 가깝게 수렴한다.
+feature vector를 transpose 해서 $$w$$ 값을 내적곱 해주면 linear combination of features의 value function이 나온다. \(transpose 해주는 이유는 $$w$$과 연산해주기 위함\)
 
-MC는 unbiased 하다. variance가 커도 맞춘다. TD는 꼭 그 bias가 아니어도 vairnace가 작기 대문에 global optimum에 수렴해 갈 수 있다.
+#### Objective Function
+
+$$
+J(w) = \mathbb{E}_{\pi} [ (v_{\pi}(S) - x(S)^\intercal  w)^2]
+$$
+
+Objective Function은 마찬가지로 true value function과 approximate value function 간의 MSE 의 기댓값으로 둘 수 있다. 
+
+함수의 모양이 Linear 하기 때문에 minimum 값이 하나 밖에 없어서 Stochastic Gradient Descent는 global optimum으로 수렴한다. 
+
+#### Update Parameters 
+
+$$
+\nabla_w \hat{v}(S, w) = x(S) \\
+\Delta w = \alpha( v_{\pi}(S) - \hat{v}(S, w)) x(S)
+$$
+
+* $$\Delta w$$ : update
+* $$\alpha$$ : step-size
+* $$v_{\pi}(S) - \hat{v}(S, w)$$: prediction error
+* $$x(S)$$ : feature value
+
+#### Table Lookup Feature
+
+![Table Lookup Features](../.gitbook/assets/image%20%28433%29.png)
+
+기존에 배웠던 table lookup 도 linear value function의 하나의 예시라고 볼 수 있다. state의 값들을 하나의 feature로 보고 vector로 표현해 feature vector 처럼 만들 수 있다. 그리고 n개의 $$w$$를 내적곱 해서 approximate value function을 표현할 수 있다. \($$w$$는 feature의 갯수만큼 존재\)
+
+### Incremental Prediction Algorithm
+
+지금까지 true value function과 approximate value function의 차이를 줄이는 것을 목표로 해서 w 값을 update 하는 방법을 봤다. 하지만 실제 문제에서는 supervisor가 없기 때문에 true value function은 알 수가 없고 immediate reward 만 볼 수 있다. 그래서 이 true value function 대신 이전에 배운 MC나 TD를 사용하려고 한다.
+
+![target for value function](../.gitbook/assets/image%20%28435%29.png)
+
+true value function 대신 MC나 TD를 쓴다는 것은 결국 cumulative reward에 대해 예측을 어떻게 하는지 알아내는 prediction 문제이다. 
+
+#### MC
+
+value 는 return 의 기댓값니다. sampling 할 때마다 다른 episode가 나오게 되고 그 episode에 나오는 return 값들도 상이하다. 이 데이터들을 training data로 사용해도 된다.
+
+* $$G_t$$는 true value $$v_{\pi}(S_t)$$의 noisy 하고 unbiased 한 sample이다.
+* 이 sample 데이터들을 training data로 사용할 수 있다. $$ <S_1, G_1>, <S_2, G_2>, ... , <S_t, G_t>$$
+* Monte-Carlo Evaluation은 local optimum에 수렴한다. \(non-linear value function approximation을 사용하더라도\)
+
+#### TD
+
+* TD- target인 $$R_{t+1} + \gamma \hat{v}(S_{t+1}, w)$$ 는 true value $$v_{\pi}(S_t)$$의 biased sample 이다.
+* 이 sample 데이터들을 training data로 사용할 수 있다. $$<S_1, R_2 + \gamma \hat{v}(S_2, w)>, <S_2, R_3 + \gamma \hat{v}(S_3, w)>, ... , <S_{T-1}, R_T>$$
+* Linear TD\(0\) 은 global optimum에 수렴한다.
+
+MC는 unbiased 하기 때문에 variance가 크더라도 정답값에 비슷하게 맞출 수 있다. 반면에 TD는 variance가 작고 bias가 크기 때문에 global optimum에 수렴해갈 수 있다.
+
+#### TD\($$\lambda$$\)
+
+* $$\lambda$$-return인 $$G_t^{\lambda}$$는 true value $$v_{\pi}(S_t)$$의 biased sample 이다.
+* 이 sample 데이터들을 training data로 사용할 수 있다. $$ <S_1, G_1^{\lambda}>, <S_2, G_2^{\lambda}>, ... , <S_{T-1}, G_{T-1}^{\lambda}>$$
+
+#### Control
+
+![Control with Value Function Approximation](../.gitbook/assets/image%20%28436%29.png)
 
 ## Incremental Control Algorithm.
 
