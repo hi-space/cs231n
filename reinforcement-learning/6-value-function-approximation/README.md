@@ -241,7 +241,7 @@ Stochastic Gradient Descent를 이용해 local minimum을 찾는다.
 
 ### Convergences
 
-![Convergence of Prediction Algorithms](../../.gitbook/assets/image%20%28440%29.png)
+![Convergence of Prediction Algorithms](../../.gitbook/assets/image%20%28441%29.png)
 
 Off-Policy에서는 MC에서만 수렴한다고 되어 있는데 실제로는 TD\(0\)이나 TD\($$\lambda$$\)나 잘 수렴한다.
 

@@ -1,20 +1,36 @@
 # 7. Policy Gradient
 
-## Policy-Based RL
+## Introduction
 
-gradient decente를 이용해 쎄타 parameter들을 업데이트햇었다.
+$$
+V_{\theta}(s) \approx V^{\pi}(s)
+\\ \\ 
+Q_{\theta}(s, a) \approx Q^{\pi}(s, a)
+$$
 
-policy를 parameter들을 이용해 표현하는 것. 함수로 표현.
+지난 lecture에서 parameter $$\theta$$를 update 하며 value function과 action-value function 함수를 approximation 했다. value function을 이용해 policy를 만들었다.
 
-* value function을 이용해 policy를 만들었었다. 
-* policy based는 value function을 배우지 않고 policy를 직접 learing 시키는 거다. \(policy hradient\)
-* 그 두가지를 다 학습시키는 것이 Actor-Critic
+$$
+\pi_{\theta}(s, a) = \mathbb{P}[a | s, \theta]
+$$
 
-    actor : policy
+이번 lecture에서는 value function 을 배우지 않고도 policy를 직접 learning 시키는 방법을 배울거다. policy로부터 직접적으로 parameter $$\theta$$를 update 하는 것이다.
 
-    critic : evaluation
+![Value Based / Policy-Based RL](../.gitbook/assets/image%20%28440%29.png)
 
-Policy Based RL
+* value based
+  * value function을 학습시킴
+  * Implicit policy \($$\epsilon-greedy$$\)
+* policy based
+  * value function을 배우지 않고 policy를 직접 learning 시킴
+* actor-critic
+  * value function과 policy를 모두 학습시킴
+  * actor : policy
+  * critic : evaluation
+
+### Policy-Based RL
+
+#### Advantages
 
 * 수렴성이 더 좋다
 * action의 가짓수가 많은 경우 \(continuous action space의 경우 action의 갯수가 무한대..\)
@@ -22,6 +38,9 @@ Policy Based RL
   이런 경우 value 로 학습하기 어렵다. Q 학습하기도 어렵고, 수많은 action 값중에서 Q를 maximize 하는 action을 골라야 하기 때문에 이 자체도 optimize 문제이다
 
 * deterministic 한 환경에서만 value를 학습시켰었다. \(greedy하게 업데이트했으니까\) stochastic한 환경에서 배울수 있다.
+
+#### Disadvantages
+
 * local optimum에 빠질 수 있다.
 * value based는 공격적인 학습방법이다. max를 취하니까 policy가 확확 바뀐다. policy based는 gradient 만큼 조금씩 업데이트하니까 stable 하다. 하지만 효율성이 떨어진다.
 
