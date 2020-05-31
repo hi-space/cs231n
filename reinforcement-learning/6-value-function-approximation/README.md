@@ -1,6 +1,20 @@
 # 6. Value Function Approximation
 
-여태 배운 것들은 방법들은 table lookup 을 이용해 각 칸들의 값들을 update 시켜봤다. 하지만 현실의 문제는 table 형식으로 표현되지 않을 정도로 state가 많아서 모든 값들을 저장하고 update 시키기는 어렵다. 그래서 이번엔 table lookup을 사용하지 않고 prediction하고 control 할 수 있는 방법에 대해 알아보려고 한다.
+
+
+
+
+```text
+        |          Grouping           ||
+First Header  | Second Header | Third Header |
+ ------------ | :-----------: | -----------: |
+Content       |          *Long Cell*        ||
+Content       |   **Cell**    |         Cell |
+
+New section   |     More      |         Data |
+And more      | With an escaped '\|'         ||  
+[Prototype table]여태 배운 것들은 방법들은 table lookup 을 이용해 각 칸들의 값들을 update 시켜봤다. 하지만 현실의 문제는 table 형식으로 표현되지 않을 정도로 state가 많아서 모든 값들을 저장하고 update 시키기는 어렵다. 그래서 이번엔 table lookup을 사용하지 않고 prediction하고 control 할 수 있는 방법에 대해 알아보려고 한다.
+```
 
 ## Introduction
 
@@ -18,7 +32,7 @@ $$
 
 function approximation을 하게 되면 봤던 state 뿐만 아니라 보지 못한 state에 대해서도 generalize가 잘된다. MC나 TD learning을 통해 파라미터 $$w$$를 업데이트하며 학습해가는 방식이다.
 
-![Types of Value Function Approximation](../.gitbook/assets/image%20%28437%29.png)
+![Types of Value Function Approximation](../../.gitbook/assets/image%20%28437%29.png)
 
 일반적인 함수의 모양을 나타내는 black box 이다. 어떤 input 값을 받았을 때 internal parameter인 $$w$$와 함께 연산되어 그에 해당하는 output을 산출한다.
 
@@ -29,7 +43,7 @@ function approximation을 하게 되면 봤던 state 뿐만 아니라 보지 못
 * \(action in 형태\) $$s$$와 $$a$$를 input으로 넣으면 $$\hat{q}(s, a, w)$$이 output으로 나온다.
 * \(action out 형태\) $$s$$를 input으로 넣으면 $$s$$에서 할 수 있는 모든 action에 대해서 output이 나온다.
 
-![Which Function Approximator?](../.gitbook/assets/image%20%28438%29.png)
+![Which Function Approximator?](../../.gitbook/assets/image%20%28438%29.png)
 
 function approximation으로 사용할 수 있는 함수는 liner combinations, neural network, decision tree 등 여러가지가 될 수 있겠지만, 그 중에서도 미분가능한\(differentiable\) 함수를 사용할거다. 그래야만 그 상태의 gradient를 구해서 update 할 수 있기 때문이다. 
 
@@ -55,7 +69,7 @@ non-stationary, non-iid data는 확분포가 시간에 따라 계속 바뀌는 r
 
 ### Gradient Descent
 
-![Gradient Descent](../.gitbook/assets/image%20%28434%29.png)
+![Gradient Descent](../../.gitbook/assets/image%20%28434%29.png)
 
 * $$J(w)$$ : $$w$$값이 input으로 들어가면 output이 나오는 어떤 함수
 * $$w = [w_1, w_2, ..., w_n]$$ : n 차원 vector. 
@@ -154,7 +168,7 @@ $$
 
 #### Table Lookup Feature
 
-![Table Lookup Features](../.gitbook/assets/image%20%28433%29.png)
+![Table Lookup Features](../../.gitbook/assets/image%20%28433%29.png)
 
 기존에 배웠던 table lookup 도 linear value function의 하나의 예시라고 볼 수 있다. state의 값들을 하나의 feature로 보고 vector로 표현해 feature vector 처럼 만들 수 있다. 그리고 n개의 $$w$$를 내적곱 해서 approximate value function을 표현할 수 있다. \($$w$$는 feature의 갯수만큼 존재\)
 
@@ -162,7 +176,7 @@ $$
 
 지금까지 true value function과 approximate value function의 차이를 줄이는 것을 목표로 해서 w 값을 update 하는 방법을 봤다. 하지만 실제 문제에서는 supervisor가 없기 때문에 true value function은 알 수가 없고 immediate reward 만 볼 수 있다. 그래서 이 true value function 대신 이전에 배운 MC나 TD를 사용하려고 한다.
 
-![target for value function](../.gitbook/assets/image%20%28435%29.png)
+![target for value function](../../.gitbook/assets/image%20%28435%29.png)
 
 true value function 대신 MC나 TD를 쓴다는 것은 결국 cumulative reward에 대해 예측을 어떻게 하는지 알아내는 prediction 문제이다. 
 
@@ -187,29 +201,98 @@ MC는 unbiased 하기 때문에 variance가 크더라도 정답값에 비슷하�
 * $$\lambda$$-return인 $$G_t^{\lambda}$$는 true value $$v_{\pi}(S_t)$$의 biased sample 이다.
 * 이 sample 데이터들을 training data로 사용할 수 있다. $$ <S_1, G_1^{\lambda}>, <S_2, G_2^{\lambda}>, ... , <S_{T-1}, G_{T-1}^{\lambda}>$$
 
-#### Control
+### Action-Value Function Approximation
 
-![Control with Value Function Approximation](../.gitbook/assets/image%20%28436%29.png)
+![Control with Value Function Approximation](../../.gitbook/assets/image%20%28436%29.png)
 
-## Incremental Control Algorithm.
+Model Free가 되려면 Value Function 대신 Action Value Function을 사용해야 한다. Action-Value Function Approximation도 비슷한 형식으로 이뤄진다. Evaluation은 parameter $$w$$를 update 해가고, Improvement 는 그렇게 update된 action-value function에서 $$\epsilon-greedy$$로 action을 취하며 improve 된다.
 
-GPI.. 이용.. policy 찾는거.. imporve는 epsilon으로 평가는 approximation.. q 에대해서.. \(model free니까\). Q를 끼워넣으면 policy를 학습한다.
+#### action-value function approximation
 
-V나 Q 나 똑같다. V를 Q로만 바꿔주면 된다.
+$$
+\hat{q}(S, A, w) \approx q_{\pi}(S, A)
+$$
 
-Linear SARSsa linear한 function approximation을 썼음.
+Q function에서 parameter $$w$$를 포함시켜 approximation 함수를 정의한다.
 
-MC에서만 수렴한다고 되어 있는데 실제로는 TD\(0\)나 람다나 잘 수렴한다.
+#### Objective Function
+
+$$
+J(w) = \mathbb{E}_{\pi}[(q_{\pi}(S, A) - \hat{q}(S, A, w))^2]
+$$
+
+true action-value function과 approximate action-value function의 MSE 를 최소화한다.
+
+#### Stochastic Gradient Descent
+
+$$
+-\frac{1}{2}\nabla_wJ(w) = (q_{\pi}(S, A) - \hat{q}(S, A, w)) \nabla_w \hat{q}(S, A, w)
+\\
+\Delta w = \alpha(q_{\pi}(S, A) - \hat{q}(S, A, w)) \nabla_w \hat{q}(S, A, w)
+$$
+
+Stochastic Gradient Descent를 이용해 local minimum을 찾는다.
+
+#### MC & TD
+
+![](../../.gitbook/assets/image%20%28439%29.png)
+
+마찬가지로 true action-value function은 MC와 TD로 대체될 수 있다.
+
+### Convergences
+
+![Convergence of Prediction Algorithms](../../.gitbook/assets/image%20%28440%29.png)
+
+Off-Policy에서는 MC에서만 수렴한다고 되어 있는데 실제로는 TD\(0\)이나 TD\($$\lambda$$\)나 잘 수렴한다.
 
 ## Batch Methods
 
-Incremental 은 gradient descent를 이용해 sample 하나를 뽑아서 그거롤 update 하고 극걸로 policy update 하고. 한번 update하고 그 경험은 버려지니까 그 sample이 효과적으로 사용되지 않는다. 쌓여진 경험 데이터르를 re-use 하면서 학습하는거다.
+Incremental Methods는 sample을 하나 뽑아서 Stochastic Gradient Descent를 이용해 parameter를 조금씩 update 하고, 또 그것으로 policy update 까지 한다. 뽑은 sample로 policy 까지 update 하기 때문에 그 이후에는 그 sample이 버려지게 되어, 효과적으로 사용되지 않는다. 
 
-incremental은 경험을 쓰고 버리고, batch는 경험을 쌓아놓고 쓰고. off-policy느낌이라고 보면 됨
+Batch Methods는 sample 데이터\(경험\)들을 쌓아놓고 있다가 re-use 하면서 학습을 진행한다. SGD 처럼 차근차근 학습을 진행하지않고 training data를 모아놨다가 한꺼번에 update 하는 방식이다.
 
-incremental은 \pi를 따라가면서 했는데 이건 주어진 D를 따라가면서 하는거. D에서 s, value를 smapling 해서 그걸로 gradient descent 한다. 데이터를 좀 더 효율적으로 쓸 수 있다. 이를 experience replay 라고 한다. off-policy할 때 많이 사용되는 방법이다.
+$$D = \{<s_1, v_1^{\pi}>, <s_2, v_2^{\pi}>, ..., <s_T, v_T^{\pi}> \}$$
+
+value function approximation $$\hat{v}(s, w) \approx v_{\pi}(s)$$ 가 주어졌을 때 $$D$$는 &lt;state, value&gt; pair 이다. value function approximation은 경험들의 집합인 $$D$$를 이용해 parameter를 update 한다. Incremental Methods는 $$\pi$$를 따라가며 parameter를 update 했지만 Batch Methods는 $$D$$를 따라가며 update 한다. 
+
+value function approximation$$v_t^{\pi}$$와 target value인 $$v_t^{\pi}$$사이의 sum-squared error를 minimize 하는 parameter vector를 찾기 위해서 Least Squares 알고리즘을 사한다. 
+
+$$
+\begin {matrix}
+LS(w) 
+&=& \sum_{t=1}^{T}(v_t^{\pi} - \hat{v}(s_t, w))^2
+\\ \\
+&=& \mathbb{E}_D[(v^{\pi} - \hat{v}(s, w))^2]
+
+
+\end{matrix}
+$$
+
+### Experience Replay
+
+Experience Reply는 transition 들을 replay memory에 쌓고 랜덤하게 mini-batch를 뽑아서, 그것을 training data로 사용해 학습을 하는 방법이다. Experience Replay를 이용하면 sample efficient 하다는 장점도 있지만, 데이터들 사이의 correlation 으로 인해 학습이 잘 안되는 문제도 해결 할 수 있다.
+
+\(1\)$$D$$에서 state와 value를 sampling 하고 경험이 쌓이고나면  
+$$<s, v^{\pi}> \sim  D$$
+
+\(2\) Stochastic Descent Update 로 parameter들을 update 한다.   
+$$\Delta w = \alpha(v^{\pi} - \hat{v}(s, w)) \nabla_w \hat{v}(s, w)$$
+
+이 과정을 반복하면 되는데 이를 experience replay 라고 한다. off-policy 할 때 많이 사용되는 방법이다. Least Squares는 수렴한다. $$ w^{\pi} = \underset{w}{argmin}  LS(w)$$
+
+결국 Batch Method는 experience data를 한번만 사용하는 것이 문제였던 SGD를 해결하기 위해 사용하는 방법이다. \(experience reply\)
+
+
+
+
+
+
+
+Non-Linear 할 때 수렴성을 높이기 위해 experience replay와 fixed Q-targets를 이요한다.
+
+experience reply는 transition 들을 replay memory에 쌓고 랜덤하게 mini-batch를 뽑아서, 그것을 training data로 사용해 학습을 하는 방법이다.
+
+fixed Q-targets : TD target을 계산할 때 parameter 들을 고정시켜놓고 학습킨다. target network를 두개를 이용.
 
 non-lenear할 때 수렴성을 높이기 위해 experien replay : transitoin들을 replay memory에 쌓고 랜덤하게 미니배치를 뽑아서, 그걸로 학습을 한다. fixed Q-targets : TD target을 계산할 때 파라미터를 고정시켜놓고 하다가, 업데이트. target network를 두개를 이용하는 거.
-
-## Batch Methods
 

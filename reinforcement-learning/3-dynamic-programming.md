@@ -185,7 +185,9 @@ synchronous backup으로 $$  v_1 \rightarrow v_2  \rightarrow v_3... \rightarrow
       <td style="text-align:left">Value Iteration</td>
     </tr>
   </tbody>
-</table>action이 $$m$$개, state가 $$n$$라고 할 때 state-value function $$v_{\pi}(s)$$, $$v_*(s)$$ 의 시간복잡도는 $$O(mn^2)$$가 되고 action-value function $$q_{\pi}(s,a)$$, $$ q_*(s, a)$$ 은는 $$O(m^2n^2)$$가 된다. 모든 state 들을 돌아가면서 한번씩 다 업데이트 해야하기 때문에 cost가 굉장히 크다. 이 부분에 대한 개선이 필요하다.
+</table>
+
+action이 $$m$$개, state가 $$n$$라고 할 때 state-value function $$v_{\pi}(s)$$, $$v_*(s)$$ 의 시간복잡도는 $$O(mn^2)$$가 되고 action-value function $$q_{\pi}(s,a)$$, $$ q_*(s, a)$$ 은는 $$O(m^2n^2)$$가 된다. 모든 state 들을 돌아가면서 한번씩 다 업데이트 해야하기 때문에 cost가 굉장히 크다. 이 부분에 대한 개선이 필요하다.
 
 ## Extensions to Dynamic Programming
 

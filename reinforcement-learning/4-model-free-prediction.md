@@ -166,7 +166,9 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
       </td>
     </tr>
   </tbody>
-</table>* Return $$ G_t = R_{t+1} + \gamma R_{t+2} + ... + \gamma ^ {T-1}R_t $$는 $$v_{\pi}(S_t)$$의 unbiased estimate 이다. 즉 편향되지 않았다는 것이다. $$G_t$$를 계속 평균내다 보면 $$v_{\pi}$$로 결국 수렴하게 되기 때문에 unbiased한 estimate 이 가능하다.
+</table>
+
+* Return $$ G_t = R_{t+1} + \gamma R_{t+2} + ... + \gamma ^ {T-1}R_t $$는 $$v_{\pi}(S_t)$$의 unbiased estimate 이다. 즉 편향되지 않았다는 것이다. $$G_t$$를 계속 평균내다 보면 $$v_{\pi}$$로 결국 수렴하게 되기 때문에 unbiased한 estimate 이 가능하다.
 * True TD target $$R_{t+1} + \gamma v_{\pi}(S_{t+1})$$는 $$v_{\pi}(S_t)$$ 의 unbiased estimate 이다. 모든 것을 알고 있는 oracle이 $$v_{\pi}(S_t)$$의 실제값을 알려주게 되면 bellman equation이 저 값을 보장해주기 때문에 unbiased한 estimate 이 된다. 
 * TD target $$R_{t+1} + \gamma v_{\pi}(S_{t+1})$$는 $$v_{\pi}(S_t)$$ 의  biased estimate 이다. 추측치로 업데이트하기 때문에 biased 되어 있을 수 있다.
 * TD target은 return 보다 variance가 낮다. Return은 많은 random actions, transitions, rewards에 종속되지만, TD target은 하나의 random action, transition, reward에 종속되기 때문이다.
@@ -210,7 +212,9 @@ $$V(S_t) \leftarrow V(S_t) + \alpha( {\color{RED} R_{t+1} + \gamma V(S_{t+1})} -
       </td>
     </tr>
   </tbody>
-</table>> Bias : 데이터 내의 모든 정보를 고려하지 않아, 지속적으로 잘못된 것들을 학습하는 경향 \(underfitting에 연관있음\)
+</table>
+
+> Bias : 데이터 내의 모든 정보를 고려하지 않아, 지속적으로 잘못된 것들을 학습하는 경향 \(underfitting에 연관있음\)
 >
 > Variance : 데이터 내의 에러나 노이즈까지 잘 잡아내는 model에 데이터를 fitting 시킴으로, 실제 현상과 관계없는 random한 것들까지 학습하는 알고리즘의 경향 \(overfitting에 연관있음\)
 >
@@ -298,7 +302,9 @@ DP는 sampling 하지 않고 할 수 있는 모든 action에 대해 update. 모�
       <td style="text-align:center">X</td>
     </tr>
   </tbody>
-</table>Bootstrapping은 추측치로 업데이트 하기 때문에 예측치에 추측치가 포함된다. Sampling은 full sweep을 안하고 sample 데이터로 업데이트 하는것을 말한다.
+</table>
+
+Bootstrapping은 추측치로 업데이트 하기 때문에 예측치에 추측치가 포함된다. Sampling은 full sweep을 안하고 sample 데이터로 업데이트 하는것을 말한다.
 
 모델을 알 때는 DP가 가능하지만, 모델을 모를 때에는 sample backup을 해야 한다. \(agent가 policy를 따라 가는 것이 sampling\)
 
