@@ -44,18 +44,32 @@ $$
 * local optimum에 빠질 수 있다.
 * value based는 공격적인 학습방법이다. max를 취하니까 policy가 확확 바뀐다. policy based는 gradient 만큼 조금씩 업데이트하니까 stable 하다. 하지만 효율성이 떨어진다.
 
-주먹가위보
+### Rock-Paper-Scissors
 
-* deterministic 한 policy는 쉽게 exploit된다. 하나의 선택만 하는거.
-* uniform policy는 optimal 하다. 항상 공평하게 낸다.  비슷한 확률로
+연속적으로 가위바위보 게임을 한다고 하자. 
 
-Aliased Gridworld feature가 완전하지 않은 상황. partially observable한 상황
+* deterministic 한 policy는 쉽게 exploit된다. \(하나의 선택만 반복적으로 하는 것\)
+* uniform policy는 optimal 하다. 항상 비슷한 확률로 공평한 선택을 한다.
 
-* determinisitc policy는 회색칸에 대해 같은 policy를 가진다. feature가 불안전해서 어떤칸에 있는지 모른다. stock상황에 올 수 있다.
+### Aliased GridWorld
 
-  차라리 확률적으로 왼쪽이나 오른쪽을 선택하는 policy가 있어야 양쪽의 칸으로 이동할 수 있다. 
+![Aliased GridWorld](../.gitbook/assets/image%20%28443%29.png)
 
-  fully observable 한 경우는 deterministic policy가 optimal 이 보장되나, partially observable한 경우는 optimal이 보장되지 않는다.
+Aliased GridWorld는 feature가 완전하지 않은 partially observable 한 환경이다. Agent는 회색 칸의 상태를 알 수 없는 상황이다.
+
+* deterministic policy의 경우는 회색칸에 대해 같은 policy를 가진다. feature가 불안전해서 어떤 칸에 있는지 모른다. 왼쪽칸 오른쪽칸을 반복해서 움직이며 stuck 상황이 올 수 있다.
+  * grey states 일 때 항상 W로 가거나 항상 E로 간다.
+  * Value-based RL은 near-deterministic policy를 배운다.
+* 확률적으로 왼쪽이나 오른쪽을 선택하는 policy가 있어야 양쪽의 칸으로 이동할 수가  있게 된다.
+  * optimal stochastic policy는 grey states에서 E와 W를 확률적으로 선택한다.
+  * Policy-based RL은 optimal stochastic policy를 배울 수 있다.
+* fully observable 한 경우는 deterministic policy가 optimal 함이 보장되지만, partially observable한 경우는 optimal이 보장되지 않는다.
+
+### Policy Objective Functions
+
+$$\pi_{\theta}(s, a)$$ : parameter $$\theta$$에 대해 action $$a$$ 를 선택하는 policy 가 있다. 여기에서 best parameter $$\theta$$를 찾는 것이 문제이다. 
+
+
 
 policy는 파이라는 함수를 사용한다. parameter 쎄타에 대해 action a를 뱉어주는 함수. best parameter를 찾는다. maximize하고자 하는 목적함수\(objective function\)은? 이 policy를 따랐을 때 총 reward값이 가장 높은 policy가 좋은 policy 1. episodic env에서는 start value를 사용.
 

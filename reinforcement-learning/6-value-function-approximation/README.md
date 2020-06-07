@@ -1,21 +1,5 @@
 # 6. Value Function Approximation
 
-
-
-
-
-```text
-        |          Grouping           ||
-First Header  | Second Header | Third Header |
- ------------ | :-----------: | -----------: |
-Content       |          *Long Cell*        ||
-Content       |   **Cell**    |         Cell |
-
-New section   |     More      |         Data |
-And more      | With an escaped '\|'         ||  
-[Prototype table]여태 배운 것들은 방법들은 table lookup 을 이용해 각 칸들의 값들을 update 시켜봤다. 하지만 현실의 문제는 table 형식으로 표현되지 않을 정도로 state가 많아서 모든 값들을 저장하고 update 시키기는 어렵다. 그래서 이번엔 table lookup을 사용하지 않고 prediction하고 control 할 수 있는 방법에 대해 알아보려고 한다.
-```
-
 ## Introduction
 
 Value function은 state의 갯수만큼, Q 에서는 state-action fair의 갯수만큼 table 공간이 필요했다. 큰 MDP 문제에서는 메모리에 저장하기에 너무 많은 state와 action들이 존재했다. 그래서 value function을 function approximation을 해서 estimate 하는 방식을 사용하려고 한다.
