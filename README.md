@@ -32,3 +32,15 @@
 | [Faster RCNN](https://app.gitbook.com/@hispace-j/s/space/~/edit/drafts/-Ll_rf0urRgPXbaa3sgB/object-detection/faster-r-cnn) |  |
 | [YOLO](https://app.gitbook.com/@hispace-j/s/space/~/edit/drafts/-Ll_rf0urRgPXbaa3sgB/object-detection/yolo) |  |
 
+
+## Reinforcement Learning
+
+| Lecture | Description |
+| :---: | :--- |
+| 1 | Introduction to Reinforcement Learning |
+| 2 | Markov Decision Processes |
+| 3 | Planning by Dynamic Programming |
+| 4 | Model-Free Prediction |
+| 5 | Model-Free Control |
+| 6 | Value Function Approximation |
+| 7 | Policy Gradient Methods |
