@@ -21,8 +21,6 @@
 | 15 | Efficient Methods and Hardware for Deep Learning |  |
 | 16 | Adversarial Examples and Adversarial Training |  |
 
-
-
 ## Object Detection
 
 | Subject | Appendix |
@@ -31,7 +29,6 @@
 | [Fast RCNN](https://app.gitbook.com/@hispace-j/s/space/~/edit/drafts/-Ll_rf0urRgPXbaa3sgB/object-detection/fast-rcnn) |  |
 | [Faster RCNN](https://app.gitbook.com/@hispace-j/s/space/~/edit/drafts/-Ll_rf0urRgPXbaa3sgB/object-detection/faster-r-cnn) |  |
 | [YOLO](https://app.gitbook.com/@hispace-j/s/space/~/edit/drafts/-Ll_rf0urRgPXbaa3sgB/object-detection/yolo) |  |
-
 
 ## Reinforcement Learning
 
@@ -44,3 +41,4 @@
 | 5 | Model-Free Control |
 | 6 | Value Function Approximation |
 | 7 | Policy Gradient Methods |
+
