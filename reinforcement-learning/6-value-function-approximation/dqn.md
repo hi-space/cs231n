@@ -31,7 +31,7 @@ $$e_t = (s_t, a_t, r_t, s_{t+1})$$
 
 Experience Replay를 사용할 때에는 현재의 parameter와 update 하는 샘플들과 다르기 때문에 반드시 off-policy로 learning 해야 한다.
 
-![pseudo code](../../.gitbook/assets/image%20%28446%29.png)
+![pseudo code](../../.gitbook/assets/image%20%28448%29.png)
 
 ### Freeze target Q-network
 
@@ -43,11 +43,11 @@ fixed Q-targets 방법이다. TD target을 계산할 때 parameter들을 고정�
 
 ## Model Architecture
 
-![Pre-processing](../../.gitbook/assets/image%20%28447%29.png)
+![Pre-processing](../../.gitbook/assets/image%20%28449%29.png)
 
 Atari 게임의 RGB 이미지를 넣기 전에 위와 같이 preprocessing 과정을 거친다. 그리고 input data를 넣을 때에는 4개의 history를 stack으로 쌓아서 네트워크에 넣어주게 된다. 
 
-![Model Architecture](../../.gitbook/assets/image%20%28445%29.png)
+![Model Architecture](../../.gitbook/assets/image%20%28447%29.png)
 
 3개의 CNN과 2개의 FC 를 이어서 모델을 설계했다.
 

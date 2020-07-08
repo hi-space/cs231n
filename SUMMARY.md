@@ -31,6 +31,7 @@
 * [6. Value Function Approximation](reinforcement-learning/6-value-function-approximation/README.md)
   * [DQN](reinforcement-learning/6-value-function-approximation/dqn.md)
 * [7. Policy Gradient](reinforcement-learning/7-policy-gradient.md)
+* [RL Algorithm](reinforcement-learning/rl-algorithm.md)
 
 ## Object Detection
 
