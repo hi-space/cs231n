@@ -16,15 +16,15 @@
 
 
 
-| Index |  |
-| :--- | :--- |
-|  | DQN |
-|  | DDQN |
-|  | A2C |
-|  | A3C |
-|  | DDPG |
-|  | TRPO |
-|  | PPO |
+|  |
+| :--- |
+| DQN |
+| DDQN |
+| A2C |
+| A3C |
+| DDPG |
+| TRPO |
+| PPO |
 
 
 
