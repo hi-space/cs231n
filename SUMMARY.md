@@ -28,9 +28,9 @@
 * [3. Planning by Dynamic Programming](reinforcement-learning/3-dynamic-programming.md)
 * [4. Model Free Prediction](reinforcement-learning/4-model-free-prediction.md)
 * [5. Model Free Control](reinforcement-learning/5-model-free-control.md)
-* [6. Value Function Approximation](reinforcement-learning/6-value-function-approximation/README.md)
-  * [DQN](reinforcement-learning/6-value-function-approximation/dqn.md)
+* [6. Value Function Approximation](reinforcement-learning/6-value-function-approximation.md)
 * [7. Policy Gradient](reinforcement-learning/7-policy-gradient.md)
+* [DQN](reinforcement-learning/dqn.md)
 * [A3C](reinforcement-learning/a3c.md)
 * [RL Algorithm](reinforcement-learning/rl-algorithm.md)
 
