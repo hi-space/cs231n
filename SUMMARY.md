@@ -51,6 +51,9 @@
 * [Sim-to-Real via Sim-to-Sim](paper/sim-to-real-via-sim-to-sim.md)
 * [Learning to Augment Synthetic Images for Sim2Real Policy Transfer](paper/learning-to-augment-synthetic-images-for-sim2real-policy-transfer.md)
 * [Domain Stylization](paper/domain-stylization.md)
+* [Meta-Sim: Learning to Generate Synthetic Datasets](paper/meta-sim-learning-to-generate-synthetic-datasets.md)
+* [High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs](paper/high-resolution-image-synthesis-and-semantic-manipulation-with-conditional-gans.md)
+* [Learning to Simulate Dynamic Environments with GameGAN](paper/learning-to-simulate-dynamic-environments-with-gamegan.md)
 
 ## ETC
 
