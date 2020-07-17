@@ -14,19 +14,21 @@ $$
 \pi_{\theta}(s, a) = \mathbb{P}[a | s, \theta]
 $$
 
-이번 lecture에서는 value function 을 배우지 않고도 policy를 직접 learning 시키는 방법을 배울거다. policy로부터 직접적으로 parameter $$\theta$$를 update 하는 것이다.
+이번 lecture에서는 value function 을 배우지 않고도 policy를 직접 learning 시키는 방법을 배울거다. policy로부터 직접적으로 parameter $$\theta$$를 update 하는 것이다. \(parameterized policy\)
+
+policy parameter를 학습하기 위해서 value function을 사용할 수도 있겠지만 필수적인 것은 아니다. Policy Gradient는 목적 함수 $$J(\theta)$$의 gradient를 기반으로 해서 policy parameter를 학습하는 방식이다. 그리고 value function과 policy 를 모두 학습시키는 방식인 actor-critic 이 있다.
 
 ![Value Based / Policy-Based RL](../.gitbook/assets/image%20%28440%29.png)
 
-* value based
+* **Value based**
   * value function을 학습시킴
   * Implicit policy \($$\epsilon-greedy$$\)
-* policy based
+* **Policy gradient method**
   * value function을 배우지 않고 policy를 직접 learning 시킴
-* actor-critic
+* **Actor-Critic method**
   * value function과 policy를 모두 학습시킴
-  * actor : policy
-  * critic : evaluation
+  * actor : policy \(학습된 policy\)
+  * critic : evaluation \(학습된 value function\)
 
 ### Policy-Based RL
 
@@ -67,7 +69,13 @@ Aliased GridWorld는 feature가 완전하지 않은 partially observable 한 환
 
 ### Policy Objective Functions
 
-$$\pi_{\theta}(s, a)$$ : parameter $$\theta$$에 대해 action $$a$$ 를 선택하는 policy 가 있다. 여기에서 best parameter $$\theta$$를 찾는 것이 문제이다. 
+Policy Gradient는 $$\pi$$라는 policy를 직접 모델링하고 최적화 하는 데에 집중한다. policy는$$\theta$$라는 특정 parameter로 구성된 함수 $$\pi_{\theta}$$로 표현된다. 이 policy는 parameter $$\theta$$에 대해 action $$a$$를 output으로 준다. 
+
+> $$\pi_{\theta}(s, a)$$ : parameter $$\theta$$에 대해 action $$a$$ 를 선택하는 policy 가 있다. 이 policy의 best parameter $$\theta$$를 찾는 것이 문제이다.
+
+이 policy가 최적이 되기 위해 best parameter를 maximize 해야 한다. 즉, 어떤 policy를 따랐을 때 총 reward 값이 가장 높은 policy를 찾는 것이다. 이를 objective function으로 표현하면 아래와 같다.
+
+
 
 
 
