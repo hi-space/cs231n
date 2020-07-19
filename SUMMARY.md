@@ -19,6 +19,10 @@
 * [10. Recurrent Neural Network](cs231n/10-recurrent-neural-network/README.md)
   * [10-1. Appendix RNN](cs231n/10-recurrent-neural-network/10-1-appendix-rnn.md)
 
+---
+
+* [Evaluation](evaluation.md)
+
 ## Reinforcement Learning
 
 * [Index](reinforcement-learning/index.md)
